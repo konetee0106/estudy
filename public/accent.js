@@ -8,7 +8,12 @@
   if (!sel) return;
 
   const KEY = "voice_accent"; // 저장: 선택된 실제 언어코드(loc)
-  const PREFER = { "en-sg": "wayne", "en-us": "brian" }; // 특정 지역 선호 음성 이름
+  // 지역별 선호 음성 이름. 여러 브라우저를 대비해 후보를 "순서대로" 시도한다.
+  // 미국 표준은 남성 음성 우선: Edge=Brian/Guy/Andrew/Eric, Windows Chrome=David …
+  const PREFER = {
+    "en-sg": ["wayne"],
+    "en-us": ["brian", "guy", "andrew", "eric", "roger", "steffan", "david", "mark"],
+  };
 
   // 각 버튼: 후보 언어코드 목록 (앞에서부터 있는 걸 사용)
   // 전부 en-XX (진짜 영어 음성) — 로컬 언어로 읽지 않고 그 지역 억양의 영어를 읽음
@@ -66,16 +71,30 @@
   function optForLoc(loc) {
     const l = loc.toLowerCase();
     const opts = Array.from(sel.options);
-    const pref = PREFER[l];
-    if (pref) {
+    const prefs = PREFER[l] || [];
+    // 선호 음성 후보를 순서대로 찾아 있으면 그걸 사용
+    for (const name of prefs) {
       const m = opts.find(
         (o) =>
           o.textContent.toLowerCase().includes(l) &&
-          o.textContent.toLowerCase().includes(pref)
+          o.textContent.toLowerCase().includes(name)
       );
       if (m) return m;
     }
+    // 선호 음성이 없는 브라우저면 그 지역의 첫 음성으로 대체
     return opts.find((o) => o.textContent.toLowerCase().includes(l));
+  }
+  // 이 지역에 선호(남성) 음성이 이 브라우저에 실제로 있는지
+  function hasPref(loc) {
+    const l = loc.toLowerCase();
+    const opts = Array.from(sel.options);
+    return (PREFER[l] || []).some((name) =>
+      opts.some(
+        (o) =>
+          o.textContent.toLowerCase().includes(l) &&
+          o.textContent.toLowerCase().includes(name)
+      )
+    );
   }
   function firstAvailable(locs) {
     for (const loc of locs) if (optForLoc(loc)) return loc;
@@ -93,8 +112,13 @@
     if (!cur) return false;
     const t = cur.textContent.toLowerCase();
     const l = loc.toLowerCase();
-    const pref = PREFER[l];
-    return t.includes(l) && (!pref || t.includes(pref));
+    if (!t.includes(l)) return false;
+    const prefs = PREFER[l] || [];
+    if (!prefs.length) return true;
+    // 선호(남성) 음성이 이 브라우저에 없으면 현재 음성을 그대로 인정,
+    // 있으면 그중 하나가 현재 선택된 경우에만 일치로 본다.
+    if (!hasPref(loc)) return true;
+    return prefs.some((name) => t.includes(name));
   }
   function markActiveByLoc(loc) {
     const l = loc.toLowerCase();
@@ -116,10 +140,13 @@
   function refresh() {
     updateAvailability();
     if (userTouched) return;
+    // 저장된 설정이 있으면 그걸, 없으면 기본값 "en-US"(미국 표준·남성 우선) 적용.
+    // → PC(Edge/Chrome)에서 처음 열어도 여성 Ava가 아니라 남성 Brian 등이 기본이 된다.
     const saved = localStorage.getItem(KEY);
-    if (saved && optForLoc(saved)) {
-      if (!currentMatchesLoc(saved)) applyLoc(saved);
-      markActiveByLoc(saved);
+    const target = saved && optForLoc(saved) ? saved : "en-US";
+    if (optForLoc(target)) {
+      if (!currentMatchesLoc(target)) applyLoc(target);
+      markActiveByLoc(target);
     }
   }
 
