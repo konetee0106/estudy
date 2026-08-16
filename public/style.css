@@ -1378,3 +1378,66 @@ footer {
   color: #d97706;
   background: color-mix(in srgb, #d97706 16%, transparent);
 }
+
+/* ===== 모바일 대응 (스마트폰·태블릿) ===== */
+/* 데스크톱은 화면을 꽉 채우고(100vh) 내부 패널만 스크롤하는 구조라,
+   모바일에서는 메뉴/버튼이 여러 줄로 접히며 지문 영역이 좁은 칸에 갇힌다.
+   → 모바일에서는 고정 높이를 풀어 "페이지 전체"가 자연스럽게 스크롤되게 한다. */
+@media (max-width: 768px) {
+  html,
+  body {
+    height: auto;
+  }
+  .app {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh; /* 모바일 주소창 변화에 안전 */
+    padding: 12px;
+  }
+
+  /* 내부 스크롤(overflow) 패널들을 페이지 스크롤에 맡긴다 */
+  .reading-main {
+    overflow: visible;
+    display: block;
+  }
+  .passage {
+    overflow: visible;
+    max-height: none;
+    padding: 18px 18px;
+    font-size: 1.05rem;
+  }
+  /* 회화 로그·정리·복습 목록 등도 페이지와 함께 늘어나도록 */
+  .chat,
+  .guide-body,
+  .shadow-result,
+  .verb-main,
+  .reading-empty {
+    overflow: visible;
+    max-height: none;
+  }
+
+  /* 좁은 화면에서 여백·글자 살짝 줄여 가독성 확보 */
+  h1 {
+    font-size: 1.3rem;
+  }
+  .nav {
+    gap: 6px;
+  }
+  .nav a {
+    padding: 5px 8px;
+    font-size: 0.85rem;
+  }
+  /* 상단 툴바가 화면을 다 차지하지 않도록 여백 압축 */
+  .app {
+    gap: 8px;
+  }
+  .controls,
+  .listen-bar {
+    gap: 8px;
+  }
+  /* "마우스로 드래그" 안내는 터치 기기에선 맞지 않아 숨김
+     (모바일에서는 글자를 길게 눌러 선택하면 동일하게 해석됩니다) */
+  .hint-drag {
+    display: none;
+  }
+}

@@ -318,6 +318,14 @@ function renderPassage(data) {
   applyFontSize();
   applyViewMode();
   passageEl.scrollTop = 0;
+
+  // 모바일에서는 상단 툴바가 길어 지문이 화면 아래에서 시작한다.
+  // 지문이 만들어지면 지문 위치로 부드럽게 스크롤해 바로 보이게 한다.
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    requestAnimationFrame(() =>
+      passageEl.scrollIntoView({ behavior: "smooth", block: "start" })
+    );
+  }
 }
 
 startBtn.addEventListener("click", fetchPassage);
