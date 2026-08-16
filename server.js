@@ -823,8 +823,19 @@ app.post("/api/writing/grade", async (req, res) => {
   try {
     const korean = String(req.body?.korean || "").trim();
     const answer = String(req.body?.answer || "").trim().slice(0, 1000);
-    if (!korean || !answer)
-      return res.status(400).json({ error: "문제나 답안이 비어 있습니다." });
+    // 답을 안 썼으면 "정답만 보기" 모드 (폰에서 타이핑 없이 정답 확인)
+    const reveal = !!req.body?.reveal || !answer;
+    if (!korean) return res.status(400).json({ error: "문제가 비어 있습니다." });
+
+    const userContent = reveal
+      ? `한국어 문장:\n${korean}\n\n` +
+        `학습자가 직접 쓰지 않고 정답만 확인하려고 해. ` +
+        `이 문장의 가장 자연스러운 영어 번역(best), 다른 자연스러운 표현(alternatives), ` +
+        `그리고 이 문장을 영작할 때 알아두면 좋은 핵심 포인트를 짧은 한국어로(feedback) 줘. score는 0으로.`
+      : `한국어 문장:\n${korean}\n\n` +
+        `학습자가 쓴 영어:\n${answer}\n\n` +
+        `이 영작을 평가해줘. 가장 자연스러운 영어 문장(best), 다른 표현(alternatives), ` +
+        `그리고 학습자 답안에 대한 한국어 피드백(feedback)과 점수(score)를 줘.`;
 
     const response = await client.messages.create({
       model: MODEL,
@@ -834,11 +845,7 @@ app.post("/api/writing/grade", async (req, res) => {
       messages: [
         {
           role: "user",
-          content:
-            `한국어 문장:\n${korean}\n\n` +
-            `학습자가 쓴 영어:\n${answer}\n\n` +
-            `이 영작을 평가해줘. 가장 자연스러운 영어 문장(best), 다른 표현(alternatives), ` +
-            `그리고 학습자 답안에 대한 한국어 피드백(feedback)과 점수(score)를 줘.`,
+          content: userContent,
         },
       ],
       output_config: {
@@ -858,6 +865,7 @@ app.post("/api/writing/grade", async (req, res) => {
       best: parsed.best || "",
       alternatives: Array.isArray(parsed.alternatives) ? parsed.alternatives : [],
       feedback: parsed.feedback || "",
+      reveal,
     });
   } catch (err) {
     console.error("[/api/writing/grade] 오류:", err?.message || err);

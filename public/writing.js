@@ -174,9 +174,18 @@ function showQuestion(statusText) {
   answerInput.value = "";
   answerInput.disabled = false;
   submitBtn.disabled = false;
+  updateSubmitLabel();
   answerInput.focus();
   setStatus(statusText);
 }
+
+// 입력 여부에 따라 버튼 라벨 변경: 비어 있으면 "정답 보기", 쓰면 "제출하고 채점"
+function updateSubmitLabel() {
+  submitBtn.textContent = answerInput.value.trim()
+    ? "제출하고 채점"
+    : "👀 정답 보기";
+}
+answerInput.addEventListener("input", updateSubmitLabel);
 
 // ===== 복습: 내가 연습했던 문제 랜덤으로 =====
 function loadReviewQuestion() {
@@ -212,12 +221,10 @@ answerForm.addEventListener("submit", async (e) => {
   if (!currentKorean) return;
   stopLoop(); // 이전 반복 듣기 정지 (새 결과 렌더 전)
   const answer = answerInput.value.trim();
-  if (!answer) {
-    setStatus("영어 문장을 입력한 뒤 제출하세요.");
-    return;
-  }
+  // 답을 안 썼으면 채점 대신 "정답 보기" (폰에서 타이핑 없이 확인)
+  const reveal = !answer;
 
-  setStatus("채점 중…");
+  setStatus(reveal ? "정답을 불러오는 중…" : "채점 중…");
   submitBtn.disabled = true;
   newBtn.disabled = true;
 
@@ -225,7 +232,7 @@ answerForm.addEventListener("submit", async (e) => {
     const res = await fetch("/api/writing/grade", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ korean: currentKorean, answer }),
+      body: JSON.stringify({ korean: currentKorean, answer, reveal }),
     });
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
@@ -233,7 +240,11 @@ answerForm.addEventListener("submit", async (e) => {
     }
     const data = await res.json();
     renderResult(answer, data);
-    setStatus("채점 완료! '새 문제'로 계속 연습하세요.");
+    setStatus(
+      reveal
+        ? "정답을 확인했어요. 소리 내어 말해보고 '새 문제'로 계속하세요."
+        : "채점 완료! '새 문제'로 계속 연습하세요."
+    );
   } catch (err) {
     setStatus("오류: " + err.message, "error");
   } finally {
@@ -250,6 +261,7 @@ function renderResult(answer, data) {
   if (typeof Review !== "undefined" && lastBest) {
     Review.add("writing", { en: lastBest, ko: currentKorean });
   }
+  const reveal = !!data.reveal || !answer;
   const score = data.score || 0;
   let verdict;
   if (score >= 90) verdict = "🎉 훌륭합니다!";
@@ -269,12 +281,16 @@ function renderResult(answer, data) {
     .join("");
 
   resultEl.innerHTML = `
-    <div class="score">${verdict} &nbsp; 점수 ${score}점</div>
+    ${
+      reveal
+        ? `<div class="score">👀 정답 확인 &nbsp;<span class="reveal-note">머릿속으로 떠올린 답과 비교해 보세요</span></div>`
+        : `<div class="score">${verdict} &nbsp; 점수 ${score}점</div>
 
     <div class="result-block">
       <div class="label">✍️ 내가 쓴 답</div>
       <div class="result-line">${esc(answer)}</div>
-    </div>
+    </div>`
+    }
 
     <div class="result-block">
       <div class="label">✅ 올바른 답</div>
@@ -298,7 +314,7 @@ function renderResult(answer, data) {
     ${
       data.feedback
         ? `<div class="result-block">
-      <div class="label">📝 피드백</div>
+      <div class="label">${reveal ? "📝 핵심 포인트" : "📝 피드백"}</div>
       <div class="result-line feedback-text">${esc(data.feedback)}</div>
     </div>`
         : ""

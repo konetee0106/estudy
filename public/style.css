@@ -360,6 +360,11 @@ footer {
   font-size: 1.1rem;
   font-weight: 600;
 }
+.reveal-note {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--muted);
+}
 
 .result-block {
   background: var(--bg);
