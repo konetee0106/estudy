@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>따라하기</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>🦜 따라하기</h1>
+        <nav class="nav">
+          <a href="shadowing.html">👂 쉐도잉</a>
+          <a href="echo.html" class="active">🦜 따라하기</a>
+          <a href="reading.html">📖 읽기</a>
+          <a href="writing.html">✍️ 쓰기</a>
+          <a href="speaking.html">🗣️ 말하기</a>
+          <a href="index.html">🎙️ 회화</a>
+          <a href="listen.html">🎧 복습</a>
+          <a href="verb.html">🎯 동사</a>
+          <a href="sentence.html">🧩 문형</a>
+        </nav>
+        <div class="controls">
+          <label class="voice-select">
+            음성
+            <select id="voiceSelect"></select>
+          </label>
+          <div class="speed">
+            <span class="speed-caption">속도</span>
+            <button type="button" id="slower" title="느리게">🐢</button>
+            <span id="speedVal" class="speed-val">0.9x</span>
+            <button type="button" id="faster" title="빠르게">🐇</button>
+          </div>
+          <input id="rate" type="hidden" value="0.9" />
+        </div>
+      </header>
+
+      <main class="shadow-main">
+        <div class="shadow-card echo-card">
+          <div class="shadow-controls">
+            <button id="startBtn" class="mic">▶️ 시작</button>
+            <button id="nextBtn" class="stop">🔄 다음 문장</button>
+          </div>
+
+          <div id="phase" class="echo-phase">
+            <b>시작</b> 을 누르면, 처음엔 <b>지문 없이</b> 소리로만 들려드려요.<br />
+            <b>5번째부터 문장을 보여주며</b> 반복 재생하니, 소리가 끝난 뒤 <b>따라 읽어</b> 보세요.
+          </div>
+
+          <div id="sentence" class="echo-sentence" style="display: none">
+            <div id="echoEn" class="echo-en"></div>
+            <div id="echoKo" class="echo-ko"></div>
+          </div>
+        </div>
+      </main>
+
+      <div id="status" class="status">준비되었습니다.</div>
+    </div>
+
+    <!-- 드래그 반복 재생 말풍선 -->
+    <div id="tip" class="tip"></div>
+
+    <script src="speed.js"></script>
+    <script src="library.js"></script>
+    <script src="echo.js"></script>
+    <script src="accent.js"></script>
+    <script src="theme.js"></script>
+    <script src="ask.js"></script>
+  </body>
+</html>

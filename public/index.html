@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 영어회화</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>🎙️ AI 영어회화</h1>
+        <nav class="nav">
+          <a href="shadowing.html">👂 쉐도잉</a>
+          <a href="echo.html">🦜 따라하기</a>
+          <a href="reading.html">📖 읽기</a>
+          <a href="writing.html">✍️ 쓰기</a>
+          <a href="speaking.html">🗣️ 말하기</a>
+          <a href="index.html" class="active">🎙️ 회화</a>
+          <a href="listen.html">🎧 복습</a>
+          <a href="verb.html">🎯 동사</a>
+          <a href="sentence.html">🧩 문형</a>
+        </nav>
+        <div class="controls">
+          <label class="voice-select">
+            음성
+            <select id="voiceSelect"></select>
+          </label>
+          <div class="speed">
+            <span class="speed-caption">속도</span>
+            <button type="button" id="slower" title="느리게">🐢</button>
+            <span id="speedVal" class="speed-val">1.0x</span>
+            <button type="button" id="faster" title="빠르게">🐇</button>
+          </div>
+          <input id="rate" type="hidden" value="0.95" />
+        </div>
+      </header>
+
+      <main id="chat" class="chat"></main>
+
+      <div id="status" class="status">준비되었습니다. 마이크 버튼을 눌러 말해보세요.</div>
+
+      <footer>
+        <button id="micBtn" class="mic" title="말하기">
+          <span class="mic-icon">🎤</span>
+          <span class="mic-label">말하기</span>
+        </button>
+        <form id="textForm" class="text-form">
+          <input
+            id="textInput"
+            type="text"
+            placeholder="또는 여기에 영어로 입력하고 Enter"
+            autocomplete="off"
+          />
+          <button type="submit">보내기</button>
+        </form>
+        <button id="stopBtn" class="stop" title="읽기 멈춤">🔇</button>
+      </footer>
+    </div>
+
+    <script src="speed.js"></script>
+    <script src="app.js"></script>
+    <script src="accent.js"></script>
+    <script src="theme.js"></script>
+    <script src="ask.js"></script>
+  </body>
+</html>

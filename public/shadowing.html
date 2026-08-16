@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>리스닝 쉐도잉</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>👂 리스닝 쉐도잉</h1>
+        <nav class="nav">
+          <a href="shadowing.html" class="active">👂 쉐도잉</a>
+          <a href="echo.html">🦜 따라하기</a>
+          <a href="reading.html">📖 읽기</a>
+          <a href="writing.html">✍️ 쓰기</a>
+          <a href="speaking.html">🗣️ 말하기</a>
+          <a href="index.html">🎙️ 회화</a>
+          <a href="listen.html">🎧 복습</a>
+          <a href="verb.html">🎯 동사</a>
+          <a href="sentence.html">🧩 문형</a>
+        </nav>
+        <div class="controls">
+          <label class="voice-select">
+            음성
+            <select id="voiceSelect"></select>
+          </label>
+          <div class="speed">
+            <span class="speed-caption">속도</span>
+            <button type="button" id="slower" title="느리게">🐢</button>
+            <span id="speedVal" class="speed-val">0.9x</span>
+            <button type="button" id="faster" title="빠르게">🐇</button>
+          </div>
+          <input id="rate" type="hidden" value="0.9" />
+        </div>
+      </header>
+
+      <main class="shadow-main">
+        <div class="shadow-card">
+          <div class="shadow-controls">
+            <button id="playBtn" class="mic">🔁 반복 듣기</button>
+            <button id="newBtn" class="stop">🔄 새 문장</button>
+            <button id="reviewBtn" class="stop">🔁 복습 (내가 한 문장)</button>
+          </div>
+
+          <div id="hint" class="shadow-hint">
+            아래 <b>새 문장</b> 버튼을 누르면 중급 문장이 하나 만들어집니다.<br />
+            <b>문장 듣기</b>로 여러 번 들은 뒤, 들은 문장을 타이핑해 제출하세요.
+          </div>
+
+          <form id="answerForm" class="answer-form">
+            <textarea
+              id="answerInput"
+              rows="2"
+              placeholder="들은 문장을 여기에 영어로 입력하세요"
+              disabled
+            ></textarea>
+            <button type="submit" id="submitBtn" disabled>제출하고 채점</button>
+          </form>
+
+          <div id="result" class="shadow-result"></div>
+        </div>
+      </main>
+
+      <div id="status" class="status">준비되었습니다.</div>
+    </div>
+
+    <!-- 드래그 번역 말풍선 -->
+    <div id="tip" class="tip"></div>
+
+    <script src="speed.js"></script>
+    <script src="library.js"></script>
+    <script src="shadowing.js"></script>
+    <script src="accent.js"></script>
+    <script src="theme.js"></script>
+    <script src="ask.js"></script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>동사 정복</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>🎯 동사 정복</h1>
+        <nav class="nav">
+          <a href="shadowing.html">👂 쉐도잉</a>
+          <a href="echo.html">🦜 따라하기</a>
+          <a href="reading.html">📖 읽기</a>
+          <a href="writing.html">✍️ 쓰기</a>
+          <a href="speaking.html">🗣️ 말하기</a>
+          <a href="index.html">🎙️ 회화</a>
+          <a href="listen.html">🎧 복습</a>
+          <a href="verb.html" class="active">🎯 동사</a>
+          <a href="sentence.html">🧩 문형</a>
+        </nav>
+        <div class="controls">
+          <label class="voice-select">
+            음성
+            <select id="voiceSelect"></select>
+          </label>
+          <div class="speed">
+            <span class="speed-caption">속도</span>
+            <button type="button" id="slower" title="느리게">🐢</button>
+            <span id="speedVal" class="speed-val">0.9x</span>
+            <button type="button" id="faster" title="빠르게">🐇</button>
+          </div>
+          <input id="rate" type="hidden" value="0.9" />
+        </div>
+      </header>
+
+      <div class="review-tabs">
+        <div class="verb-tabs" id="verbTabs">
+          <button type="button" data-verb="take" class="active">take</button>
+          <button type="button" data-verb="get">get</button>
+          <button type="button" data-verb="put">put</button>
+          <button type="button" data-verb="grab">grab</button>
+          <button type="button" data-verb="both">take + get</button>
+        </div>
+        <div class="mode-group" id="modeTabs">
+          <button type="button" data-mode="guide" class="active">📖 핵심 정리</button>
+          <button type="button" data-mode="practice">✍️ 연습</button>
+        </div>
+      </div>
+
+      <main class="verb-main">
+        <!-- 핵심 정리 -->
+        <section id="guideSection">
+          <div class="guide-bar">
+            <button id="guideBtn" class="mic">📖 정리 보기</button>
+            <span class="opt hint-drag">한 번 만들면 저장돼서 다음에 바로 열립니다</span>
+          </div>
+          <div id="guideBody" class="guide-body">
+            <div class="reading-empty">
+              위 <b>정리 보기</b> 를 누르면 <b id="verbNameA">take</b> 의 핵심 뜻·표현·구동사가 정리됩니다.
+            </div>
+          </div>
+        </section>
+
+        <!-- 연습 -->
+        <section id="practiceSection" style="display: none">
+          <div class="shadow-card">
+            <div class="shadow-controls">
+              <button id="newBtn" class="mic">🔄 새 연습</button>
+            </div>
+            <div id="pHint" class="shadow-hint">
+              <b>새 연습</b> 을 누르면 <b id="verbNameB">take</b> 를 쓰게 되는 한국어 문장이 나옵니다.
+              영어로 옮겨 적어 보세요.
+            </div>
+            <div id="question" class="question" style="display: none"></div>
+            <form id="answerForm" class="answer-form">
+              <textarea
+                id="answerInput"
+                rows="2"
+                placeholder="위 문장을 영어로 써보세요 (Enter = 제출)"
+                disabled
+              ></textarea>
+              <button type="submit" id="submitBtn" disabled>제출하고 채점</button>
+            </form>
+            <div id="result" class="shadow-result"></div>
+          </div>
+        </section>
+      </main>
+
+      <div id="status" class="status">공부할 동사와 모드를 고르세요.</div>
+    </div>
+
+    <script src="speed.js"></script>
+    <script src="library.js"></script>
+    <script src="verb.js"></script>
+    <script src="accent.js"></script>
+    <script src="ask.js"></script>
+  </body>
+</html>

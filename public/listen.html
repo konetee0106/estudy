@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>복습 (듣기)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>🎧 복습</h1>
+        <nav class="nav">
+          <a href="shadowing.html">👂 쉐도잉</a>
+          <a href="echo.html">🦜 따라하기</a>
+          <a href="reading.html">📖 읽기</a>
+          <a href="writing.html">✍️ 쓰기</a>
+          <a href="speaking.html">🗣️ 말하기</a>
+          <a href="index.html">🎙️ 회화</a>
+          <a href="listen.html" class="active">🎧 복습</a>
+          <a href="verb.html">🎯 동사</a>
+          <a href="sentence.html">🧩 문형</a>
+        </nav>
+        <div class="controls">
+          <label class="voice-select">
+            음성
+            <select id="voiceSelect"></select>
+          </label>
+          <div class="speed">
+            <span class="speed-caption">속도</span>
+            <button type="button" id="slower" title="느리게">🐢</button>
+            <span id="speedVal" class="speed-val">0.9x</span>
+            <button type="button" id="faster" title="빠르게">🐇</button>
+          </div>
+          <input id="rate" type="hidden" value="0.9" />
+        </div>
+      </header>
+
+      <div class="review-tabs" id="reviewTabs">
+        <button type="button" data-cat="shadowing" class="active">👂 쉐도잉</button>
+        <button type="button" data-cat="reading">📖 읽기</button>
+        <button type="button" data-cat="writing">✍️ 쓰기</button>
+        <button type="button" data-cat="speaking">🗣️ 말하기</button>
+      </div>
+
+      <div class="listen-bar">
+        <button id="playAllBtn" class="mic">▶️ 전체 반복 재생</button>
+        <button id="revealBtn" class="stop" style="display: none">
+          👁️ 영어+한글 보기
+        </button>
+        <label class="opt">
+          문장 사이
+          <select id="gapSelect">
+            <option value="500">0.5초</option>
+            <option value="1000" selected>1초</option>
+            <option value="2000">2초</option>
+            <option value="3000">3초</option>
+          </select>
+        </label>
+        <label class="opt checkbox">
+          <input type="checkbox" id="readKo" />
+          🇰🇷 번역도 읽기
+        </label>
+        <label class="opt checkbox">
+          <input type="checkbox" id="shuffle" />
+          🔀 랜덤 순서
+        </label>
+      </div>
+
+      <main class="listen-main">
+        <div class="listen-head">
+          <span id="listCount" class="list-count">저장된 문장 0개</span>
+          <button id="clearBtn" class="stop">🗑️ 전체 삭제</button>
+        </div>
+        <ul id="list" class="listen-list"></ul>
+      </main>
+
+      <div id="status" class="status">
+        각 프로그램에서 연습한 내용이 자동으로 여기에 쌓입니다. 탭을 골라 복습하세요.
+      </div>
+    </div>
+
+    <script src="speed.js"></script>
+    <script src="library.js"></script>
+    <script src="listen.js"></script>
+    <script src="accent.js"></script>
+    <script src="ask.js"></script>
+  </body>
+</html>
