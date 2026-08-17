@@ -472,7 +472,7 @@ const PASSAGE_TOPIC_SETS = {
 app.post("/api/passage", async (req, res) => {
   try {
     const recent = Array.isArray(req.body?.recent)
-      ? req.body.recent.slice(-5).map((s) => String(s))
+      ? req.body.recent.slice(-10).map((s) => String(s))
       : [];
     const theme = String(req.body?.theme || "trip_collab");
     const level = String(req.body?.level || "intermediate");
@@ -483,8 +483,8 @@ app.post("/api/passage", async (req, res) => {
         : level === "advanced"
         ? "an upper-intermediate CEFR B2 level (richer vocabulary, some longer and more complex sentences)"
         : "an intermediate CEFR B1 level (natural everyday vocabulary, a mix of short and some longer sentences)";
-    // 서술문(narrative) / 대화문(dialogue) 랜덤 (대화문이 약간 덜 나오게 55:45)
-    const format = Math.random() < 0.55 ? "narrative" : "dialogue";
+    // 서술문(narrative) : 대화문(dialogue) = 6:4 랜덤
+    const format = Math.random() < 0.6 ? "narrative" : "dialogue";
 
     const formatRule =
       format === "dialogue"
@@ -496,7 +496,7 @@ app.post("/api/passage", async (req, res) => {
         : `- Write it as a NARRATIVE passage (normal prose) in 3 to 4 short paragraphs. Set "gender" to an empty string for every paragraph.`;
 
     const avoid = recent.length
-      ? `\n\nDo NOT write about these recent topics again:\n- ${recent.join(
+      ? `\n\nIMPORTANT: Write about a clearly DIFFERENT topic and situation. This passage must NOT continue, extend, or reuse any of these recent passages — pick a fresh setting, different people, and a different subject:\n- ${recent.join(
           "\n- "
         )}`
       : "";
