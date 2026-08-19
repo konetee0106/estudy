@@ -41,7 +41,7 @@
         <button id="startBtn" class="mic">▶️ 수업 시작하자</button>
         <button id="endBtn" class="stop">🏁 오늘 수업 끝</button>
         <button id="resetBtn" class="stop" title="학습 기록·대화 모두 지우기">🗑️ 기록 초기화</button>
-        <span class="opt hint-drag">💡 영어 문장을 쓰거나 🎤로 말하면 선생님이 교정해줘요</span>
+        <span class="opt hint-drag">💡 영어를 쓰거나 🎤로 말하면 교정해줘요 · 답변에서 영어를 드래그하면 발음을 들려줘요</span>
       </div>
 
       <main id="chat" class="chat teacher-chat"></main>
@@ -54,12 +54,12 @@
           <span class="mic-label">말하기</span>
         </button>
         <form id="textForm" class="text-form">
-          <input
+          <textarea
             id="textInput"
-            type="text"
-            placeholder="여기에 영어(또는 한국어 질문)로 입력하고 Enter"
+            rows="1"
+            placeholder="여기에 영어로 입력 (Enter=보내기, Shift+Enter=줄바꿈)"
             autocomplete="off"
-          />
+          ></textarea>
           <button type="submit">보내기</button>
         </form>
         <button id="stopBtn" class="stop" title="읽기 멈춤">🔇</button>

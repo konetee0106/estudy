@@ -241,6 +241,26 @@ footer {
   border-color: var(--accent);
 }
 
+/* 과외: 여러 줄 입력용 textarea */
+.text-form textarea {
+  flex: 1;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 11px 16px;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-family: inherit;
+  resize: none;
+  max-height: 140px;
+  overflow-y: auto;
+}
+.text-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
 .text-form button {
   background: var(--panel-2);
   color: var(--text);

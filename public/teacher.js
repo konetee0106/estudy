@@ -84,6 +84,7 @@ if (SpeechRecognition) {
     // 정확도를 위해 자동 전송하지 않고 입력창에 넣어 확인 후 보내게 함
     if (text) {
       textInput.value = text;
+      if (typeof autoGrow === "function") autoGrow();
       textInput.focus();
       setStatus("인식된 문장을 확인하고 '보내기'(또는 Enter)를 누르세요.");
     } else {
@@ -205,18 +206,6 @@ function speak(text) {
 stopBtn.addEventListener("click", () => window.speechSynthesis.cancel());
 
 // ===== 렌더링 =====
-function attachReplay(div, text) {
-  const replay = document.createElement("span");
-  replay.className = "replay";
-  replay.textContent = "🔊 영어만 듣기";
-  replay.addEventListener("click", () => {
-    warmUpSpeech();
-    const en = englishParts(text);
-    speak(en || text);
-  });
-  div.appendChild(replay);
-}
-
 function addMessage(role, text) {
   const div = document.createElement("div");
   div.className = "msg " + (role === "user" ? "user" : "ai");
@@ -224,11 +213,26 @@ function addMessage(role, text) {
   body.className = "msg-body";
   body.textContent = text; // pre-line CSS로 줄바꿈 유지
   div.appendChild(body);
-  if (role !== "user" && text) attachReplay(div, text);
   chatEl.appendChild(div);
   chatEl.scrollTop = chatEl.scrollHeight;
   return div;
 }
+
+// ===== 드래그하면 그 부분 발음해주기 =====
+function handleDragSpeak() {
+  const sel = window.getSelection();
+  if (!sel || sel.rangeCount === 0 || sel.isCollapsed) return;
+  const range = sel.getRangeAt(0);
+  if (!chatEl.contains(range.commonAncestorContainer)) return; // 채팅 영역 안에서만
+  const text = (sel.toString() || range.toString() || "").trim();
+  if (!text) return;
+  warmUpSpeech();
+  const en = englishParts(text);
+  speak(en || text); // 선택한 영어(있으면 영어만) 발음
+  setStatus("🔊 발음 중… (드래그한 부분)");
+}
+chatEl.addEventListener("mouseup", () => setTimeout(handleDragSpeak, 10));
+chatEl.addEventListener("touchend", () => setTimeout(handleDragSpeak, 10));
 
 function renderAll() {
   chatEl.innerHTML = "";
@@ -292,13 +296,9 @@ async function send(text) {
 
     aiBody.textContent = reply || "(응답 없음)";
     if (newNotes) notes = newNotes;
-    if (reply) {
-      messages.push({ role: "assistant", content: reply });
-      attachReplay(aiDiv, reply);
-    }
+    if (reply) messages.push({ role: "assistant", content: reply });
     save();
-    if (reply) speak(englishParts(reply)); // 영어 부분 자동으로 읽어줌
-    setStatus("답을 쓰거나 🎤로 말해보세요. 끝내려면 '오늘 수업 끝'.");
+    setStatus("답을 쓰거나 🎤로 말해보세요. (영어를 드래그하면 발음을 들려줘요)");
   } catch (err) {
     aiDiv.remove(); // 실패한 빈 말풍선 제거
     setStatus("오류: " + err.message, "error");
@@ -311,12 +311,29 @@ async function send(text) {
 }
 
 // ===== 입력 =====
+// 입력 내용에 따라 높이 자동 조절 (여러 줄이면 늘어남)
+function autoGrow() {
+  textInput.style.height = "auto";
+  textInput.style.height = Math.min(textInput.scrollHeight, 140) + "px";
+}
+textInput.addEventListener("input", autoGrow);
+
+// Enter = 보내기, Shift+Enter = 줄바꿈 (한글 입력 조합 중에는 무시)
+textInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey && !e.isComposing) {
+    e.preventDefault();
+    if (typeof textForm.requestSubmit === "function") textForm.requestSubmit();
+    else textForm.dispatchEvent(new Event("submit", { cancelable: true }));
+  }
+});
+
 textForm.addEventListener("submit", (e) => {
   e.preventDefault();
   warmUpSpeech();
   const text = textInput.value.trim();
   if (text) {
     textInput.value = "";
+    autoGrow(); // 전송 후 높이 초기화
     send(text);
   }
 });
