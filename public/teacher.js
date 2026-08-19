@@ -205,6 +205,18 @@ function speak(text) {
 stopBtn.addEventListener("click", () => window.speechSynthesis.cancel());
 
 // ===== 렌더링 =====
+function attachReplay(div, text) {
+  const replay = document.createElement("span");
+  replay.className = "replay";
+  replay.textContent = "🔊 영어만 듣기";
+  replay.addEventListener("click", () => {
+    warmUpSpeech();
+    const en = englishParts(text);
+    speak(en || text);
+  });
+  div.appendChild(replay);
+}
+
 function addMessage(role, text) {
   const div = document.createElement("div");
   div.className = "msg " + (role === "user" ? "user" : "ai");
@@ -212,20 +224,10 @@ function addMessage(role, text) {
   body.className = "msg-body";
   body.textContent = text; // pre-line CSS로 줄바꿈 유지
   div.appendChild(body);
-
-  if (role !== "user") {
-    const replay = document.createElement("span");
-    replay.className = "replay";
-    replay.textContent = "🔊 영어만 듣기";
-    replay.addEventListener("click", () => {
-      warmUpSpeech();
-      const en = englishParts(text);
-      speak(en || text);
-    });
-    div.appendChild(replay);
-  }
+  if (role !== "user" && text) attachReplay(div, text);
   chatEl.appendChild(div);
   chatEl.scrollTop = chatEl.scrollHeight;
+  return div;
 }
 
 function renderAll() {
@@ -233,7 +235,17 @@ function renderAll() {
   messages.forEach((m) => addMessage(m.role, m.content));
 }
 
-// ===== 대화 전송 =====
+// ===== 대화 전송 (스트리밍) =====
+const NOTES_DELIM = "@@@NOTES@@@";
+
+// 아직 완성 안 된 구분자 조각이 화면에 잠깐 보이는 것 방지
+function stripTrailingDelimPrefix(s) {
+  for (let k = NOTES_DELIM.length - 1; k > 0; k--) {
+    if (s.endsWith(NOTES_DELIM.slice(0, k))) return s.slice(0, -k);
+  }
+  return s;
+}
+
 async function send(text) {
   if (busy || !text.trim()) return;
   busy = true;
@@ -241,10 +253,14 @@ async function send(text) {
   messages.push({ role: "user", content: text });
   save();
 
-  setStatus("선생님이 확인 중…");
+  setStatus("선생님이 답하는 중…");
   micBtn.disabled = true;
   startBtn.disabled = true;
   endBtn.disabled = true;
+
+  const aiDiv = addMessage("assistant", ""); // 스트리밍용 빈 말풍선
+  const aiBody = aiDiv.querySelector(".msg-body");
+  let buf = "";
 
   try {
     const res = await fetch("/api/teacher", {
@@ -252,19 +268,39 @@ async function send(text) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ messages, notes }),
     });
-    if (!res.ok) {
+    if (!res.ok || !res.body) {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.error || `서버 오류 (${res.status})`);
     }
-    const data = await res.json();
-    const reply = data.reply || "(응답 없음)";
-    if (typeof data.notes === "string") notes = data.notes;
-    messages.push({ role: "assistant", content: reply });
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += decoder.decode(value, { stream: true });
+      const idx = buf.indexOf(NOTES_DELIM);
+      let shown = idx >= 0 ? buf.slice(0, idx) : stripTrailingDelimPrefix(buf);
+      aiBody.textContent = shown.replace(/^\s+/, "");
+      chatEl.scrollTop = chatEl.scrollHeight;
+    }
+    buf += decoder.decode();
+
+    const idx = buf.indexOf(NOTES_DELIM);
+    const reply = (idx >= 0 ? buf.slice(0, idx) : buf).trim();
+    const newNotes = idx >= 0 ? buf.slice(idx + NOTES_DELIM.length).trim() : "";
+
+    aiBody.textContent = reply || "(응답 없음)";
+    if (newNotes) notes = newNotes;
+    if (reply) {
+      messages.push({ role: "assistant", content: reply });
+      attachReplay(aiDiv, reply);
+    }
     save();
-    addMessage("assistant", reply);
-    speak(englishParts(reply)); // 영어 부분 자동으로 읽어줌
+    if (reply) speak(englishParts(reply)); // 영어 부분 자동으로 읽어줌
     setStatus("답을 쓰거나 🎤로 말해보세요. 끝내려면 '오늘 수업 끝'.");
   } catch (err) {
+    aiDiv.remove(); // 실패한 빈 말풍선 제거
     setStatus("오류: " + err.message, "error");
   } finally {
     busy = false;

@@ -19,6 +19,9 @@ if (!process.env.ANTHROPIC_API_KEY) {
 
 const client = new Anthropic(); // ANTHROPIC_API_KEY 를 환경변수에서 자동으로 읽음
 const MODEL = process.env.CLAUDE_MODEL || "claude-opus-4-8";
+// 과외(Daily English Teacher)는 주고받는 대화라 속도가 중요 → 기본은 더 빠른 Sonnet.
+// (환경변수 TEACHER_MODEL 로 바꿀 수 있음)
+const TEACHER_MODEL = process.env.TEACHER_MODEL || "claude-sonnet-5";
 
 const app = express();
 app.use(express.json({ limit: "1mb" }));
@@ -1686,24 +1689,6 @@ app.post("/api/sentence-grade", async (req, res) => {
 });
 
 // ===== Daily English Teacher (1:1 과외 선생님) =====
-const TEACHER_SCHEMA = {
-  type: "object",
-  properties: {
-    reply: {
-      type: "string",
-      description:
-        "The tutor's message to show the student, following all the tutoring rules. Korean explanations + English examples, interactive, not too long.",
-    },
-    notes: {
-      type: "string",
-      description:
-        "The FULL updated learning log for this student. Concise bullet points tracking recurring mistakes (with a count/memo), key expressions learned, and weak points. Summarize/trim old low-priority items to stay under ~2000 characters. Korean and English mixed is fine.",
-    },
-  },
-  required: ["reply", "notes"],
-  additionalProperties: false,
-};
-
 function teacherSystemPrompt(notes) {
   return (
     `너는 학생의 1:1 영어 과외 선생님이다. 아래 규칙을 항상 지킨다.\n\n` +
@@ -1725,9 +1710,11 @@ function teacherSystemPrompt(notes) {
     `이 수업의 목표는 지식을 많이 설명하는 것이 아니라 학생이 직접 영어를 사용하게 만드는 것이다. 설명만 길게 하지 말고 "질문 → 학생 답변 → 교정 → 재시도 → 반복" 순으로 최대한 많이 연습시킨다. 학생이 이전보다 잘하게 된 부분과 계속 틀리는 부분을 구분해 난이도와 문제를 조절한다.\n\n` +
     `[학습 기록] (이 학생의 지금까지의 실수·약점·배운 표현. 매 답변마다 이번 대화를 반영해 갱신한다):\n` +
     (notes && notes.trim() ? notes.trim() : "아직 없음 (첫 수업).") +
-    `\n\n[출력]\n` +
-    `reply = 학생에게 보여줄 말(위 규칙대로, 한국어 설명 + 영어 예문 섞어서, 너무 길지 않게).\n` +
-    `notes = 갱신된 [학습 기록] 전체(간결한 불릿, 2000자 이내 유지).`
+    `\n\n[출력 형식 — 반드시 지켜라]\n` +
+    `1) 먼저 학생에게 보여줄 말을 쓴다 (위 규칙대로, 한국어 설명 + 영어 예문, 너무 길지 않게).\n` +
+    `2) 그 다음 줄에 정확히 "@@@NOTES@@@" 만 쓴다.\n` +
+    `3) 그 아래에 갱신된 [학습 기록] 전체를 쓴다 (간결한 불릿, 2000자 이내).\n` +
+    `"@@@NOTES@@@" 위쪽만 학생에게 보이고, 아래쪽(학습 기록)은 학생에게 보이지 않는다.`
   );
 }
 
@@ -1751,33 +1738,30 @@ app.post("/api/teacher", async (req, res) => {
       return res.status(400).json({ error: "학생의 입력이 필요합니다." });
     }
 
-    const response = await client.messages.create({
-      model: MODEL,
+    // 스트리밍: 답변을 글자가 나오는 대로 즉시 흘려보낸다 (체감 속도 향상).
+    // 본문에는 "...reply... @@@NOTES@@@ ...notes..." 가 그대로 흘러가고,
+    // 클라이언트가 구분자로 나눠 앞쪽은 화면에, 뒤쪽(학습 기록)은 저장한다.
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.setHeader("Cache-Control", "no-cache, no-transform");
+    res.setHeader("X-Accel-Buffering", "no");
+
+    const stream = client.messages.stream({
+      model: TEACHER_MODEL,
       max_tokens: 2048,
       system: teacherSystemPrompt(notes),
       messages,
-      output_config: {
-        format: { type: "json_schema", schema: TEACHER_SCHEMA },
-      },
     });
-
-    const text = response.content.find((b) => b.type === "text")?.text ?? "{}";
-    let parsed;
-    try {
-      parsed = JSON.parse(text);
-    } catch {
-      parsed = {};
-    }
-    const reply = (parsed.reply || "").trim();
-    if (!reply) throw new Error("응답 생성에 실패했습니다.");
-    res.json({
-      reply,
-      notes: typeof parsed.notes === "string" ? parsed.notes : notes,
-    });
+    stream.on("text", (t) => res.write(t));
+    await stream.finalMessage();
+    res.end();
   } catch (err) {
     console.error("[/api/teacher] 오류:", err?.message || err);
-    const status = err?.status && Number.isInteger(err.status) ? err.status : 500;
-    res.status(status).json({ error: err?.message || "수업 진행 중 오류가 발생했습니다." });
+    if (!res.headersSent) {
+      const status = err?.status && Number.isInteger(err.status) ? err.status : 500;
+      res.status(status).json({ error: err?.message || "수업 진행 중 오류가 발생했습니다." });
+    } else {
+      res.end();
+    }
   }
 });
 
