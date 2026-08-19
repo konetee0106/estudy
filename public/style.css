@@ -153,6 +153,18 @@ select {
   opacity: 1;
 }
 
+/* Daily English Teacher: 과외 답변은 구조가 있어 조금 더 넓게 */
+.teacher-chat .msg {
+  max-width: 92%;
+}
+.teacher-chat .msg .msg-body {
+  white-space: pre-wrap;
+}
+.teacher-chat .msg.ai .replay {
+  display: inline-block;
+  margin-top: 8px;
+}
+
 .status {
   text-align: center;
   color: var(--muted);

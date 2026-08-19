@@ -1685,6 +1685,102 @@ app.post("/api/sentence-grade", async (req, res) => {
   }
 });
 
+// ===== Daily English Teacher (1:1 과외 선생님) =====
+const TEACHER_SCHEMA = {
+  type: "object",
+  properties: {
+    reply: {
+      type: "string",
+      description:
+        "The tutor's message to show the student, following all the tutoring rules. Korean explanations + English examples, interactive, not too long.",
+    },
+    notes: {
+      type: "string",
+      description:
+        "The FULL updated learning log for this student. Concise bullet points tracking recurring mistakes (with a count/memo), key expressions learned, and weak points. Summarize/trim old low-priority items to stay under ~2000 characters. Korean and English mixed is fine.",
+    },
+  },
+  required: ["reply", "notes"],
+  additionalProperties: false,
+};
+
+function teacherSystemPrompt(notes) {
+  return (
+    `너는 학생의 1:1 영어 과외 선생님이다. 아래 규칙을 항상 지킨다.\n\n` +
+    `[학생 정보]\n` +
+    `- 레벨: 중급 (토익 650점 정도)\n` +
+    `- 목표: 원어민과 일상대화. 특히 사업상 외국인(현재 인도·인도네시아·일본·유럽)과 대화할 일이 많아지고 있음\n` +
+    `- 하루 공부 가능 시간: 30분\n` +
+    `- 특히 향상시키고 싶은 영역: Speaking / 문장 만들기\n\n` +
+    `[수업 규칙]\n` +
+    `1. 복습부터: 학생이 "수업 시작하자"라고 하면, 아래 [학습 기록]이 있으면 이전에 배운 표현이나 틀렸던 내용을 활용한 복습 퀴즈 3개를 먼저 낸다. 한 번에 정답을 알려주지 말고 학생이 먼저 답하게 기다린다. 기록이 없으면(첫 수업) 간단한 레벨 체크 문제를 낸다.\n` +
+    `2. 문장 교정: 학생이 영어 문장을 쓰면 [내 문장 → 교정 → 이유(쉬운 한국어) → 추가 예문 2개] 순으로 피드백한다. 전체를 불필요하게 바꾸지 말고 틀렸거나 부자연스러운 부분 중심으로 교정한다.\n` +
+    `3. 쉬운 설명: 어려운 문법 용어를 최대한 쓰지 말고 한국어로 쉽게 설명한다. 긴 설명보다 짧은 설명 + 실제 쓸 수 있는 예문 2개 이상.\n` +
+    `4. 실수 활용: 학생이 자주 틀리는 문법·표현·단어·문장 구조는 [학습 기록]에 적어두고 이후 다시 연습시킨다. 같은 실수를 반복하면 그 패턴을 활용한 영작·빈칸 문제를 만든다.\n` +
+    `5. 정답 바로 안 알려주기: 학생이 틀리면 바로 정답부터 주지 말고 먼저 힌트를 한 번 준다. 다시 시도한 뒤에도 틀리면 정답과 이유를 설명한다.\n` +
+    `6. 실제 쓰는 영어: 문법적으로 맞아도 원어민이 일상적으로 잘 안 쓰면 더 자연스러운 표현을 알려준다. 교과서적 표현보다 실제 대화에서 자주 쓰는 표현을 우선한다.\n` +
+    `7. 칭찬은 구체적으로(무엇을 잘했는지 짧게), 지적은 짧고 명확하게.\n` +
+    `8. 마무리: 학생이 "오늘 수업 끝" 또는 비슷한 말을 하면 [오늘 배운 것(핵심 표현/문법) / 오늘 발견한 약점(반복해서 틀린 것) / 내일 숙제(30분 내 분량)] 세 가지를 정리한다.\n\n` +
+    `[가장 중요]\n` +
+    `이 수업의 목표는 지식을 많이 설명하는 것이 아니라 학생이 직접 영어를 사용하게 만드는 것이다. 설명만 길게 하지 말고 "질문 → 학생 답변 → 교정 → 재시도 → 반복" 순으로 최대한 많이 연습시킨다. 학생이 이전보다 잘하게 된 부분과 계속 틀리는 부분을 구분해 난이도와 문제를 조절한다.\n\n` +
+    `[학습 기록] (이 학생의 지금까지의 실수·약점·배운 표현. 매 답변마다 이번 대화를 반영해 갱신한다):\n` +
+    (notes && notes.trim() ? notes.trim() : "아직 없음 (첫 수업).") +
+    `\n\n[출력]\n` +
+    `reply = 학생에게 보여줄 말(위 규칙대로, 한국어 설명 + 영어 예문 섞어서, 너무 길지 않게).\n` +
+    `notes = 갱신된 [학습 기록] 전체(간결한 불릿, 2000자 이내 유지).`
+  );
+}
+
+app.post("/api/teacher", async (req, res) => {
+  try {
+    const notes = String(req.body?.notes || "");
+    const history = Array.isArray(req.body?.messages) ? req.body.messages : [];
+    // 대화 히스토리 정리 (role/content 만, 최근 40개)
+    const messages = history
+      .filter(
+        (m) =>
+          m &&
+          (m.role === "user" || m.role === "assistant") &&
+          typeof m.content === "string" &&
+          m.content.trim()
+      )
+      .slice(-40)
+      .map((m) => ({ role: m.role, content: m.content }));
+
+    if (!messages.length || messages[messages.length - 1].role !== "user") {
+      return res.status(400).json({ error: "학생의 입력이 필요합니다." });
+    }
+
+    const response = await client.messages.create({
+      model: MODEL,
+      max_tokens: 2048,
+      system: teacherSystemPrompt(notes),
+      messages,
+      output_config: {
+        format: { type: "json_schema", schema: TEACHER_SCHEMA },
+      },
+    });
+
+    const text = response.content.find((b) => b.type === "text")?.text ?? "{}";
+    let parsed;
+    try {
+      parsed = JSON.parse(text);
+    } catch {
+      parsed = {};
+    }
+    const reply = (parsed.reply || "").trim();
+    if (!reply) throw new Error("응답 생성에 실패했습니다.");
+    res.json({
+      reply,
+      notes: typeof parsed.notes === "string" ? parsed.notes : notes,
+    });
+  } catch (err) {
+    console.error("[/api/teacher] 오류:", err?.message || err);
+    const status = err?.status && Number.isInteger(err.status) ? err.status : 500;
+    res.status(status).json({ error: err?.message || "수업 진행 중 오류가 발생했습니다." });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`\n영어 학습 앱이 실행되었습니다.`);

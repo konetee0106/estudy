@@ -3,24 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI 영어회화</title>
+    <title>Daily English Teacher</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="app">
       <header>
-        <h1>🎙️ AI 영어회화</h1>
+        <h1>👩‍🏫 Daily English Teacher</h1>
         <nav class="nav">
           <a href="shadowing.html">👂 쉐도잉</a>
           <a href="echo.html">🦜 따라하기</a>
           <a href="reading.html">📖 읽기</a>
           <a href="writing.html">✍️ 쓰기</a>
           <a href="speaking.html">🗣️ 말하기</a>
-          <a href="index.html" class="active">🎙️ 회화</a>
+          <a href="index.html">🎙️ 회화</a>
           <a href="listen.html">🎧 복습</a>
           <a href="verb.html">🎯 동사</a>
           <a href="sentence.html">🧩 문형</a>
-          <a href="teacher.html">👩‍🏫 과외</a>
+          <a href="teacher.html" class="active">👩‍🏫 과외</a>
         </nav>
         <div class="controls">
           <label class="voice-select">
@@ -30,16 +30,23 @@
           <div class="speed">
             <span class="speed-caption">속도</span>
             <button type="button" id="slower" title="느리게">🐢</button>
-            <span id="speedVal" class="speed-val">1.0x</span>
+            <span id="speedVal" class="speed-val">0.9x</span>
             <button type="button" id="faster" title="빠르게">🐇</button>
           </div>
-          <input id="rate" type="hidden" value="0.95" />
+          <input id="rate" type="hidden" value="0.9" />
         </div>
       </header>
 
-      <main id="chat" class="chat"></main>
+      <div class="listen-bar">
+        <button id="startBtn" class="mic">▶️ 수업 시작하자</button>
+        <button id="endBtn" class="stop">🏁 오늘 수업 끝</button>
+        <button id="resetBtn" class="stop" title="학습 기록·대화 모두 지우기">🗑️ 기록 초기화</button>
+        <span class="opt hint-drag">💡 영어 문장을 쓰거나 🎤로 말하면 선생님이 교정해줘요</span>
+      </div>
 
-      <div id="status" class="status">준비되었습니다. 마이크 버튼을 눌러 말해보세요.</div>
+      <main id="chat" class="chat teacher-chat"></main>
+
+      <div id="status" class="status">👩‍🏫 "수업 시작하자" 를 누르면 오늘 수업이 시작됩니다.</div>
 
       <footer>
         <button id="micBtn" class="mic" title="말하기">
@@ -50,7 +57,7 @@
           <input
             id="textInput"
             type="text"
-            placeholder="또는 여기에 영어로 입력하고 Enter"
+            placeholder="여기에 영어(또는 한국어 질문)로 입력하고 Enter"
             autocomplete="off"
           />
           <button type="submit">보내기</button>
@@ -60,9 +67,8 @@
     </div>
 
     <script src="speed.js"></script>
-    <script src="app.js"></script>
+    <script src="teacher.js"></script>
     <script src="accent.js"></script>
-    <script src="theme.js"></script>
     <script src="ask.js"></script>
   </body>
 </html>
