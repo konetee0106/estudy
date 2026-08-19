@@ -1416,6 +1416,57 @@ footer {
   background: color-mix(in srgb, #d97706 16%, transparent);
 }
 
+/* ===== 봄봄클래스 ===== */
+.bombom-main {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.bombom-progress {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.bombom-speaker {
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.bombom-ko {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+.bombom-btns {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.bombom-btns #checkBtn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0 20px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.bombom-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.bombom-nav button {
+  min-width: 110px;
+}
+.bombom-answer {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
 /* ===== 모바일 대응 (스마트폰·태블릿) ===== */
 /* 데스크톱은 화면을 꽉 채우고(100vh) 내부 패널만 스크롤하는 구조라,
    모바일에서는 메뉴/버튼이 여러 줄로 접히며 지문 영역이 좁은 칸에 갇힌다.
@@ -1448,6 +1499,7 @@ footer {
   .guide-body,
   .shadow-result,
   .verb-main,
+  .bombom-main,
   .reading-empty {
     overflow: visible;
     max-height: none;

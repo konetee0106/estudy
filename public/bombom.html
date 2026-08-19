@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>리스닝 쉐도잉</title>
+    <title>봄봄클래스</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="app">
       <header>
-        <h1>👂 리스닝 쉐도잉</h1>
+        <h1>🌸 봄봄클래스</h1>
         <nav class="nav">
-          <a href="shadowing.html" class="active">👂 쉐도잉</a>
+          <a href="shadowing.html">👂 쉐도잉</a>
           <a href="echo.html">🦜 따라하기</a>
           <a href="reading.html">📖 읽기</a>
           <a href="writing.html">✍️ 쓰기</a>
@@ -21,7 +21,7 @@
           <a href="verb.html">🎯 동사</a>
           <a href="sentence.html">🧩 문형</a>
           <a href="teacher.html">👩‍🏫 과외</a>
-          <a href="bombom.html">🌸 봄봄</a>
+          <a href="bombom.html" class="active">🌸 봄봄</a>
         </nav>
         <div class="controls">
           <label class="voice-select">
@@ -38,44 +38,54 @@
         </div>
       </header>
 
-      <main class="shadow-main">
-        <div class="shadow-card">
-          <div class="shadow-controls">
-            <button id="playBtn" class="mic">🔁 반복 듣기</button>
-            <button id="newBtn" class="stop">🔄 새 문장</button>
-            <button id="reviewBtn" class="stop">🔁 복습 (내가 한 문장)</button>
-          </div>
+      <div class="listen-bar">
+        <label class="opt">
+          강의
+          <select id="lessonSelect"></select>
+        </label>
+        <button id="audioBtn" class="stop" title="원어민 음원 재생/정지">🎧 원어민 음원</button>
+        <button id="readAllBtn" class="stop" title="영어 본문 전체 읽기">🔊 영어 전체 읽기</button>
+        <span class="opt hint-drag">💡 한글을 보고 영작한 뒤 '정답 확인'을 눌러요</span>
+      </div>
 
-          <div id="hint" class="shadow-hint">
-            아래 <b>새 문장</b> 버튼을 누르면 중급 문장이 하나 만들어집니다.<br />
-            <b>문장 듣기</b>로 여러 번 들은 뒤, 들은 문장을 타이핑해 제출하세요.
-          </div>
+      <audio id="nativeAudio" preload="none"></audio>
+
+      <main class="bombom-main">
+        <div id="progress" class="bombom-progress"></div>
+        <div class="shadow-card">
+          <div id="speaker" class="bombom-speaker" style="display: none"></div>
+          <div id="koPrompt" class="q-text bombom-ko">강의를 선택하면 시작합니다.</div>
 
           <form id="answerForm" class="answer-form">
             <textarea
               id="answerInput"
               rows="2"
-              placeholder="들은 문장을 여기에 영어로 입력하세요"
-              disabled
+              placeholder="위 한글을 영어로 써보세요 (Enter=확인, Shift+Enter=줄바꿈)"
             ></textarea>
-            <button type="submit" id="submitBtn" disabled>제출하고 채점</button>
+            <div class="bombom-btns">
+              <button type="button" id="hintBtn" class="stop" title="정답 영어를 들려줘요">🔊 영어 듣기(힌트)</button>
+              <button type="submit" id="checkBtn">✅ 정답 확인</button>
+            </div>
           </form>
 
           <div id="result" class="shadow-result"></div>
         </div>
+
+        <div class="bombom-nav">
+          <button id="prevBtn" class="stop">◀ 이전</button>
+          <button id="nextBtn" class="mic">다음 ▶</button>
+        </div>
       </main>
 
-      <div id="status" class="status">준비되었습니다.</div>
+      <div id="status" class="status">강의를 선택하세요.</div>
     </div>
 
-    <!-- 드래그 번역 말풍선 -->
+    <!-- 드래그 반복/번역 안내 -->
     <div id="tip" class="tip"></div>
 
     <script src="speed.js"></script>
-    <script src="library.js"></script>
-    <script src="shadowing.js"></script>
+    <script src="bombom.js"></script>
     <script src="accent.js"></script>
-    <script src="theme.js"></script>
     <script src="ask.js"></script>
   </body>
 </html>

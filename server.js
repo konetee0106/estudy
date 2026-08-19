@@ -1765,6 +1765,61 @@ app.post("/api/teacher", async (req, res) => {
   }
 });
 
+// ===== 봄봄클래스: 영작 채점 (강의 원문과 비교) =====
+const BOMBOM_GRADE_SCHEMA = {
+  type: "object",
+  properties: {
+    score: { type: "integer", description: "0-100: how well the student's English conveys the Korean meaning naturally." },
+    same: { type: "boolean", description: "true if the student's sentence is essentially correct/natural (even if worded differently from the reference)." },
+    feedback: { type: "string", description: "Short KOREAN feedback: what was good, and any fix. If different from the reference but still correct, say so." },
+  },
+  required: ["score", "same", "feedback"],
+  additionalProperties: false,
+};
+
+app.post("/api/bombom-grade", async (req, res) => {
+  try {
+    const ko = String(req.body?.ko || "").trim();
+    const answer = String(req.body?.answer || "").trim().slice(0, 500);
+    const reference = String(req.body?.reference || "").trim();
+    if (!ko || !answer) return res.status(400).json({ error: "문제나 답안이 비어 있습니다." });
+
+    const response = await client.messages.create({
+      model: TEACHER_MODEL, // 빠른 모델
+      max_tokens: 700,
+      system:
+        "You are a kind English tutor. A Korean learner translates a Korean sentence into English. Compare it to the lesson's reference sentence. Feedback in Korean, short and encouraging. If the learner's version is different from the reference but still correct and natural, say it's also fine.",
+      messages: [
+        {
+          role: "user",
+          content:
+            `한국어 문장: ${ko}\n` +
+            `강의 원문(참고 정답): ${reference}\n` +
+            `학습자가 쓴 영어: ${answer}\n\n` +
+            `학습자의 영작을 평가해줘. 점수(score), 맞았는지(same), 짧은 한국어 피드백(feedback)을 줘.`,
+        },
+      ],
+      output_config: { format: { type: "json_schema", schema: BOMBOM_GRADE_SCHEMA } },
+    });
+    const text = response.content.find((b) => b.type === "text")?.text ?? "{}";
+    let parsed;
+    try {
+      parsed = JSON.parse(text);
+    } catch {
+      parsed = {};
+    }
+    res.json({
+      score: Number.isFinite(parsed.score) ? parsed.score : 0,
+      same: !!parsed.same,
+      feedback: parsed.feedback || "",
+    });
+  } catch (err) {
+    console.error("[/api/bombom-grade] 오류:", err?.message || err);
+    const status = err?.status && Number.isInteger(err.status) ? err.status : 500;
+    res.status(status).json({ error: err?.message || "채점 중 오류가 발생했습니다." });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`\n영어 학습 앱이 실행되었습니다.`);

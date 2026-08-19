@@ -1,0 +1,647 @@
+[
+  {
+    "day": 1,
+    "title": "About My Daily Life",
+    "titleKo": "나의 일상에 대하여",
+    "type": "monologue",
+    "audio": "audio/1일차_원어민음원.mp3",
+    "lines": [
+      {
+        "speaker": "",
+        "en": "I'm an office worker in my 40s.",
+        "ko": "저는 40대 회사원입니다."
+      },
+      {
+        "speaker": "",
+        "en": "I'm married and I have two children.",
+        "ko": "저는 결혼했고 두 아이가 있습니다."
+      },
+      {
+        "speaker": "",
+        "en": "One is a 10-year-old girl, and the other is a 7-year-old boy.",
+        "ko": "한 명은 열 살 딸이고, 다른 한 명은 일곱 살 아들입니다."
+      },
+      {
+        "speaker": "",
+        "en": "My wife is a homemaker, but she used to be a bank teller.",
+        "ko": "제 아내는 주부이지만, 예전에는 은행 창구 직원이었습니다."
+      },
+      {
+        "speaker": "",
+        "en": "I live in Incheon, and I work in Seoul.",
+        "ko": "저는 인천에 살고, 서울에서 일합니다."
+      },
+      {
+        "speaker": "",
+        "en": "I get up at 7 every morning and get ready for work.",
+        "ko": "저는 매일 아침 7시에 일어나 출근 준비를 합니다."
+      },
+      {
+        "speaker": "",
+        "en": "I have a protein shake for breakfast and leave home at 7:40.",
+        "ko": "저는 아침으로 단백질 셰이크를 마시고 7시 40분에 집을 나섭니다."
+      },
+      {
+        "speaker": "",
+        "en": "It takes about 50 minutes to get to work by car.",
+        "ko": "차로 회사까지 가는 데 약 50분이 걸립니다."
+      },
+      {
+        "speaker": "",
+        "en": "I start work at 8:30 by checking emails.",
+        "ko": "저는 8시 30분에 이메일을 확인하며 일을 시작합니다."
+      }
+    ]
+  },
+  {
+    "day": 2,
+    "title": "Meeting at a Cafe",
+    "titleKo": "카페에서의 만남",
+    "type": "dialogue",
+    "audio": "audio/2일차_원어민음원.mp3",
+    "lines": [
+      {
+        "speaker": "Minsu",
+        "en": "Hi, it's a nice day, isn't it?",
+        "ko": "안녕하세요, 날씨가 좋죠, 그렇지 않나요?"
+      },
+      {
+        "speaker": "Minsu",
+        "en": "Nice to meet you. I'm Minsu.",
+        "ko": "만나서 반가워요. 저는 민수예요."
+      },
+      {
+        "speaker": "Amy",
+        "en": "Hi, Minsu. Yes, it's a beautiful day. I'm Amy.",
+        "ko": "안녕하세요, 민수 씨. 네, 정말 아름다운 날이에요. 저는 에이미예요."
+      },
+      {
+        "speaker": "Amy",
+        "en": "Nice to meet you, too.",
+        "ko": "저도 만나서 반가워요."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "So, do you come to this cafe often?",
+        "ko": "그런데, 이 카페에 자주 오세요?"
+      },
+      {
+        "speaker": "Amy",
+        "en": "Yes, I like the coffee here.",
+        "ko": "네, 저는 여기 커피를 좋아해요."
+      },
+      {
+        "speaker": "Amy",
+        "en": "It's a good place to relax.",
+        "ko": "쉬기에 좋은 곳이에요."
+      },
+      {
+        "speaker": "Amy",
+        "en": "How about you?",
+        "ko": "당신은요?"
+      },
+      {
+        "speaker": "Minsu",
+        "en": "It's my first time here but I like it so far.",
+        "ko": "저는 여기 처음인데 지금까지는 마음에 들어요."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "The atmosphere is nice.",
+        "ko": "분위기가 좋네요."
+      },
+      {
+        "speaker": "Amy",
+        "en": "I agree. This is my favorite spot.",
+        "ko": "맞아요. 여기가 제가 제일 좋아하는 곳이에요."
+      }
+    ]
+  },
+  {
+    "day": 3,
+    "title": "My Workday Routine",
+    "titleKo": "나의 하루 근무 일과",
+    "type": "monologue",
+    "audio": "audio/3일차_원어민음원.mp3",
+    "lines": [
+      {
+        "speaker": "",
+        "en": "I work in the marketing department.",
+        "ko": "저는 마케팅 부서에서 일합니다."
+      },
+      {
+        "speaker": "",
+        "en": "In the morning, I have meetings with my team members.",
+        "ko": "아침에는 팀원들과 회의를 합니다."
+      },
+      {
+        "speaker": "",
+        "en": "After the meeting, I go back to my desk and reply to my emails.",
+        "ko": "회의가 끝나면 제 자리로 돌아가서 이메일에 답장을 합니다."
+      },
+      {
+        "speaker": "",
+        "en": "I have lunch at 12 o'clock, usually in the company cafeteria, but sometimes I eat outside.",
+        "ko": "저는 12시에 점심을 먹는데, 보통은 회사 구내식당에서 먹지만 가끔은 밖에서 먹습니다."
+      },
+      {
+        "speaker": "",
+        "en": "After lunch, I watch YouTube or take a nap.",
+        "ko": "점심 후에는 유튜브를 보거나 낮잠을 잡니다."
+      },
+      {
+        "speaker": "",
+        "en": "In the afternoon, I usually have meetings with clients.",
+        "ko": "오후에는 보통 고객들과 회의를 합니다."
+      },
+      {
+        "speaker": "",
+        "en": "Around 4 o'clock, I take a short break.",
+        "ko": "4시쯤에는 잠깐 휴식을 취합니다."
+      },
+      {
+        "speaker": "",
+        "en": "Because I have bad eyesight, I try to rest my eyes during this time.",
+        "ko": "저는 시력이 나빠서 이 시간에 눈을 쉬게 하려고 합니다."
+      },
+      {
+        "speaker": "",
+        "en": "I finish my work at 6 o'clock.",
+        "ko": "저는 6시에 일을 마칩니다."
+      },
+      {
+        "speaker": "",
+        "en": "I plan for tomorrow's tasks and then leave work.",
+        "ko": "내일 할 일을 계획한 다음 퇴근합니다."
+      }
+    ]
+  },
+  {
+    "day": 4,
+    "title": "Getting to Know Each Other",
+    "titleKo": "서로 알아가기",
+    "type": "dialogue",
+    "audio": "audio/4일차_원어민음원.mp3",
+    "lines": [
+      {
+        "speaker": "Minsu",
+        "en": "So, Amy, do you live around here?",
+        "ko": "그래서, 에이미, 이 근처에 살아요?"
+      },
+      {
+        "speaker": "Amy",
+        "en": "I do. I live just a few blocks away!",
+        "ko": "네. 몇 블록 떨어진 곳에 살아요!"
+      },
+      {
+        "speaker": "Amy",
+        "en": "I moved to Korea two years ago.",
+        "ko": "2년 전에 한국으로 이사 왔어요."
+      },
+      {
+        "speaker": "Amy",
+        "en": "What about you? Do you live nearby?",
+        "ko": "당신은요? 근처에 사세요?"
+      },
+      {
+        "speaker": "Minsu",
+        "en": "Oh, I'm just visiting. I live in another area.",
+        "ko": "아, 저는 그냥 방문 중이에요. 다른 지역에 살아요."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "By the way, what brought you to Korea?",
+        "ko": "그런데, 무슨 일로 한국에 오게 됐어요?"
+      },
+      {
+        "speaker": "Amy",
+        "en": "I came here to teach history at an international school.",
+        "ko": "국제 학교에서 역사를 가르치려고 여기 왔어요."
+      },
+      {
+        "speaker": "Amy",
+        "en": "I really enjoy it. How about you? What do you do?",
+        "ko": "정말 즐거워요. 당신은요? 무슨 일을 하세요?"
+      },
+      {
+        "speaker": "Minsu",
+        "en": "I work in sales for a tech company.",
+        "ko": "저는 기술 회사에서 영업 일을 해요."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "It's challenging, but I like meeting new people.",
+        "ko": "힘들긴 하지만, 새로운 사람들을 만나는 게 좋아요."
+      },
+      {
+        "speaker": "Amy",
+        "en": "That sounds interesting!",
+        "ko": "흥미롭게 들리네요!"
+      },
+      {
+        "speaker": "Amy",
+        "en": "Do you travel a lot for your job?",
+        "ko": "일 때문에 출장을 많이 다니세요?"
+      },
+      {
+        "speaker": "Minsu",
+        "en": "I do. I visit different cities in Korea, and sometimes other countries.",
+        "ko": "네. 한국의 여러 도시를 방문하고, 때로는 다른 나라들도 가요."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "It's tiring, but rewarding.",
+        "ko": "피곤하지만 보람 있어요."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "How about you? Do you enjoy teaching?",
+        "ko": "당신은요? 가르치는 걸 즐기세요?"
+      },
+      {
+        "speaker": "Amy",
+        "en": "That sounds interesting!",
+        "ko": "흥미롭게 들리네요!"
+      }
+    ]
+  },
+  {
+    "day": 5,
+    "title": "My Daily Routine",
+    "titleKo": "나의 하루 일과",
+    "type": "monologue",
+    "audio": "audio/5일차_원어민음원.mp3",
+    "lines": [
+      {
+        "speaker": "",
+        "en": "The traffic is heavy on my way home, so it takes one hour and 20 minutes.",
+        "ko": "집에 가는 길은 차가 막혀서 1시간 20분이 걸려요."
+      },
+      {
+        "speaker": "",
+        "en": "While I'm driving, I like to listen to English podcasts to practice my English.",
+        "ko": "운전하는 동안 저는 영어를 연습하려고 영어 팟캐스트를 즐겨 들어요."
+      },
+      {
+        "speaker": "",
+        "en": "When I get home, I normally eat dinner with my wife and my kids.",
+        "ko": "집에 도착하면 보통 아내와 아이들과 함께 저녁을 먹어요."
+      },
+      {
+        "speaker": "",
+        "en": "After that, I play with the kids, do the dishes, and take a shower.",
+        "ko": "그 후에는 아이들과 놀고, 설거지를 하고, 샤워를 해요."
+      },
+      {
+        "speaker": "",
+        "en": "Once the kids are asleep, my wife and I talk about our day.",
+        "ko": "아이들이 잠들면 아내와 저는 하루에 대해 이야기해요."
+      },
+      {
+        "speaker": "",
+        "en": "I don't sleep very deeply and sometimes I have trouble falling asleep, but I try to go to bed before midnight.",
+        "ko": "저는 잠을 깊게 자지 못하고 가끔 잠들기 어려울 때도 있지만, 자정 전에는 자려고 해요."
+      },
+      {
+        "speaker": "",
+        "en": "This is how my day normally goes.",
+        "ko": "이것이 보통 저의 하루예요."
+      },
+      {
+        "speaker": "",
+        "en": "My life is busy, but I try to keep a good balance between work and family.",
+        "ko": "제 삶은 바쁘지만, 저는 일과 가정 사이의 균형을 잘 유지하려고 노력해요."
+      },
+      {
+        "speaker": "",
+        "en": "My family is the most important thing to me.",
+        "ko": "가족은 저에게 가장 중요한 것이에요."
+      },
+      {
+        "speaker": "",
+        "en": "They give me the energy to keep going.",
+        "ko": "가족은 제가 계속 나아갈 힘을 줘요."
+      },
+      {
+        "speaker": "",
+        "en": "Thank you for listening to my story.",
+        "ko": "제 이야기를 들어 주셔서 감사합니다."
+      }
+    ]
+  },
+  {
+    "day": 6,
+    "title": "Talking About Life in Korea",
+    "titleKo": "한국 생활에 대해 이야기하기",
+    "type": "dialogue",
+    "audio": "audio/6일차_원어민음원.mp3",
+    "lines": [
+      {
+        "speaker": "Minsu",
+        "en": "So, Amy, what do you like most about living in Korea?",
+        "ko": "그래서 에이미, 한국에서 사는 것 중에 뭐가 제일 좋아요?"
+      },
+      {
+        "speaker": "Amy",
+        "en": "I think I love the culture and the food the most.",
+        "ko": "저는 문화와 음식이 제일 좋은 것 같아요."
+      },
+      {
+        "speaker": "Amy",
+        "en": "There's always something new to learn.",
+        "ko": "항상 새로 배울 게 있어요."
+      },
+      {
+        "speaker": "Amy",
+        "en": "How about you? Have you lived here your whole life?",
+        "ko": "당신은요? 평생 여기서 살았어요?"
+      },
+      {
+        "speaker": "Minsu",
+        "en": "Yes, I've lived in Korea my whole life, but I've traveled a lot for work.",
+        "ko": "네, 저는 평생 한국에서 살았지만 일 때문에 여행을 많이 다녔어요."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "What's your favorite Korean food?",
+        "ko": "가장 좋아하는 한국 음식이 뭐예요?"
+      },
+      {
+        "speaker": "Amy",
+        "en": "Oh, that's hard! I really like Bibimbap.",
+        "ko": "오, 어렵네요! 저는 비빔밥을 정말 좋아해요."
+      },
+      {
+        "speaker": "Amy",
+        "en": "What about you? Do you have a favorite?",
+        "ko": "당신은요? 가장 좋아하는 음식이 있어요?"
+      },
+      {
+        "speaker": "Minsu",
+        "en": "I love Galbi. I could eat it every day!",
+        "ko": "저는 갈비를 정말 좋아해요. 매일 먹을 수도 있어요!"
+      },
+      {
+        "speaker": "Minsu",
+        "en": "So, have you traveled around Korea much?",
+        "ko": "그럼 한국 여기저기 여행을 많이 다녀 봤어요?"
+      },
+      {
+        "speaker": "Amy",
+        "en": "A little bit. I've been to Busan and Jeju Island.",
+        "ko": "조금요. 부산과 제주도에 가 봤어요."
+      },
+      {
+        "speaker": "Amy",
+        "en": "What about you? Do you have a favorite place?",
+        "ko": "당신은요? 가장 좋아하는 장소가 있어요?"
+      }
+    ]
+  },
+  {
+    "day": 7,
+    "title": "About My Family and Parenting",
+    "titleKo": "우리 가족과 육아 이야기",
+    "type": "monologue",
+    "audio": "audio/7일차_원어민음원.mp3",
+    "lines": [
+      {
+        "speaker": "",
+        "en": "I'm in my 30s and a mother of two.",
+        "ko": "저는 30대이고 두 아이의 엄마입니다."
+      },
+      {
+        "speaker": "",
+        "en": "I used to work for a bank, but I stopped when my second child was born.",
+        "ko": "저는 은행에서 일했었지만, 둘째 아이가 태어났을 때 일을 그만두었습니다."
+      },
+      {
+        "speaker": "",
+        "en": "My daughter looks a lot like me, but her outgoing and playful personality is just like her dad's.",
+        "ko": "제 딸은 저를 많이 닮았지만, 외향적이고 장난기 많은 성격은 아빠를 꼭 닮았어요."
+      },
+      {
+        "speaker": "",
+        "en": "On the other hand, my son takes after his dad in appearance but has a quiet and calm personality like mine.",
+        "ko": "반면에 제 아들은 외모는 아빠를 닮았지만, 저처럼 조용하고 차분한 성격을 가지고 있어요."
+      },
+      {
+        "speaker": "",
+        "en": "My husband is very caring, but he's more laid-back with the kids, so sometimes I worry they might get spoiled.",
+        "ko": "제 남편은 매우 자상하지만 아이들에게 더 느긋해서, 가끔 아이들이 버릇없어질까 봐 걱정돼요."
+      },
+      {
+        "speaker": "",
+        "en": "I'm stricter and handle most of the disciplining.",
+        "ko": "저는 더 엄격하고 대부분의 훈육을 담당합니다."
+      },
+      {
+        "speaker": "",
+        "en": "Occasionally, my husband and I disagree on parenting, but he usually listens to me, and I'm grateful for that.",
+        "ko": "가끔 남편과 저는 육아에 대해 의견이 다르지만, 남편은 보통 제 말을 들어주고, 저는 그 점이 고마워요."
+      },
+      {
+        "speaker": "",
+        "en": "Parenting is exhausting, both physically and mentally, but watching my kids grow brings me so much joy.",
+        "ko": "육아는 육체적으로나 정신적으로나 지치는 일이지만, 아이들이 자라는 것을 보는 것은 저에게 정말 큰 기쁨을 줍니다."
+      },
+      {
+        "speaker": "",
+        "en": "As I care for them, I feel like I'm growing and learning more about myself, too.",
+        "ko": "아이들을 돌보면서 저 역시 성장하고 저 자신에 대해 더 많이 배우고 있다는 느낌이 들어요."
+      }
+    ]
+  },
+  {
+    "day": 8,
+    "title": "Talking About Hiking",
+    "titleKo": "등산에 대해 이야기하기",
+    "type": "dialogue",
+    "audio": "audio/8일차_원어민음원.mp3",
+    "lines": [
+      {
+        "speaker": "Minsu",
+        "en": "Well, my favorite place is probably Seoraksan.",
+        "ko": "음, 내가 제일 좋아하는 곳은 아마 설악산일 거야."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "The views are amazing, especially in fall.",
+        "ko": "경치가 정말 멋져, 특히 가을에 말이야."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "Have you gone hiking in Korea?",
+        "ko": "한국에서 등산해 본 적 있어?"
+      },
+      {
+        "speaker": "Amy",
+        "en": "Yes, I have! I love hiking.",
+        "ko": "응, 있어! 나 등산 정말 좋아해."
+      },
+      {
+        "speaker": "Amy",
+        "en": "I went to Bukhansan a few months ago, and it was beautiful.",
+        "ko": "몇 달 전에 북한산에 갔었는데, 정말 아름다웠어."
+      },
+      {
+        "speaker": "Amy",
+        "en": "Do you like hiking too?",
+        "ko": "너도 등산 좋아해?"
+      },
+      {
+        "speaker": "Minsu",
+        "en": "Absolutely! I try to go hiking whenever I can.",
+        "ko": "당연하지! 나는 가능할 때마다 등산하러 가려고 해."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "It's one of my favorite weekend activities.",
+        "ko": "그건 내가 제일 좋아하는 주말 활동 중 하나야."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "How about you? What do you do on weekends?",
+        "ko": "너는 어때? 주말에 뭐 해?"
+      },
+      {
+        "speaker": "Amy",
+        "en": "I also love hiking! I try to go whenever I get a chance.",
+        "ko": "나도 등산 정말 좋아해! 기회가 있을 때마다 가려고 해."
+      },
+      {
+        "speaker": "Amy",
+        "en": "It's such a great way to relax and enjoy nature.",
+        "ko": "긴장을 풀고 자연을 즐기기에 정말 좋은 방법이야."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "Maybe we should go hiking together sometime!",
+        "ko": "우리 언제 같이 등산하러 가면 좋겠다!"
+      },
+      {
+        "speaker": "Amy",
+        "en": "That sounds great! Let's plan it soon.",
+        "ko": "좋은 생각이야! 곧 계획 세우자."
+      }
+    ]
+  },
+  {
+    "day": 9,
+    "title": "Why I Am Learning English",
+    "titleKo": "내가 영어를 배우는 이유",
+    "type": "monologue",
+    "audio": "audio/9일차_원어민음원.mp3",
+    "lines": [
+      {
+        "speaker": "",
+        "en": "I'm in my 60s and retired.",
+        "ko": "저는 60대이고 은퇴했습니다."
+      },
+      {
+        "speaker": "",
+        "en": "I used to be a public official and worked at City Hall for 35 years.",
+        "ko": "저는 공무원이었고 시청에서 35년 동안 일했습니다."
+      },
+      {
+        "speaker": "",
+        "en": "After retiring, I started volunteering at Gyeongbokgung Palace, and I have many opportunities to meet foreign tourists there.",
+        "ko": "은퇴 후에 경복궁에서 자원봉사를 시작했고, 그곳에서 외국인 관광객을 만날 기회가 많습니다."
+      },
+      {
+        "speaker": "",
+        "en": "Naturally, I thought it would be nice to learn English and have conversations with them, so I started studying English again.",
+        "ko": "자연스럽게 영어를 배워서 그들과 대화를 나누면 좋겠다고 생각해서, 다시 영어 공부를 시작했습니다."
+      },
+      {
+        "speaker": "",
+        "en": "It's quite challenging, but I try to study every day consistently.",
+        "ko": "꽤 어렵지만, 저는 매일 꾸준히 공부하려고 노력합니다."
+      },
+      {
+        "speaker": "",
+        "en": "I dream of being able to talk to foreigners about Gyeongbokgung and Korean history.",
+        "ko": "저는 외국인들에게 경복궁과 한국 역사에 대해 이야기할 수 있게 되기를 꿈꿉니다."
+      },
+      {
+        "speaker": "",
+        "en": "Learning something new at my age is a challenge, but it's fun, and I'm proud of myself for doing it.",
+        "ko": "제 나이에 새로운 것을 배우는 것은 도전이지만, 재미있고, 그것을 하는 제 자신이 자랑스럽습니다."
+      }
+    ]
+  },
+  {
+    "day": 10,
+    "title": "Living in Korea",
+    "titleKo": "한국에서 살기",
+    "type": "dialogue",
+    "audio": "audio/10일차_원어민음원.mp3",
+    "lines": [
+      {
+        "speaker": "Minsu",
+        "en": "By the way, you've been here for two years now, right?",
+        "ko": "그런데, 너 이제 여기 산 지 2년 됐지, 맞지?"
+      },
+      {
+        "speaker": "Minsu",
+        "en": "How do you like living in Korea?",
+        "ko": "한국에서 사는 거 어때?"
+      },
+      {
+        "speaker": "Amy",
+        "en": "I really like it! Korean people are so polite and kind.",
+        "ko": "정말 좋아! 한국 사람들은 정말 예의 바르고 친절해."
+      },
+      {
+        "speaker": "Amy",
+        "en": "They are always helpful, and that has made it easier for me to live here.",
+        "ko": "항상 도움을 줘서, 덕분에 여기서 사는 게 더 수월해졌어."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "I'm glad to hear that! We really care about being respectful to others.",
+        "ko": "그 말을 들으니 기쁘다! 우리는 다른 사람을 존중하는 걸 정말 중요하게 생각해."
+      },
+      {
+        "speaker": "Amy",
+        "en": "Definitely. And not just that, living in Korea is so convenient!",
+        "ko": "맞아. 그리고 그것뿐만 아니라, 한국에서 사는 건 정말 편리해!"
+      },
+      {
+        "speaker": "Amy",
+        "en": "The internet is super fast, and the public transportation is amazing.",
+        "ko": "인터넷은 엄청 빠르고, 대중교통도 훌륭해."
+      },
+      {
+        "speaker": "Amy",
+        "en": "Everything is so clean and safe, too.",
+        "ko": "모든 게 정말 깨끗하고 안전하기도 하고."
+      },
+      {
+        "speaker": "Amy",
+        "en": "It's really a great place to live.",
+        "ko": "정말 살기 좋은 곳이야."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "You can say that again. I travel abroad a lot for work, and honestly, no place is as convenient as Korea.",
+        "ko": "정말 그래. 나는 일 때문에 해외 출장을 많이 가는데, 솔직히 한국만큼 편리한 곳은 없어."
+      },
+      {
+        "speaker": "Minsu",
+        "en": "The transportation system here really makes life easier.",
+        "ko": "여기 교통 시스템은 정말 삶을 편하게 해줘."
+      },
+      {
+        "speaker": "Amy",
+        "en": "Right? I'll definitely miss that when I leave.",
+        "ko": "그렇지? 떠나면 분명히 그게 그리울 거야."
+      },
+      {
+        "speaker": "Amy",
+        "en": "But for now, I'm just enjoying every moment here.",
+        "ko": "하지만 지금은 그냥 여기서의 모든 순간을 즐기고 있어."
+      }
+    ]
+  }
+]
