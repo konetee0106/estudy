@@ -77,7 +77,9 @@ function warmUpSpeech() {
   if (selectedVoice) u.voice = selectedVoice;
   window.speechSynthesis.speak(u);
 }
-function speak(text, onEnd) {
+// primer=true 면 앞잘림 방지용 "hello"를 먼저 재생.
+// 전체 듣기처럼 여러 문장을 연달아 읽을 땐 primer=false 로 매 문장 hello 반복을 없앤다.
+function speak(text, onEnd, primer = true) {
   if (!("speechSynthesis" in window) || !text) {
     onEnd && onEnd();
     return;
@@ -85,12 +87,14 @@ function speak(text, onEnd) {
   const synth = window.speechSynthesis;
   synth.cancel();
   setTimeout(() => {
-    const primer = new SpeechSynthesisUtterance("hello");
-    primer.volume = 0.05;
-    primer.rate = 1;
-    if (selectedVoice) primer.voice = selectedVoice;
-    primer.lang = selectedVoice ? selectedVoice.lang : "en-US";
-    synth.speak(primer);
+    if (primer) {
+      const p = new SpeechSynthesisUtterance("hello");
+      p.volume = 0.05;
+      p.rate = 1;
+      if (selectedVoice) p.voice = selectedVoice;
+      p.lang = selectedVoice ? selectedVoice.lang : "en-US";
+      synth.speak(p);
+    }
     const utter = new SpeechSynthesisUtterance(text);
     if (selectedVoice) utter.voice = selectedVoice;
     utter.lang = selectedVoice ? selectedVoice.lang : "en-US";
@@ -251,10 +255,15 @@ function listenAllFrom(i) {
     return;
   }
   if (mode === "view") highlight(i);
-  speak(lesson.lines[i].en, () => {
-    if (!listeningAll) return;
-    setTimeout(() => listenAllFrom(i + 1), 400);
-  });
+  // 첫 문장만 프라이머(앞잘림 방지), 이후는 hello 없이 자연스럽게 이어읽기
+  speak(
+    lesson.lines[i].en,
+    () => {
+      if (!listeningAll) return;
+      setTimeout(() => listenAllFrom(i + 1), 250);
+    },
+    i === 0
+  );
 }
 function stopListenAll() {
   listeningAll = false;
