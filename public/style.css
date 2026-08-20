@@ -1492,7 +1492,14 @@ footer {
   font-size: 0.92rem;
   margin-top: 3px;
 }
-/* 보기 토글: en=영어만, both=둘다, ko=한글만 */
+/* 보기 토글: blank=빈자막, en=영어만, both=둘다, ko=한글만 */
+.bombom-passage.vm-blank .bl-en,
+.bombom-passage.vm-blank .bl-ko {
+  display: none;
+}
+.bombom-passage.vm-blank .bline {
+  min-height: 1.9em; /* 빈자막이라도 듣기 하이라이트가 보이도록 높이 유지 */
+}
 .bombom-passage.vm-en .bl-ko {
   display: none;
 }
@@ -1505,35 +1512,56 @@ footer {
   margin-top: 0;
 }
 
-/* 한글 자막 보기(전체 영작) */
-.bombom-writeko {
-  background: var(--bg);
-  border-radius: 12px;
-  padding: 14px 16px;
-  line-height: 1.8;
-  margin: 8px 0 12px;
-  max-height: 38vh;
-  overflow-y: auto;
+/* 한글 자막 보기(문장별 영작) */
+.bombom-writelist {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 10px 0 12px;
 }
-.wk-line {
-  margin-bottom: 5px;
+.wr-line {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
 }
-#writeInput {
+.wr-line:last-child {
+  border-bottom: none;
+}
+.wr-ko {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+.wr-speaker {
+  font-weight: 700;
+  color: var(--accent);
+}
+.wr-input {
   width: 100%;
   box-sizing: border-box;
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px 14px;
+  border-radius: 10px;
+  padding: 9px 12px;
   color: var(--text);
   font-family: inherit;
-  font-size: 1rem;
-  line-height: 1.6;
-  resize: vertical;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  resize: none;
+  overflow: hidden;
 }
-#writeInput:focus {
+.wr-input:focus {
   outline: none;
   border-color: var(--accent);
+}
+.wr-ans {
+  margin-top: 6px;
+  padding: 8px 12px;
+  background: color-mix(in srgb, #16a34a 12%, transparent);
+  border-radius: 10px;
+  font-size: 1rem;
+}
+.wr-ans-en {
+  font-weight: 600;
+  color: var(--text);
 }
 
 /* ===== 모바일 대응 (스마트폰·태블릿) ===== */

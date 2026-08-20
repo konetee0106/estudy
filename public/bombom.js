@@ -12,7 +12,7 @@ let lessons = [];
 let lesson = null;
 let idx = 0; // 한 문장씩 모드의 현재 문장
 let mode = "view"; // view | write | study
-let viewMode = "en"; // en | both | ko  (전체 보기 토글)
+let viewMode = "blank"; // blank | en | both | ko  (전체 보기 토글, 기본=빈자막)
 let voices = [];
 let selectedVoice = null;
 let warmedUp = false;
@@ -32,10 +32,8 @@ const viewSection = document.getElementById("viewSection");
 const writeSection = document.getElementById("writeSection");
 const studySection = document.getElementById("studySection");
 const passageEl = document.getElementById("passage");
-const writeKoEl = document.getElementById("writeKo");
-const writeInput = document.getElementById("writeInput");
+const writeListEl = document.getElementById("writeList");
 const writeRevealBtn = document.getElementById("writeRevealBtn");
-const writeResult = document.getElementById("writeResult");
 // 한 문장씩
 const speakerEl = document.getElementById("speaker");
 const koPromptEl = document.getElementById("koPrompt");
@@ -280,40 +278,46 @@ listenAllBtn.addEventListener("click", () => {
   setStatus("🔊 전체 문장을 읽어드려요…");
 });
 
-// ===== 한글 자막 보기 (전체 영작) =====
+// ===== 한글 자막 보기 (문장별 영작) =====
 function renderWrite() {
   if (!lesson) return;
-  writeKoEl.innerHTML = lesson.lines
-    .map((l) => {
-      const sp = l.speaker ? `<b>${esc(l.speaker)}:</b> ` : "";
-      return `<div class="wk-line">${sp}${esc(l.ko)}</div>`;
+  writeListEl.innerHTML = lesson.lines
+    .map((l, i) => {
+      const sp = l.speaker
+        ? `<span class="wr-speaker">${esc(l.speaker)}:</span> `
+        : "";
+      return `<div class="wr-line" data-index="${i}">
+        <div class="wr-ko">${sp}${esc(l.ko)}</div>
+        <textarea class="wr-input" data-index="${i}" rows="1" placeholder="영어로…"></textarea>
+        <div class="wr-ans" data-index="${i}" style="display:none"></div>
+      </div>`;
     })
     .join("");
-  writeInput.value = "";
-  writeResult.classList.remove("show");
-  writeResult.innerHTML = "";
+  // 입력창 자동 높이
+  writeListEl.querySelectorAll(".wr-input").forEach((ta) => {
+    ta.addEventListener("input", () => {
+      ta.style.height = "auto";
+      ta.style.height = Math.min(ta.scrollHeight, 120) + "px";
+    });
+  });
+}
+function revealWriteLine(i) {
+  const l = lesson.lines[i];
+  const ans = writeListEl.querySelector(`.wr-ans[data-index="${i}"]`);
+  if (!ans) return;
+  ans.innerHTML = `<span class="wr-ans-en">${esc(l.en)}</span> <button class="icon-btn spk" data-text="${esc(
+    l.en
+  )}" title="듣기">🔊</button>`;
+  ans.style.display = "";
+  ans.querySelector(".spk").addEventListener("click", () => {
+    warmUpSpeech();
+    speak(l.en);
+  });
 }
 writeRevealBtn.addEventListener("click", () => {
   if (!lesson) return;
-  const full = lesson.lines
-    .map((l) => (l.speaker ? l.speaker + ": " : "") + l.en)
-    .join("\n");
-  const enOnly = lesson.lines.map((l) => l.en).join(" ");
-  writeResult.innerHTML = `
-    <div class="result-block">
-      <div class="label">✅ 강의 원문 (전체)
-        <button class="icon-btn spk" data-text="${esc(enOnly)}" title="전체 듣기">🔊</button>
-      </div>
-      <div class="result-line bombom-answer" style="white-space:pre-line">${esc(full)}</div>
-    </div>`;
-  writeResult.classList.add("show");
-  writeResult.querySelectorAll(".spk").forEach((b) =>
-    b.addEventListener("click", () => {
-      warmUpSpeech();
-      speak(b.dataset.text);
-    })
-  );
-  setStatus("정답을 확인했어요. 소리 내어 따라 말해보세요.");
+  lesson.lines.forEach((_, i) => revealWriteLine(i));
+  setStatus("정답을 확인했어요. 내가 쓴 것과 비교하고, 소리 내어 따라 말해보세요.");
 });
 
 // ===== 한 문장씩 공부하기 =====

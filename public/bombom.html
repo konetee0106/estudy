@@ -53,7 +53,8 @@
 
       <!-- 전체 영문 보기: 보기 모드 토글 -->
       <div id="viewModeBar" class="mode-group" style="display: none">
-        <button type="button" data-vm="en" class="active">영어</button>
+        <button type="button" data-vm="blank" class="active">🙈 빈자막</button>
+        <button type="button" data-vm="en">영어</button>
         <button type="button" data-vm="both">영어+한글</button>
         <button type="button" data-vm="ko">한글만</button>
       </div>
@@ -65,22 +66,16 @@
 
         <!-- 전체 영문 보기 -->
         <section id="viewSection" style="display: none">
-          <article id="passage" class="passage bombom-passage vm-en"></article>
+          <article id="passage" class="passage bombom-passage vm-blank"></article>
         </section>
 
-        <!-- 한글 자막 보기 (전체 영작) -->
+        <!-- 한글 자막 보기 (문장별 영작) -->
         <section id="writeSection" class="shadow-card" style="display: none">
-          <div class="label">🇰🇷 한글 자막 — 전체를 영어로 써보세요</div>
-          <div id="writeKo" class="bombom-writeko"></div>
-          <textarea
-            id="writeInput"
-            rows="8"
-            placeholder="위 한글 전체를 영어로 써보세요"
-          ></textarea>
+          <div class="label">🇰🇷 한글 자막 — 문장별로 영어를 써보세요</div>
+          <div id="writeList" class="bombom-writelist"></div>
           <div class="bombom-btns">
-            <button type="button" id="writeRevealBtn">✅ 정답(전체 영문) 보기</button>
+            <button type="button" id="writeRevealBtn">✅ 정답 보기</button>
           </div>
-          <div id="writeResult" class="shadow-result"></div>
         </section>
 
         <!-- 한 문장씩 공부하기 -->
