@@ -15,8 +15,20 @@ let mode = "view"; // view | write | study
 let viewMode = "blank"; // blank | en | both | ko  (전체 보기 토글, 기본=빈자막)
 let voices = [];
 let selectedVoice = null;
+let femaleVoice = null;
+let maleVoice = null;
+let genderMap = {}; // 현재 강의의 화자 → "male"/"female"
 let warmedUp = false;
 let listeningAll = false;
+
+// 화자 이름 → 성별
+const MALE_NAMES = new Set(["jinsu", "minsu", "kevin", "daniel", "eric", "husband"]);
+const FEMALE_NAMES = new Set(["alice", "amy", "ms. johnson", "mom", "wife"]);
+// 음성 이름으로 성별 추정
+const FEMALE_PAT =
+  /zira|hazel|susan|female|woman|samantha|victoria|karen|moira|tessa|fiona|serena|aria|jenny|michelle|catherine|linda|heera|eva|sonia|zoe|emma|clara|natasha/i;
+const MALE_PAT =
+  /david|mark|george|male|\bman\b|daniel|alex|fred|guy|ryan|eric|james|paul|tom|william|richard|oliver|thomas|brian|liam|william/i;
 
 // ===== DOM =====
 const lessonSelect = document.getElementById("lessonSelect");
@@ -61,6 +73,7 @@ function loadVoices() {
   const preferred = Math.max(0, voices.findIndex((v) => /en-US/i.test(v.lang)));
   voiceSelect.value = preferred;
   selectedVoice = voices[preferred] || null;
+  pickGenderVoices();
 }
 if ("speechSynthesis" in window) {
   loadVoices();
@@ -68,7 +81,45 @@ if ("speechSynthesis" in window) {
 }
 voiceSelect.addEventListener("change", () => {
   selectedVoice = voices[voiceSelect.value] || null;
+  pickGenderVoices(); // 억양(언어)에 맞춰 남/여 음성 재선택
 });
+
+// 대화문용 남/여 음성 — 선택된 음성과 같은 언어 안에서만 찾는다
+function pickGenderVoices() {
+  const lang = selectedVoice ? selectedVoice.lang : "en-US";
+  femaleVoice = voices.find((v) => v.lang === lang && FEMALE_PAT.test(v.name)) || null;
+  maleVoice = voices.find((v) => v.lang === lang && MALE_PAT.test(v.name)) || null;
+}
+// 성별 → {voice, pitch}. 같은 억양의 남/여 음성이 없으면 음높이로 구분
+function voiceForGender(gender) {
+  if (gender === "female") return { voice: femaleVoice || selectedVoice, pitch: 1.25 };
+  if (gender === "male") return { voice: maleVoice || selectedVoice, pitch: 0.78 };
+  return { voice: selectedVoice, pitch: 1 };
+}
+// 강의의 화자별 성별 지도 (아는 이름은 매핑, 애매한 역할은 상대 화자와 다르게 배정)
+function buildGenderMap(lesson) {
+  const map = {};
+  const distinct = [];
+  for (const l of lesson.lines) {
+    if (!l.speaker || l.speaker in map) continue;
+    const k = l.speaker.toLowerCase();
+    map[l.speaker] = MALE_NAMES.has(k) ? "male" : FEMALE_NAMES.has(k) ? "female" : null;
+    distinct.push(l.speaker);
+  }
+  let male = Object.values(map).filter((v) => v === "male").length;
+  let female = Object.values(map).filter((v) => v === "female").length;
+  distinct.forEach((sp) => {
+    if (map[sp]) return;
+    let g;
+    if (male > female) g = "female";
+    else if (female > male) g = "male";
+    else g = distinct.indexOf(sp) % 2 === 0 ? "male" : "female";
+    map[sp] = g;
+    if (g === "male") male++;
+    else female++;
+  });
+  return map;
+}
 function warmUpSpeech() {
   if (warmedUp || !("speechSynthesis" in window)) return;
   warmedUp = true;
@@ -78,12 +129,15 @@ function warmUpSpeech() {
   window.speechSynthesis.speak(u);
 }
 // primer=true 면 앞잘림 방지용 "hello"를 먼저 재생.
-// 전체 듣기처럼 여러 문장을 연달아 읽을 땐 primer=false 로 매 문장 hello 반복을 없앤다.
-function speak(text, onEnd, primer = true) {
+// gender("male"/"female"/"")에 따라 대화문 화자별 남/여 음성으로 읽는다.
+function speak(text, onEnd, primer = true, gender = "") {
   if (!("speechSynthesis" in window) || !text) {
     onEnd && onEnd();
     return;
   }
+  const gv = voiceForGender(gender);
+  const voice = gv.voice || selectedVoice;
+  const lang = voice ? voice.lang : "en-US";
   const synth = window.speechSynthesis;
   synth.cancel();
   setTimeout(() => {
@@ -91,18 +145,24 @@ function speak(text, onEnd, primer = true) {
       const p = new SpeechSynthesisUtterance("hello");
       p.volume = 0.05;
       p.rate = 1;
-      if (selectedVoice) p.voice = selectedVoice;
-      p.lang = selectedVoice ? selectedVoice.lang : "en-US";
+      if (voice) p.voice = voice;
+      p.lang = lang;
+      p.pitch = gv.pitch || 1;
       synth.speak(p);
     }
     const utter = new SpeechSynthesisUtterance(text);
-    if (selectedVoice) utter.voice = selectedVoice;
-    utter.lang = selectedVoice ? selectedVoice.lang : "en-US";
+    if (voice) utter.voice = voice;
+    utter.lang = lang;
     utter.rate = parseFloat(rateInput.value) || 0.9;
+    utter.pitch = gv.pitch || 1;
     utter.onend = () => onEnd && onEnd();
     utter.onerror = () => onEnd && onEnd();
     synth.speak(utter);
   }, 100);
+}
+// 현재 강의에서 화자의 성별
+function genderOf(speaker) {
+  return (speaker && genderMap[speaker]) || "";
 }
 function stopSpeak() {
   if ("speechSynthesis" in window) window.speechSynthesis.cancel();
@@ -157,6 +217,7 @@ function selectLesson(day) {
   stopAll();
   lesson = lessons.find((l) => l.day === day) || null;
   if (!lesson) return;
+  genderMap = buildGenderMap(lesson);
   idx = Math.min(Math.max(0, idx), lesson.lines.length - 1);
   // 원어민 음원
   if (lesson.audio) {
@@ -262,7 +323,8 @@ function listenAllFrom(i) {
       if (!listeningAll) return;
       setTimeout(() => listenAllFrom(i + 1), 250);
     },
-    i === 0
+    i === 0,
+    genderOf(lesson.lines[i].speaker)
   );
 }
 function stopListenAll() {
@@ -320,7 +382,7 @@ function revealWriteLine(i) {
   ans.style.display = "";
   ans.querySelector(".spk").addEventListener("click", () => {
     warmUpSpeech();
-    speak(l.en);
+    speak(l.en, null, true, genderOf(l.speaker));
   });
 }
 writeRevealBtn.addEventListener("click", () => {
@@ -357,7 +419,7 @@ async function checkAnswer() {
   const answer = answerInput.value.trim();
   renderStudyResult(answer, line, null);
   warmUpSpeech();
-  speak(line.en);
+  speak(line.en, null, true, genderOf(line.speaker));
   if (!answer) {
     setStatus("정답을 확인했어요. 소리 내어 따라 말해보세요.");
     return;
@@ -398,7 +460,7 @@ function renderStudyResult(answer, line, grade) {
   resultEl.querySelectorAll(".spk").forEach((b) =>
     b.addEventListener("click", () => {
       warmUpSpeech();
-      speak(b.dataset.text);
+      speak(b.dataset.text, null, true, genderOf(line.speaker));
     })
   );
 }
@@ -415,7 +477,7 @@ nextBtn.addEventListener("click", () => go(1));
 hintBtn.addEventListener("click", () => {
   if (!lesson) return;
   warmUpSpeech();
-  speak(lesson.lines[idx].en);
+  speak(lesson.lines[idx].en, null, true, genderOf(lesson.lines[idx].speaker));
   setStatus("🔊 정답 영어를 들려드려요. 듣고 영작해보세요.");
 });
 answerInput.addEventListener("keydown", (e) => {
