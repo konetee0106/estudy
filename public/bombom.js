@@ -1,4 +1,13 @@
-// ===== 봄봄클래스 =====
+// ===== 강의 클래스 (귀뚫기챌린지 / 봄봄클래스) =====
+// ?c=guiddulki (기본) 또는 ?c=bombom 으로 어떤 클래스인지 결정
+const CLASSES = {
+  guiddulki: { emoji: "🎧", name: "귀뚫기챌린지", data: "lessons-guiddulki.json" },
+  bombom: { emoji: "🌸", name: "봄봄클래스", data: "lessons-bombom.json" },
+};
+const _cparam = new URLSearchParams(location.search).get("c");
+const CLS = CLASSES[_cparam] ? _cparam : "guiddulki";
+const CFG = CLASSES[CLS];
+
 let lessons = [];
 let lesson = null; // 현재 강의
 let idx = 0; // 현재 문장 인덱스
@@ -6,7 +15,7 @@ let voices = [];
 let selectedVoice = null;
 let warmedUp = false;
 let revealed = false; // 현재 문장 정답 공개 여부
-const PROG_KEY = "bombom_progress_v1";
+const PROG_KEY = "bombom_progress_v1_" + CLS;
 
 // ===== DOM =====
 const lessonSelect = document.getElementById("lessonSelect");
@@ -95,7 +104,7 @@ function setStatus(text, kind = "") {
 // ===== 강의 로드 =====
 async function loadLessons() {
   try {
-    const res = await fetch("bombom-lessons.json");
+    const res = await fetch(CFG.data);
     lessons = await res.json();
   } catch {
     lessons = [];
@@ -352,6 +361,18 @@ window.getAskContext = function () {
   const line = lesson.lines[idx];
   return `봄봄클래스 ${lesson.day}일차. 한글: ${line.ko} / 강의 원문: ${line.en}`;
 };
+
+// ===== 클래스별 제목/네비 설정 =====
+(function applyClass() {
+  document.title = CFG.name;
+  const h1 = document.querySelector("header h1");
+  if (h1) h1.textContent = `${CFG.emoji} ${CFG.name}`;
+  // 현재 클래스에 해당하는 네비 링크 활성화
+  document.querySelectorAll('.nav a[href^="bombom.html"]').forEach((a) => {
+    const c = new URL(a.href, location.href).searchParams.get("c") || "guiddulki";
+    a.classList.toggle("active", c === CLS);
+  });
+})();
 
 // ===== 시작 =====
 loadLessons();
