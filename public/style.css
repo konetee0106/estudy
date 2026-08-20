@@ -1467,6 +1467,75 @@ footer {
   font-weight: 600;
 }
 
+/* 전체 영문 보기 */
+.bombom-passage {
+  padding: 20px 22px;
+  line-height: 1.85;
+  font-size: 1.1rem;
+}
+.bline {
+  padding: 7px 8px;
+  border-radius: 8px;
+}
+.bline + .bline {
+  border-top: 1px solid var(--border);
+}
+.bline.now {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+}
+.bl-speaker {
+  font-weight: 700;
+  color: var(--accent);
+}
+.bl-ko {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-top: 3px;
+}
+/* 보기 토글: en=영어만, both=둘다, ko=한글만 */
+.bombom-passage.vm-en .bl-ko {
+  display: none;
+}
+.bombom-passage.vm-ko .bl-en {
+  display: none;
+}
+.bombom-passage.vm-ko .bl-ko {
+  color: var(--text);
+  font-size: 1.05rem;
+  margin-top: 0;
+}
+
+/* 한글 자막 보기(전체 영작) */
+.bombom-writeko {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 14px 16px;
+  line-height: 1.8;
+  margin: 8px 0 12px;
+  max-height: 38vh;
+  overflow-y: auto;
+}
+.wk-line {
+  margin-bottom: 5px;
+}
+#writeInput {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+#writeInput:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
 /* ===== 모바일 대응 (스마트폰·태블릿) ===== */
 /* 데스크톱은 화면을 꽉 채우고(100vh) 내부 패널만 스크롤하는 구조라,
    모바일에서는 메뉴/버튼이 여러 줄로 접히며 지문 영역이 좁은 칸에 갇힌다.

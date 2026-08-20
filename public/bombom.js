@@ -1,5 +1,4 @@
 // ===== 강의 클래스 (귀뚫기챌린지 / 봄봄클래스) =====
-// ?c=guiddulki (기본) 또는 ?c=bombom 으로 어떤 클래스인지 결정
 const CLASSES = {
   guiddulki: { emoji: "🎧", name: "귀뚫기챌린지", data: "lessons-guiddulki.json" },
   bombom: { emoji: "🌸", name: "봄봄클래스", data: "lessons-bombom.json" },
@@ -7,22 +6,37 @@ const CLASSES = {
 const _cparam = new URLSearchParams(location.search).get("c");
 const CLS = CLASSES[_cparam] ? _cparam : "guiddulki";
 const CFG = CLASSES[CLS];
+const PROG_KEY = "bombom_progress_v2_" + CLS;
 
 let lessons = [];
-let lesson = null; // 현재 강의
-let idx = 0; // 현재 문장 인덱스
+let lesson = null;
+let idx = 0; // 한 문장씩 모드의 현재 문장
+let mode = "view"; // view | write | study
+let viewMode = "en"; // en | both | ko  (전체 보기 토글)
 let voices = [];
 let selectedVoice = null;
 let warmedUp = false;
-let revealed = false; // 현재 문장 정답 공개 여부
-const PROG_KEY = "bombom_progress_v1_" + CLS;
+let listeningAll = false;
 
 // ===== DOM =====
 const lessonSelect = document.getElementById("lessonSelect");
 const audioBtn = document.getElementById("audioBtn");
-const readAllBtn = document.getElementById("readAllBtn");
+const listenAllBtn = document.getElementById("listenAllBtn");
+const viewBtn = document.getElementById("viewBtn");
+const writeBtn = document.getElementById("writeBtn");
+const studyBtn = document.getElementById("studyBtn");
+const viewModeBar = document.getElementById("viewModeBar");
 const nativeAudio = document.getElementById("nativeAudio");
 const progressEl = document.getElementById("progress");
+const viewSection = document.getElementById("viewSection");
+const writeSection = document.getElementById("writeSection");
+const studySection = document.getElementById("studySection");
+const passageEl = document.getElementById("passage");
+const writeKoEl = document.getElementById("writeKo");
+const writeInput = document.getElementById("writeInput");
+const writeRevealBtn = document.getElementById("writeRevealBtn");
+const writeResult = document.getElementById("writeResult");
+// 한 문장씩
 const speakerEl = document.getElementById("speaker");
 const koPromptEl = document.getElementById("koPrompt");
 const answerForm = document.getElementById("answerForm");
@@ -88,6 +102,9 @@ function speak(text, onEnd) {
     synth.speak(utter);
   }, 100);
 }
+function stopSpeak() {
+  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+}
 
 function esc(s) {
   return String(s)
@@ -121,43 +138,188 @@ async function loadLessons() {
     lessonSelect.appendChild(opt);
   });
 
-  // 이전 진행 복원
-  let day = lessons[0].day,
-    startIdx = 0;
+  let day = lessons[0].day;
   try {
     const p = JSON.parse(localStorage.getItem(PROG_KEY) || "null");
     if (p && lessons.some((l) => l.day === p.day)) {
       day = p.day;
-      startIdx = p.idx || 0;
+      idx = p.idx || 0;
+      if (["view", "write", "study"].includes(p.mode)) mode = p.mode;
     }
   } catch {}
   lessonSelect.value = day;
-  selectLesson(day, startIdx);
+  selectLesson(day);
 }
 
-function selectLesson(day, startIdx = 0) {
+function selectLesson(day) {
   stopAll();
   lesson = lessons.find((l) => l.day === day) || null;
-  idx = 0;
   if (!lesson) return;
-  idx = Math.min(Math.max(0, startIdx), lesson.lines.length - 1);
-  // 원어민 음원 준비
+  idx = Math.min(Math.max(0, idx), lesson.lines.length - 1);
+  // 원어민 음원
   if (lesson.audio) {
     nativeAudio.src = lesson.audio;
     audioBtn.style.display = "";
   } else {
     audioBtn.style.display = "none";
   }
-  render();
+  progressEl.textContent = `${lesson.day}일차 · ${lesson.titleKo || ""} (${lesson.lines.length}문장)`;
+  renderView();
+  renderWrite();
+  renderStudy();
+  setMode(mode);
 }
 
-// ===== 문장 렌더 =====
-function render() {
+// ===== 모드 전환 =====
+function setMode(m) {
+  mode = m;
+  stopListenAll();
+  stopSpeak();
+  viewSection.style.display = m === "view" ? "" : "none";
+  writeSection.style.display = m === "write" ? "" : "none";
+  studySection.style.display = m === "study" ? "" : "none";
+  viewModeBar.style.display = m === "view" ? "" : "none";
+  viewBtn.classList.toggle("active", m === "view");
+  writeBtn.classList.toggle("active", m === "write");
+  studyBtn.classList.toggle("active", m === "study");
+  saveProgress();
+  if (m === "view") setStatus("전체 영문 보기 — 위 토글로 영어/한글을 바꾸고, 문장을 드래그하면 그 부분을 읽어줘요.");
+  else if (m === "write") setStatus("한글 자막을 보고 전체를 영어로 써보세요. '정답 보기'로 확인해요.");
+  else setStatus("한 문장씩 — 한글을 영어로 옮겨 적고 '정답 확인'을 누르세요.");
+}
+viewBtn.addEventListener("click", () => setMode("view"));
+writeBtn.addEventListener("click", () => setMode("write"));
+studyBtn.addEventListener("click", () => setMode("study"));
+
+function saveProgress() {
+  if (!lesson) return;
+  localStorage.setItem(PROG_KEY, JSON.stringify({ day: lesson.day, idx, mode }));
+}
+
+// ===== 전체 영문 보기 =====
+function renderView() {
+  if (!lesson) return;
+  passageEl.className = "passage bombom-passage vm-" + viewMode;
+  passageEl.innerHTML = lesson.lines
+    .map((l, i) => {
+      const sp = l.speaker
+        ? `<span class="bl-speaker">${esc(l.speaker)}:</span> `
+        : "";
+      return `<div class="bline" data-index="${i}">
+        <div class="bl-en">${sp}${esc(l.en)}</div>
+        <div class="bl-ko">${esc(l.ko)}</div>
+      </div>`;
+    })
+    .join("");
+}
+function applyViewMode(vm) {
+  viewMode = vm;
+  passageEl.className = "passage bombom-passage vm-" + vm;
+  viewModeBar.querySelectorAll("button").forEach((b) =>
+    b.classList.toggle("active", b.dataset.vm === vm)
+  );
+}
+viewModeBar.querySelectorAll("button").forEach((b) => {
+  b.addEventListener("click", () => applyViewMode(b.dataset.vm));
+});
+
+// 드래그하면 그 부분 발음
+passageEl.addEventListener("mouseup", () => setTimeout(dragSpeak, 10));
+passageEl.addEventListener("touchend", () => setTimeout(dragSpeak, 10));
+function dragSpeak() {
+  const sel = window.getSelection();
+  if (!sel || sel.rangeCount === 0 || sel.isCollapsed) return;
+  const range = sel.getRangeAt(0);
+  if (!passageEl.contains(range.commonAncestorContainer)) return;
+  const text = (sel.toString() || range.toString() || "").trim();
+  if (!text) return;
+  warmUpSpeech();
+  stopListenAll();
+  speak(text);
+  setStatus("🔊 발음 중… (드래그한 부분)");
+}
+
+// ===== 문장 전체 듣기 (순차 TTS + 하이라이트) =====
+function highlight(i) {
+  passageEl.querySelectorAll(".bline.now").forEach((el) => el.classList.remove("now"));
+  if (i == null) return;
+  const el = passageEl.querySelector(`.bline[data-index="${i}"]`);
+  if (el) el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  if (el) el.classList.add("now");
+}
+function listenAllFrom(i) {
+  if (!listeningAll || !lesson || i >= lesson.lines.length) {
+    stopListenAll();
+    return;
+  }
+  if (mode === "view") highlight(i);
+  speak(lesson.lines[i].en, () => {
+    if (!listeningAll) return;
+    setTimeout(() => listenAllFrom(i + 1), 400);
+  });
+}
+function stopListenAll() {
+  listeningAll = false;
+  listenAllBtn.textContent = "🔊 문장 전체 듣기";
+  listenAllBtn.classList.remove("active");
+  highlight(null);
+}
+listenAllBtn.addEventListener("click", () => {
+  if (!lesson) return;
+  if (listeningAll) {
+    stopListenAll();
+    stopSpeak();
+    return;
+  }
+  warmUpSpeech();
+  if (nativeAudio) nativeAudio.pause();
+  listeningAll = true;
+  listenAllBtn.textContent = "⏸️ 듣기 정지";
+  listenAllBtn.classList.add("active");
+  listenAllFrom(0);
+  setStatus("🔊 전체 문장을 읽어드려요…");
+});
+
+// ===== 한글 자막 보기 (전체 영작) =====
+function renderWrite() {
+  if (!lesson) return;
+  writeKoEl.innerHTML = lesson.lines
+    .map((l) => {
+      const sp = l.speaker ? `<b>${esc(l.speaker)}:</b> ` : "";
+      return `<div class="wk-line">${sp}${esc(l.ko)}</div>`;
+    })
+    .join("");
+  writeInput.value = "";
+  writeResult.classList.remove("show");
+  writeResult.innerHTML = "";
+}
+writeRevealBtn.addEventListener("click", () => {
+  if (!lesson) return;
+  const full = lesson.lines
+    .map((l) => (l.speaker ? l.speaker + ": " : "") + l.en)
+    .join("\n");
+  const enOnly = lesson.lines.map((l) => l.en).join(" ");
+  writeResult.innerHTML = `
+    <div class="result-block">
+      <div class="label">✅ 강의 원문 (전체)
+        <button class="icon-btn spk" data-text="${esc(enOnly)}" title="전체 듣기">🔊</button>
+      </div>
+      <div class="result-line bombom-answer" style="white-space:pre-line">${esc(full)}</div>
+    </div>`;
+  writeResult.classList.add("show");
+  writeResult.querySelectorAll(".spk").forEach((b) =>
+    b.addEventListener("click", () => {
+      warmUpSpeech();
+      speak(b.dataset.text);
+    })
+  );
+  setStatus("정답을 확인했어요. 소리 내어 따라 말해보세요.");
+});
+
+// ===== 한 문장씩 공부하기 =====
+function renderStudy() {
   if (!lesson) return;
   const line = lesson.lines[idx];
-  revealed = false;
-  progressEl.textContent = `${lesson.day}일차 · ${idx + 1} / ${lesson.lines.length}`;
-
   if (line.speaker) {
     speakerEl.style.display = "";
     speakerEl.textContent = "🗣️ " + line.speaker;
@@ -171,34 +333,22 @@ function render() {
   resultEl.classList.remove("show");
   resultEl.innerHTML = "";
   prevBtn.disabled = idx === 0;
-  nextBtn.disabled = false;
-  answerInput.focus();
+  nextBtn.disabled = idx >= lesson.lines.length - 1;
+  const p = document.querySelector(".bombom-progress");
   saveProgress();
-  setStatus("한글을 영어로 옮겨 적고 '정답 확인'을 누르세요.");
 }
 
-function saveProgress() {
-  if (!lesson) return;
-  localStorage.setItem(PROG_KEY, JSON.stringify({ day: lesson.day, idx }));
-}
-
-// ===== 정답 확인(채점) =====
 async function checkAnswer() {
   if (!lesson) return;
   const line = lesson.lines[idx];
   const answer = answerInput.value.trim();
-
-  // 정답(강의 원문)은 즉시 공개
-  revealed = true;
-  renderResult(answer, line, null); // 먼저 원문+듣기 표시
+  renderStudyResult(answer, line, null);
   warmUpSpeech();
-  speak(line.en); // 정답 영어 자동 읽어줌
-
+  speak(line.en);
   if (!answer) {
     setStatus("정답을 확인했어요. 소리 내어 따라 말해보세요.");
     return;
   }
-  // 답을 썼으면 AI 첨삭
   setStatus("첨삭 중…");
   try {
     const res = await fetch("/api/bombom-grade", {
@@ -206,23 +356,18 @@ async function checkAnswer() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ko: line.ko, answer, reference: line.en }),
     });
-    if (res.ok) {
-      const data = await res.json();
-      renderResult(answer, line, data);
-    }
+    if (res.ok) renderStudyResult(answer, line, await res.json());
     setStatus("확인 완료! '다음 ▶'으로 계속하세요.");
   } catch {
-    setStatus("확인 완료! (첨삭은 생략) '다음 ▶'으로 계속하세요.");
+    setStatus("확인 완료! (첨삭 생략) '다음 ▶'으로 계속하세요.");
   }
 }
-
-function renderResult(answer, line, grade) {
+function renderStudyResult(answer, line, grade) {
   let html = "";
-  if (answer) {
+  if (answer)
     html += `<div class="result-block"><div class="label">✍️ 내가 쓴 답</div><div class="result-line">${esc(
       answer
     )}</div></div>`;
-  }
   html += `<div class="result-block"><div class="label">✅ 강의 원문</div>
     <div class="result-line bombom-answer">${esc(line.en)}
       <button class="icon-btn spk" data-text="${esc(line.en)}" title="듣기">🔊</button>
@@ -237,38 +382,29 @@ function renderResult(answer, line, grade) {
   }
   resultEl.innerHTML = html;
   resultEl.classList.add("show");
-  resultEl.querySelectorAll(".spk").forEach((b) => {
+  resultEl.querySelectorAll(".spk").forEach((b) =>
     b.addEventListener("click", () => {
       warmUpSpeech();
       speak(b.dataset.text);
-    });
-  });
+    })
+  );
 }
-
-// ===== 이동 =====
 function go(delta) {
   if (!lesson) return;
   const n = idx + delta;
-  if (n < 0 || n >= lesson.lines.length) {
-    if (n >= lesson.lines.length) setStatus("🎉 이 강의의 마지막 문장이에요!");
-    return;
-  }
+  if (n < 0 || n >= lesson.lines.length) return;
   stopSpeak();
   idx = n;
-  render();
+  renderStudy();
 }
 prevBtn.addEventListener("click", () => go(-1));
 nextBtn.addEventListener("click", () => go(1));
-
-// ===== 힌트: 영어 듣기 =====
 hintBtn.addEventListener("click", () => {
   if (!lesson) return;
   warmUpSpeech();
   speak(lesson.lines[idx].en);
   setStatus("🔊 정답 영어를 들려드려요. 듣고 영작해보세요.");
 });
-
-// ===== 입력 =====
 answerInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && !e.shiftKey && !e.isComposing) {
     e.preventDefault();
@@ -283,15 +419,17 @@ answerForm.addEventListener("submit", (e) => {
 
 // ===== 강의 선택 =====
 lessonSelect.addEventListener("change", () => {
-  selectLesson(parseInt(lessonSelect.value, 10), 0);
+  idx = 0;
+  selectLesson(parseInt(lessonSelect.value, 10));
 });
 
-// ===== 원어민 음원 재생/정지 =====
+// ===== 원어민 음원 =====
 audioBtn.addEventListener("click", () => {
   if (!lesson || !lesson.audio) return;
   if (nativeAudio.paused) {
-    window.speechSynthesis && window.speechSynthesis.cancel();
-    nativeAudio.play().then(() => {}).catch(() => setStatus("음원을 재생할 수 없습니다.", "error"));
+    stopSpeak();
+    stopListenAll();
+    nativeAudio.play().catch(() => setStatus("음원을 재생할 수 없습니다.", "error"));
     audioBtn.textContent = "⏸️ 음원 정지";
     audioBtn.classList.add("active");
     setStatus("🎧 원어민 음원 재생 중…");
@@ -306,68 +444,29 @@ nativeAudio.addEventListener("ended", () => {
   audioBtn.classList.remove("active");
 });
 
-// ===== 영어 전체 읽기 (문장 순차 TTS) =====
-let readingAll = false;
-function readAllFrom(i) {
-  if (!readingAll || !lesson || i >= lesson.lines.length) {
-    readingAll = false;
-    readAllBtn.textContent = "🔊 영어 전체 읽기";
-    readAllBtn.classList.remove("active");
-    return;
-  }
-  idx = i;
-  render();
-  revealed = true;
-  speak(lesson.lines[i].en, () => {
-    if (!readingAll) return;
-    setTimeout(() => readAllFrom(i + 1), 500);
-  });
-}
-readAllBtn.addEventListener("click", () => {
-  if (!lesson) return;
-  if (readingAll) {
-    readingAll = false;
-    stopSpeak();
-    readAllBtn.textContent = "🔊 영어 전체 읽기";
-    readAllBtn.classList.remove("active");
-    return;
-  }
-  warmUpSpeech();
-  readingAll = true;
-  readAllBtn.textContent = "⏸️ 읽기 정지";
-  readAllBtn.classList.add("active");
-  readAllFrom(0);
-});
-
 // ===== 정지 유틸 =====
-function stopSpeak() {
-  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
-}
 function stopAll() {
-  readingAll = false;
+  stopListenAll();
   stopSpeak();
   if (nativeAudio) {
     nativeAudio.pause();
     audioBtn.textContent = "🎧 원어민 음원";
     audioBtn.classList.remove("active");
   }
-  readAllBtn.textContent = "🔊 영어 전체 읽기";
-  readAllBtn.classList.remove("active");
 }
 
-// 질문하기 위젯 컨텍스트
+// 질문하기 위젯
 window.getAskContext = function () {
   if (!lesson) return "";
   const line = lesson.lines[idx];
-  return `봄봄클래스 ${lesson.day}일차. 한글: ${line.ko} / 강의 원문: ${line.en}`;
+  return `${CFG.name} ${lesson.day}일차. 한글: ${line.ko} / 강의 원문: ${line.en}`;
 };
 
-// ===== 클래스별 제목/네비 설정 =====
+// ===== 클래스별 제목/네비 =====
 (function applyClass() {
   document.title = CFG.name;
   const h1 = document.querySelector("header h1");
   if (h1) h1.textContent = `${CFG.emoji} ${CFG.name}`;
-  // 현재 클래스에 해당하는 네비 링크 활성화
   document.querySelectorAll('.nav a[href^="bombom.html"]').forEach((a) => {
     const c = new URL(a.href, location.href).searchParams.get("c") || "guiddulki";
     a.classList.toggle("active", c === CLS);

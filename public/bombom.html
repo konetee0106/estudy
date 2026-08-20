@@ -45,43 +45,72 @@
           <select id="lessonSelect"></select>
         </label>
         <button id="audioBtn" class="stop" title="원어민 음원 재생/정지">🎧 원어민 음원</button>
-        <button id="readAllBtn" class="stop" title="영어 본문 전체 읽기">🔊 영어 전체 읽기</button>
-        <span class="opt hint-drag">💡 한글을 보고 영작한 뒤 '정답 확인'을 눌러요</span>
+        <button id="listenAllBtn" class="stop" title="전체 문장을 읽어줘요">🔊 문장 전체 듣기</button>
+        <button id="viewBtn" class="mic" title="전체 영문 보기">📖 전체 영문 보기</button>
+        <button id="writeBtn" class="stop" title="한글 자막 보고 전체 영작">✍️ 한글 자막 보기</button>
+        <button id="studyBtn" class="stop" title="한 문장씩 공부하기">📝 한 문장씩</button>
+      </div>
+
+      <!-- 전체 영문 보기: 보기 모드 토글 -->
+      <div id="viewModeBar" class="mode-group" style="display: none">
+        <button type="button" data-vm="en" class="active">영어</button>
+        <button type="button" data-vm="both">영어+한글</button>
+        <button type="button" data-vm="ko">한글만</button>
       </div>
 
       <audio id="nativeAudio" preload="none"></audio>
 
       <main class="bombom-main">
         <div id="progress" class="bombom-progress"></div>
-        <div class="shadow-card">
-          <div id="speaker" class="bombom-speaker" style="display: none"></div>
-          <div id="koPrompt" class="q-text bombom-ko">강의를 선택하면 시작합니다.</div>
 
-          <form id="answerForm" class="answer-form">
-            <textarea
-              id="answerInput"
-              rows="2"
-              placeholder="위 한글을 영어로 써보세요 (Enter=확인, Shift+Enter=줄바꿈)"
-            ></textarea>
-            <div class="bombom-btns">
-              <button type="button" id="hintBtn" class="stop" title="정답 영어를 들려줘요">🔊 영어 듣기(힌트)</button>
-              <button type="submit" id="checkBtn">✅ 정답 확인</button>
-            </div>
-          </form>
+        <!-- 전체 영문 보기 -->
+        <section id="viewSection" style="display: none">
+          <article id="passage" class="passage bombom-passage vm-en"></article>
+        </section>
 
-          <div id="result" class="shadow-result"></div>
-        </div>
+        <!-- 한글 자막 보기 (전체 영작) -->
+        <section id="writeSection" class="shadow-card" style="display: none">
+          <div class="label">🇰🇷 한글 자막 — 전체를 영어로 써보세요</div>
+          <div id="writeKo" class="bombom-writeko"></div>
+          <textarea
+            id="writeInput"
+            rows="8"
+            placeholder="위 한글 전체를 영어로 써보세요"
+          ></textarea>
+          <div class="bombom-btns">
+            <button type="button" id="writeRevealBtn">✅ 정답(전체 영문) 보기</button>
+          </div>
+          <div id="writeResult" class="shadow-result"></div>
+        </section>
 
-        <div class="bombom-nav">
-          <button id="prevBtn" class="stop">◀ 이전</button>
-          <button id="nextBtn" class="mic">다음 ▶</button>
-        </div>
+        <!-- 한 문장씩 공부하기 -->
+        <section id="studySection" style="display: none">
+          <div class="shadow-card">
+            <div id="speaker" class="bombom-speaker" style="display: none"></div>
+            <div id="koPrompt" class="q-text bombom-ko">강의를 선택하면 시작합니다.</div>
+            <form id="answerForm" class="answer-form">
+              <textarea
+                id="answerInput"
+                rows="2"
+                placeholder="위 한글을 영어로 써보세요 (Enter=확인, Shift+Enter=줄바꿈)"
+              ></textarea>
+              <div class="bombom-btns">
+                <button type="button" id="hintBtn" class="stop" title="정답 영어를 들려줘요">🔊 영어 듣기(힌트)</button>
+                <button type="submit" id="checkBtn">✅ 정답 확인</button>
+              </div>
+            </form>
+            <div id="result" class="shadow-result"></div>
+          </div>
+          <div class="bombom-nav">
+            <button id="prevBtn" class="stop">◀ 이전</button>
+            <button id="nextBtn" class="mic">다음 ▶</button>
+          </div>
+        </section>
       </main>
 
       <div id="status" class="status">강의를 선택하세요.</div>
     </div>
 
-    <!-- 드래그 반복/번역 안내 -->
     <div id="tip" class="tip"></div>
 
     <script src="speed.js"></script>
