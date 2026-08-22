@@ -9,6 +9,7 @@ let running = false;
 let token = 0; // 정지/재시작 시 예약 콜백 무효화
 let timer = null;
 let count = 0; // 재생 횟수 (1,2=미리듣기 / 3=영어만 / 4+=영어+한글)
+let subtitleMode = "auto"; // auto(점진 공개) | en | ko | both
 
 // ===== DOM =====
 const startBtn = document.getElementById("startBtn");
@@ -226,9 +227,27 @@ function showPreview() {
 function showSentence(withKorean) {
   phaseEl.style.display = "none";
   sentenceEl.style.display = "block";
+  echoEn.style.display = "block";
   echoEn.textContent = currentSentence;
   echoKo.textContent = withKorean ? currentTranslation : "";
   echoKo.style.display = withKorean ? "block" : "none";
+}
+// 자막 버튼으로 강제 표시 (영문만/한글만/영문+한글)
+function showModeView() {
+  phaseEl.style.display = "none";
+  sentenceEl.style.display = "block";
+  const showEn = subtitleMode !== "ko";
+  const showKo = subtitleMode !== "en";
+  echoEn.textContent = showEn ? currentSentence : "";
+  echoEn.style.display = showEn ? "block" : "none";
+  echoKo.textContent = showKo ? currentTranslation : "";
+  echoKo.style.display = showKo ? "block" : "none";
+}
+// 현재 상태에 맞춰 자막 즉시 반영 (버튼 눌렀을 때)
+function applySubtitle() {
+  if (!currentSentence) return; // 아직 문장 없음
+  if (subtitleMode === "auto") return; // 자동은 runCycle이 처리
+  showModeView();
 }
 
 // 한 번 재생 → 다음 예약
@@ -236,7 +255,15 @@ function runCycle(myToken) {
   if (myToken !== token || !running) return;
   count++;
 
-  if (count <= 4) {
+  if (subtitleMode !== "auto") {
+    // 자막 버튼이 켜져 있으면 처음부터 그 자막을 보여준다
+    showModeView();
+    setStatus(
+      count <= 2
+        ? "🎧 잘 들으세요."
+        : "🔊 듣고, 소리가 끝나면 따라 읽어보세요."
+    );
+  } else if (count <= 4) {
     showPreview(); // 아직 지문 없음
     if (count <= 2) {
       setStatus(`🎧 잘 들으세요 (${count}/2) — 아직 지문은 안 보여드려요.`);
@@ -330,6 +357,27 @@ startBtn.addEventListener("click", () => {
 });
 
 nextBtn.addEventListener("click", () => beginFlow(true));
+
+// 자막 버튼 (자동/영문만/한글만/영문+한글)
+const subtitleBar = document.getElementById("subtitleBar");
+subtitleBar.querySelectorAll("button").forEach((b) => {
+  b.addEventListener("click", () => {
+    subtitleMode = b.dataset.sub;
+    subtitleBar
+      .querySelectorAll("button")
+      .forEach((x) => x.classList.toggle("active", x === b));
+    if (subtitleMode === "auto") {
+      // 자동으로 되돌리면: 문장이 떠 있으면 현재 진행 단계에 맞춰 다시 표시
+      if (currentSentence) {
+        if (count >= 6 || count === 0) showSentence(true);
+        else if (count === 5) showSentence(false);
+        else showPreview();
+      }
+    } else {
+      applySubtitle(); // 즉시 자막 반영
+    }
+  });
+});
 
 function setStatus(text, kind = "") {
   statusEl.textContent = text;

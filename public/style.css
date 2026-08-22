@@ -1467,6 +1467,14 @@ footer {
   font-weight: 600;
 }
 
+/* 따라하기 자막 버튼 바 */
+.echo-subtitle {
+  margin-top: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 /* 전체 영문 보기 */
 .bombom-passage {
   padding: 20px 22px;
