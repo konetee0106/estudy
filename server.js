@@ -23,6 +23,16 @@ const MODEL = process.env.CLAUDE_MODEL || "claude-opus-4-8";
 // (환경변수 TEACHER_MODEL 로 바꿀 수 있음)
 const TEACHER_MODEL = process.env.TEACHER_MODEL || "claude-sonnet-5";
 
+// 국제 영어(Globish) 원칙 — 학습자는 주로 비영어권(인도·인도네시아·일본·유럽) 상대와 영어로 일한다.
+// 그래서 원어민끼리만 통하는 관용구·속어·어려운 구동사는 피하고, 누구나 알아듣는 쉽고 명확한 영어를 우선한다.
+// 각 프로그램의 시스템 프롬프트 뒤에 붙여 공통 적용한다.
+const GLOBISH =
+  "\n\n[매우 중요 — 국제 영어 원칙] 이 학습자는 주로 비영어권(인도·인도네시아·일본·유럽) 사람들과 영어로 일한다. " +
+  "그래서 원어민끼리만 통하는 관용구·속어·비유·어려운 구동사(예: on track, touch base, circle back, ballpark, get the ball rolling, reach out, on the same page)는 피하라. " +
+  "뜻이 분명하고 누구나 알아듣는 쉽고 단순명료한 국제 영어(Globish)를 우선한다. 짧고 직접적인 문장, 흔한 기본 단어를 쓴다. " +
+  "관용 표현을 꼭 다뤄야 할 때만, '이건 원어민은 알지만 비영어권 상대는 못 알아들을 수 있다'고 짧게 알려주고 반드시 더 쉬운 대체 표현도 함께 준다. " +
+  "단, 문법은 정확하고 자연스러워야 한다(콩글리시·직역 오류를 쓰라는 뜻이 아니다).";
+
 const app = express();
 app.use(express.json({ limit: "1mb" }));
 
@@ -82,7 +92,7 @@ Rules:
 - Speak at a level slightly above the learner's, but stay clear and natural.
 - Always keep the conversation going: react to what they said, then ask a follow-up question.
 - If the learner made a meaningful grammar or word-choice mistake, give one short correction of their most important error. If their English was fine, leave the correction empty.
-- Never lecture. Be friendly and patient.`;
+- Never lecture. Be friendly and patient.` + GLOBISH;
 }
 
 // 응답을 { reply, correction } 구조로 강제
@@ -344,7 +354,8 @@ app.post("/api/sentence", async (req, res) => {
       model: MODEL,
       max_tokens: 256,
       system:
-        "You generate single English sentences for a listening dictation (shadowing) exercise for Korean learners.",
+        "You generate single English sentences for a listening dictation (shadowing) exercise for Korean learners." +
+        GLOBISH,
       messages: [
         {
           role: "user",
@@ -508,7 +519,8 @@ app.post("/api/passage", async (req, res) => {
       model: MODEL,
       max_tokens: 8000,
       system:
-        "You write English reading-practice passages for Korean learners, with Korean translations.",
+        "You write English reading-practice passages for Korean learners, with Korean translations." +
+        GLOBISH,
       messages: [
         {
           role: "user",
@@ -755,7 +767,8 @@ app.post("/api/ko-sentence", async (req, res) => {
       model: MODEL,
       max_tokens: 256,
       system:
-        "너는 한국인 영어 학습자를 위한 영작/스피킹 연습 문제를 만든다. 자연스러운 일상 한국어 문장을 제시한다.",
+        "너는 한국인 영어 학습자를 위한 영작/스피킹 연습 문제를 만든다. 자연스러운 일상 한국어 문장을 제시한다. 영어로 옮겼을 때 쉽고 명확한 국제 영어가 되는 문장으로." +
+        GLOBISH,
       messages: [
         {
           role: "user",
@@ -844,7 +857,8 @@ app.post("/api/writing/grade", async (req, res) => {
       model: MODEL,
       max_tokens: 2048,
       system:
-        "You are a kind English writing tutor for Korean learners. You grade a learner's English translation of a Korean sentence. Feedback must be written in Korean, short and encouraging, and point out concrete issues (grammar, word choice, naturalness).",
+        "You are a kind English writing tutor for Korean learners. You grade a learner's English translation of a Korean sentence. Feedback must be written in Korean, short and encouraging, and point out concrete issues (grammar, word choice, naturalness)." +
+        GLOBISH,
       messages: [
         {
           role: "user",
@@ -919,7 +933,8 @@ app.post("/api/speaking/grade", async (req, res) => {
       model: MODEL,
       max_tokens: 2048,
       system:
-        "You are a kind English speaking coach for Korean learners. The learner spoke English aloud and a speech recognizer transcribed it. Compare the transcript to a correct English rendering of the Korean prompt. Differences often indicate pronunciation problems. Feedback and tips must be in Korean. Be encouraging and concrete.",
+        "You are a kind English speaking coach for Korean learners. The learner spoke English aloud and a speech recognizer transcribed it. Compare the transcript to a correct English rendering of the Korean prompt. Differences often indicate pronunciation problems. Feedback and tips must be in Korean. Be encouraging and concrete." +
+        GLOBISH,
       messages: [
         {
           role: "user",
@@ -990,7 +1005,8 @@ app.post("/api/ask", async (req, res) => {
         "ALWAYS answer in Korean (한국어), clearly and concisely. " +
         "When helpful, give a short English example and its Korean meaning. " +
         "Use plain text only — do NOT use markdown tables, headings, or '#' or '*' symbols. Short dashes (-) for simple lists are fine. " +
-        "If the learner refers to 'this', 'this word', 'this sentence', use the study material provided as context.",
+        "If the learner refers to 'this', 'this word', 'this sentence', use the study material provided as context." +
+        GLOBISH,
       messages,
     });
 
@@ -1496,7 +1512,8 @@ app.post("/api/sentence-guide", async (req, res) => {
       model: MODEL,
       max_tokens: 4000,
       system:
-        "You are an English grammar teacher explaining the 5 basic English sentence patterns (5형식) to a Korean learner. Be clear, accurate, and beginner-friendly. All explanations in Korean; example sentences in English with Korean translations.",
+        "You are an English grammar teacher explaining the 5 basic English sentence patterns (5형식) to a Korean learner. Be clear, accurate, and beginner-friendly. All explanations in Korean; example sentences in English with Korean translations." +
+        GLOBISH,
       messages: [
         {
           role: "user",
@@ -1570,7 +1587,8 @@ app.post("/api/sentence-drill", async (req, res) => {
       model: MODEL,
       max_tokens: 400,
       system:
-        "You create English sentence-pattern practice items for Korean beginners. You first write a simple English sentence in a target pattern, then translate it into Korean.",
+        "You create English sentence-pattern practice items for Korean beginners. You first write a simple English sentence in a target pattern, then translate it into Korean." +
+        GLOBISH,
       messages: [
         {
           role: "user",
@@ -1649,7 +1667,8 @@ app.post("/api/sentence-grade", async (req, res) => {
         `The learner translates a Korean sentence into English, and the goal is to write it in the ${info.name} pattern (${info.structure}). ` +
         `The "best" answer MUST follow the ${info.name} pattern. In "parts", split "best" into consecutive chunks in order, each tagged with its role (${info.roles}). ` +
         `Set "matched" = true only if the learner's own answer follows the ${info.name} pattern. ` +
-        `Feedback in Korean, short and encouraging; if their sentence was a different pattern, gently explain which one it was and how to make it ${info.name}.`,
+        `Feedback in Korean, short and encouraging; if their sentence was a different pattern, gently explain which one it was and how to make it ${info.name}.` +
+        GLOBISH,
       messages: [
         {
           role: "user",
@@ -1720,7 +1739,7 @@ function teacherSystemPrompt(notes) {
     `3. 쉬운 설명: 어려운 문법 용어를 최대한 쓰지 말고 한국어로 쉽게 설명한다. 긴 설명보다 짧은 설명 + 실제 쓸 수 있는 예문 2개 이상.\n` +
     `4. 실수 활용: 학생이 자주 틀리는 문법·표현·단어·문장 구조는 [학습 기록]에 적어두고 이후 다시 연습시킨다. 같은 실수를 반복하면 그 패턴을 활용한 영작·빈칸 문제를 만든다.\n` +
     `5. 정답 바로 안 알려주기: 학생이 틀리면 바로 정답부터 주지 말고 먼저 힌트를 한 번 준다. 다시 시도한 뒤에도 틀리면 정답과 이유를 설명한다.\n` +
-    `6. 실제 쓰는 영어: 문법적으로 맞아도 원어민이 일상적으로 잘 안 쓰면 더 자연스러운 표현을 알려준다. 교과서적 표현보다 실제 대화에서 자주 쓰는 표현을 우선한다.\n` +
+    `6. 국제 영어(Globish) 우선: 이 학생의 대화 상대는 대부분 비영어권(인도·인니·일본·유럽)이다. 그래서 원어민끼리만 통하는 관용구·속어·비유·어려운 구동사(on track, touch base, circle back, reach out 등)는 피하고, 누구나 알아듣는 쉽고 명확하고 직접적인 영어를 우선 가르친다. 관용 표현을 알려줄 때는 "이건 원어민은 알지만 비영어권 상대는 못 알아들을 수 있다"고 짧게 말하고 반드시 더 쉬운 대체 표현도 함께 준다. 단, 문법은 정확하고 자연스러워야 한다(콩글리시·직역 오류는 안 됨).\n` +
     `7. 칭찬은 구체적으로(무엇을 잘했는지 짧게), 지적은 짧고 명확하게.\n` +
     `8. 마무리: 학생이 "오늘 수업 끝" 또는 비슷한 말을 하면 [오늘 배운 것(핵심 표현/문법) / 오늘 발견한 약점(반복해서 틀린 것) / 내일 숙제(60분 내 분량)] 세 가지를 정리한다.\n\n` +
     `[가장 중요]\n` +
@@ -1806,7 +1825,8 @@ app.post("/api/bombom-grade", async (req, res) => {
       model: TEACHER_MODEL, // 빠른 모델
       max_tokens: 700,
       system:
-        "You are a kind English tutor. A Korean learner translates a Korean sentence into English. Compare it to the lesson's reference sentence. Feedback in Korean, short and encouraging. If the learner's version is different from the reference but still correct and natural, say it's also fine.",
+        "You are a kind English tutor. A Korean learner translates a Korean sentence into English. Compare it to the lesson's reference sentence. Feedback in Korean, short and encouraging. If the learner's version is different from the reference but still correct and natural, say it's also fine." +
+        GLOBISH,
       messages: [
         {
           role: "user",
