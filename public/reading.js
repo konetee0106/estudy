@@ -116,8 +116,15 @@ function speakOnce(text, myToken, onEnd, opts = {}) {
     utter.lang = voice ? voice.lang : "en-US";
     utter.rate = parseFloat(rateInput.value) || 0.9;
     utter.pitch = pitch;
-    utter.onend = () => onEnd && onEnd();
-    utter.onerror = () => onEnd && onEnd();
+    // 모바일에서 onend/onerror 가 여러 번 발생하는 버그 대비 → 콜백은 딱 한 번만
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      onEnd && onEnd();
+    };
+    utter.onend = finish;
+    utter.onerror = finish;
     synth.speak(utter);
   }, 100);
 }
@@ -165,6 +172,8 @@ function readParaAt(myToken, i, paras) {
   if (i >= paras.length) {
     // 끝까지 다 읽음
     reading = false;
+    speakToken++; // 예약된 콜백 무효화 (모바일 반복 방지)
+    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
     highlightPara(null);
     updateReadAllBtn();
     setStatus("다 읽었습니다. 소리 내어 따라 읽어보세요.");

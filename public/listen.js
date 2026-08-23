@@ -271,8 +271,15 @@ function speakParts(parts, myToken, onDone) {
       last = u;
     });
     if (last) {
-      last.onend = () => onDone && onDone();
-      last.onerror = () => onDone && onDone();
+      // 모바일에서 onend/onerror 가 여러 번 발생하는 버그 대비 → 콜백은 딱 한 번만
+      let finished = false;
+      const finish = () => {
+        if (finished) return;
+        finished = true;
+        onDone && onDone();
+      };
+      last.onend = finish;
+      last.onerror = finish;
     } else {
       onDone && onDone();
     }

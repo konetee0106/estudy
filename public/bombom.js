@@ -155,8 +155,15 @@ function speak(text, onEnd, primer = true, gender = "") {
     utter.lang = lang;
     utter.rate = parseFloat(rateInput.value) || 0.9;
     utter.pitch = gv.pitch || 1;
-    utter.onend = () => onEnd && onEnd();
-    utter.onerror = () => onEnd && onEnd();
+    // 모바일에서 onend/onerror 가 여러 번 발생하는 버그 대비 → 콜백은 딱 한 번만
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      onEnd && onEnd();
+    };
+    utter.onend = finish;
+    utter.onerror = finish;
     synth.speak(utter);
   }, 100);
 }
@@ -329,6 +336,7 @@ function listenAllFrom(i) {
 }
 function stopListenAll() {
   listeningAll = false;
+  stopSpeak(); // 남은 음성 정리 (모바일 반복 방지)
   listenAllBtn.textContent = "🔊 문장 전체 듣기";
   listenAllBtn.classList.remove("active");
   highlight(null);
