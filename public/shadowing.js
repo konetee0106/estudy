@@ -66,6 +66,9 @@ function warmUpSpeech() {
   window.speechSynthesis.speak(u);
 }
 
+// 첫 재생은 음성 엔진이 차가워 앞부분이 잘린다 → 더 긴 희생 발화로 확실히 예열
+let firstSpeak = true;
+
 // 한 번 재생하고, 끝나면 onEnd 콜백 호출
 function speakOnce(text, onEnd) {
   if (!("speechSynthesis" in window) || !text) {
@@ -74,9 +77,13 @@ function speakOnce(text, onEnd) {
   }
   const synth = window.speechSynthesis;
   synth.cancel();
+  const cold = firstSpeak; // 이번이 첫 재생인가
+  firstSpeak = false;
   setTimeout(() => {
-    // 희생용 발화: 시작 부분이 잘리는 브라우저 버그 대응
-    const primer = new SpeechSynthesisUtterance("hello");
+    // 희생용 발화: 시작 부분이 잘리는 브라우저 버그 대응. 첫 재생은 더 길게.
+    const primer = new SpeechSynthesisUtterance(
+      cold ? "hello, hello, hello." : "hello"
+    );
     primer.volume = 0.05;
     primer.rate = 1;
     if (selectedVoice) primer.voice = selectedVoice;
@@ -90,7 +97,7 @@ function speakOnce(text, onEnd) {
     utter.onend = () => onEnd && onEnd();
     utter.onerror = () => onEnd && onEnd();
     synth.speak(utter);
-  }, 120);
+  }, cold ? 300 : 120);
 }
 
 // ===== 무한 반복 재생 컨트롤러 =====
