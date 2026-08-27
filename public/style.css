@@ -1475,6 +1475,36 @@ footer {
   gap: 8px;
 }
 
+/* 전역 복습 모드 토글 */
+.review-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  user-select: none;
+}
+.review-toggle input {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.review-toggle.active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+/* 복습 모드일 때 헤더에 살짝 표시 */
+body.review-on header h1::after {
+  content: " · 🔁 복습";
+  font-size: 0.7em;
+  color: var(--accent);
+  font-weight: 600;
+}
+
 /* 전체 영문 보기 */
 .bombom-passage {
   padding: 20px 22px;

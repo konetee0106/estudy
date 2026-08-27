@@ -131,6 +131,11 @@ function playCycle(text, token) {
 
 // ===== 새 문제 =====
 async function fetchQuestion() {
+  // 복습 모드: 새 문제 대신 이전에 공부한 문제를 다시 낸다
+  if (typeof window.isReviewMode === "function" && window.isReviewMode()) {
+    loadReviewQuestion();
+    return;
+  }
   stopLoop(); // 반복 듣기 정지
   setStatus("문제를 만드는 중…");
   newBtn.disabled = true;

@@ -158,6 +158,11 @@ function playCycle(token) {
 
 // ===== 새 문장 가져오기 =====
 async function fetchSentence() {
+  // 복습 모드: 새 문장 대신 이전에 공부한 문장을 다시 낸다
+  if (typeof window.isReviewMode === "function" && window.isReviewMode()) {
+    loadReviewSentence();
+    return;
+  }
   stopPlayback(); // 이전에 돌던 반복 재생 정지
   setStatus("문장을 만드는 중…");
   newBtn.disabled = true;

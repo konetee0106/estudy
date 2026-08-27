@@ -208,6 +208,11 @@ readAllBtn.addEventListener("click", () => {
 
 // ===== 지문 가져오기 =====
 async function fetchPassage() {
+  // 복습 모드: 새 지문 대신 이전에 공부한 지문을 다시 낸다
+  if (typeof window.isReviewMode === "function" && window.isReviewMode()) {
+    loadReviewPassage();
+    return;
+  }
   stopReading();
   setStatus("지문을 만드는 중… (10초 정도 걸릴 수 있어요)");
   startBtn.disabled = true;

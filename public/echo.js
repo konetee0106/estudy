@@ -300,6 +300,19 @@ function recentEcho() {
 }
 
 async function fetchSentence() {
+  // 복습 모드: 새 문장 대신 이전에 공부한 문장(쉐도잉/따라하기 공유 풀)을 다시 낸다
+  if (typeof window.isReviewMode === "function" && window.isReviewMode()) {
+    const list = typeof Review !== "undefined" ? Review.all("shadowing") : [];
+    if (!list.length) {
+      setStatus("복습할 문장이 없습니다. 복습 모드를 끄거나, 먼저 문장을 연습해 주세요.");
+      return false;
+    }
+    const item = list[Math.floor(Math.random() * list.length)];
+    currentSentence = (item.en || "").trim();
+    currentTranslation = (item.ko || "").trim();
+    setStatus(`🔁 복습 (총 ${list.length}개 중 랜덤)`);
+    return true;
+  }
   setStatus("문장을 준비하는 중…");
   try {
     const res = await fetch("/api/sentence", {
@@ -319,6 +332,9 @@ async function fetchSentence() {
     currentSentence = (data.sentence || "").trim();
     currentTranslation = (data.translation || "").trim();
     if (typeof History !== "undefined") History.add("echo", currentSentence);
+    // 공유 복습 풀에도 저장 (나중에 복습 모드에서 다시 나옴)
+    if (typeof Review !== "undefined")
+      Review.add("shadowing", { en: currentSentence, ko: currentTranslation });
     return true;
   } catch (err) {
     setStatus("오류: " + err.message, "error");
