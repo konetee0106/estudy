@@ -1467,6 +1467,13 @@ footer {
   font-weight: 600;
 }
 
+/* 공부 완료 버튼 (완료 시 초록) */
+#doneBtn.active {
+  background: #16a34a;
+  color: #fff;
+  border-color: #16a34a;
+}
+
 /* 따라하기 자막 버튼 바 */
 .echo-subtitle {
   margin-top: 12px;

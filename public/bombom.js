@@ -32,6 +32,7 @@ const MALE_PAT =
 
 // ===== DOM =====
 const lessonSelect = document.getElementById("lessonSelect");
+const doneBtn = document.getElementById("doneBtn");
 const audioBtn = document.getElementById("audioBtn");
 const listenAllBtn = document.getElementById("listenAllBtn");
 const viewBtn = document.getElementById("viewBtn");
@@ -187,6 +188,33 @@ function setStatus(text, kind = "") {
   statusEl.className = "status" + (kind ? " " + kind : "");
 }
 
+// ===== 공부 완료 표시 (클래스별로 저장) =====
+const DONE_KEY = "bombom_done_" + CLS;
+let doneSet = new Set();
+try {
+  doneSet = new Set(JSON.parse(localStorage.getItem(DONE_KEY) || "[]"));
+} catch {}
+function saveDone() {
+  localStorage.setItem(DONE_KEY, JSON.stringify([...doneSet]));
+}
+function applyOptionLabel(opt, l) {
+  const done = doneSet.has(l.day);
+  opt.textContent = (done ? "✅ " : "") + `${l.day}일차 — ${l.titleKo || l.title}`;
+  opt.style.color = done ? "#16a34a" : ""; // 데스크톱에서 초록색 (모바일은 ✅로 구분)
+}
+function refreshOption(day) {
+  const opt = lessonSelect.querySelector(`option[value="${day}"]`);
+  const l = lessons.find((x) => x.day === day);
+  if (opt && l) applyOptionLabel(opt, l);
+}
+function updateDoneBtn() {
+  if (!lesson) return;
+  const done = doneSet.has(lesson.day);
+  doneBtn.textContent = done ? "✅ 완료함 (취소)" : "⬜ 공부 완료";
+  doneBtn.classList.toggle("active", done);
+  doneBtn.title = `완료 ${doneSet.size} / ${lessons.length}강`;
+}
+
 // ===== 강의 로드 =====
 async function loadLessons() {
   try {
@@ -203,7 +231,7 @@ async function loadLessons() {
   lessons.forEach((l) => {
     const opt = document.createElement("option");
     opt.value = l.day;
-    opt.textContent = `${l.day}일차 — ${l.titleKo || l.title}`;
+    applyOptionLabel(opt, l);
     lessonSelect.appendChild(opt);
   });
 
@@ -234,11 +262,22 @@ function selectLesson(day) {
     audioBtn.style.display = "none";
   }
   progressEl.textContent = `${lesson.day}일차 · ${lesson.titleKo || ""} (${lesson.lines.length}문장)`;
+  updateDoneBtn();
   renderView();
   renderWrite();
   renderStudy();
   setMode(mode);
 }
+
+// 공부 완료 표시 토글
+doneBtn.addEventListener("click", () => {
+  if (!lesson) return;
+  if (doneSet.has(lesson.day)) doneSet.delete(lesson.day);
+  else doneSet.add(lesson.day);
+  saveDone();
+  refreshOption(lesson.day);
+  updateDoneBtn();
+});
 
 // ===== 모드 전환 =====
 function setMode(m) {
