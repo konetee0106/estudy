@@ -1068,7 +1068,7 @@ const VERB_GUIDE_SCHEMA = {
 app.post("/api/verb-guide", async (req, res) => {
   try {
     const verb = String(req.body?.verb || "").trim().toLowerCase();
-    if (!["take", "get", "put", "grab", "both"].includes(verb)) {
+    if (!["take", "get", "put", "grab", "have", "both"].includes(verb)) {
       return res.status(400).json({ error: "지원하지 않는 동사입니다." });
     }
 
@@ -1096,6 +1096,7 @@ app.post("/api/verb-guide", async (req, res) => {
         get: "get up, get over, get along, get off, get on, get back, get through, get to, get rid of",
         put: "put on, put off, put up, put up with, put out, put away, put down, put together, put back",
         grab: "grab a coffee, grab a bite, grab a taxi, grab lunch, grab a seat, grab your attention, grab the chance",
+        have: "have breakfast/lunch, have a meeting, have a look, have time, have to (=must), have a problem, have a good day, have + noun (소유), have something done (남에게 시키다)",
       };
       const phrasals = PHRASALS[verb] || "";
       guideInstruction =
@@ -1161,7 +1162,7 @@ const VERB_SENTENCE_SCHEMA = {
 app.post("/api/verb-sentence", async (req, res) => {
   try {
     const verb = String(req.body?.verb || "").trim().toLowerCase();
-    if (!["take", "get", "put", "grab", "both"].includes(verb)) {
+    if (!["take", "get", "put", "grab", "have", "both"].includes(verb)) {
       return res.status(400).json({ error: "지원하지 않는 동사입니다." });
     }
     const recent = Array.isArray(req.body?.recent)
@@ -1221,6 +1222,7 @@ app.post("/api/verb-sentence", async (req, res) => {
         get: "get up, get to (arrive), get off/on (transport), get over, get a taxi, get lost, get ready, get in touch, get back, get through, get + adjective (tired/hungry/cold), get a discount, get along with",
         put: "put on (clothes/makeup), put down, put away, put off (postpone), put together, put up with, put back, put in (effort/time), put something on the desk/table, put pressure on",
         grab: "grab a coffee, grab a bite, grab lunch, grab a taxi, grab a seat, grab your bag, grab someone's attention, grab a quick word, grab the chance/opportunity",
+        have: "have breakfast/lunch/dinner, have a meeting, have a look, have time, have a problem/question, have a good weekend, have + noun (소유: have a car/two kids), have to (=must), have a break, have a call",
       };
       const uses = USES[verb] || "";
       sentenceInstruction =
@@ -1334,7 +1336,7 @@ app.post("/api/verb-grade", async (req, res) => {
     const korean = String(req.body?.korean || "").trim();
     const answer = String(req.body?.answer || "").trim().slice(0, 1000);
     if (
-      !["take", "get", "put", "grab", "both"].includes(verb) ||
+      !["take", "get", "put", "grab", "have", "both"].includes(verb) ||
       !korean ||
       !answer
     ) {

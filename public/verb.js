@@ -405,7 +405,7 @@ window.getAskContext = function () {
 (function init() {
   const params = new URLSearchParams(location.search);
   const v = (params.get("verb") || "take").toLowerCase();
-  if (["get", "put", "grab", "both"].includes(v)) verb = v;
+  if (["get", "put", "grab", "have", "both"].includes(v)) verb = v;
   verbTabs.forEach((x) => x.classList.toggle("active", x.dataset.verb === verb));
   verbNameA.textContent = verbName();
   verbNameB.textContent = verbName();
