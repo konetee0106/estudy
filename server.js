@@ -102,7 +102,7 @@ Rules:
 - Speak at a level slightly above the learner's, but stay clear and natural.
 - Always keep the conversation going: react to what they said, then ask a follow-up question.
 - If the learner made a meaningful grammar or word-choice mistake, give one short correction of their most important error. If their English was fine, leave the correction empty.
-- Never lecture. Be friendly and patient.` + GLOBISH;
+- Never lecture. Be friendly and patient.` + GLOBISH + SASSY;
 }
 
 // 응답을 { reply, correction } 구조로 강제
@@ -944,8 +944,9 @@ app.post("/api/speaking/grade", async (req, res) => {
       model: MODEL,
       max_tokens: 2048,
       system:
-        "You are a kind English speaking coach for Korean learners. The learner spoke English aloud and a speech recognizer transcribed it. Compare the transcript to a correct English rendering of the Korean prompt. Differences often indicate pronunciation problems. Feedback and tips must be in Korean. Be encouraging and concrete." +
-        GLOBISH,
+        "You are an English speaking coach for Korean learners. The learner spoke English aloud and a speech recognizer transcribed it. Compare the transcript to a correct English rendering of the Korean prompt. Differences often indicate pronunciation problems. Feedback and tips must be in Korean, concrete." +
+        GLOBISH +
+        SASSY,
       messages: [
         {
           role: "user",
@@ -1375,7 +1376,9 @@ app.post("/api/verb-grade", async (req, res) => {
         `In your response, the "best" answer ${mustUse}, and the "alternatives" should do the same when possible. ` +
         `In "otherVerbs", ALSO show 1-3 natural ways to say the SAME thing using a DIFFERENT main verb (NOT take/get) — e.g. postpone/delay instead of "put off", catch/fetch instead of "grab", receive/obtain instead of "get", bring/carry instead of "take". For each, give the sentence, the different verb, and a short Korean nuance note. This teaches the learner alternatives so they don't over-rely on take/get. ` +
         `Feedback must be in Korean, short and encouraging. If the learner did not use ${target} (or used a different verb like transfer/change/arrive), gently point that out and show how to say it with ${target}. ` +
-        `Score reflects both correctness and whether they used ${target} naturally.`,
+        `Score reflects both correctness and whether they used ${target} naturally.` +
+        GLOBISH +
+        SASSY,
       messages: [
         {
           role: "user",
@@ -1681,8 +1684,9 @@ app.post("/api/sentence-grade", async (req, res) => {
         `The learner translates a Korean sentence into English, and the goal is to write it in the ${info.name} pattern (${info.structure}). ` +
         `The "best" answer MUST follow the ${info.name} pattern. In "parts", split "best" into consecutive chunks in order, each tagged with its role (${info.roles}). ` +
         `Set "matched" = true only if the learner's own answer follows the ${info.name} pattern. ` +
-        `Feedback in Korean, short and encouraging; if their sentence was a different pattern, gently explain which one it was and how to make it ${info.name}.` +
-        GLOBISH,
+        `Feedback in Korean, short; if their sentence was a different pattern, explain which one it was and how to make it ${info.name}.` +
+        GLOBISH +
+        SASSY,
       messages: [
         {
           role: "user",
@@ -1765,6 +1769,8 @@ function teacherSystemPrompt(notes) {
     `- 한 표현·문법·패턴은 서로 다른 문장으로 3~5회 충분히 반복 연습시킨 뒤에 다음 주제로 넘어간다. 학생이 한 문제를 잘하면 짧게 구체적으로 칭찬하고 곧바로 다음(조금 더 어렵거나 다른 국가·상황) 문제로 이어간다.\n` +
     `- 한 수업 안에서 여러 상황·주제를 폭넓게 다루며 많은 양을 연습시키는 것이 목표다. 몇 번 주고받고 끝내면 안 된다.\n\n` +
     TEACHER_BACKGROUND +
+    SASSY +
+    `\n\n(위 [수업 규칙]의 7번 '칭찬은 구체적으로'보다 이 말투 지침을 우선한다. 세게 갈구되 정답·설명·복습·다음 문제는 규칙대로 끝까지 확실히 준다.)` +
     `\n[학습 기록] (이 학생의 지금까지의 실수·약점·배운 표현. 매 답변마다 이번 대화를 반영해 갱신한다):\n` +
     (notes && notes.trim() ? notes.trim() : "아직 없음 (첫 수업).") +
     `\n\n[출력 형식 — 반드시 지켜라]\n` +
@@ -1845,8 +1851,9 @@ app.post("/api/bombom-grade", async (req, res) => {
       model: TEACHER_MODEL, // 빠른 모델
       max_tokens: 700,
       system:
-        "You are a kind English tutor. A Korean learner translates a Korean sentence into English. Compare it to the lesson's reference sentence. Feedback in Korean, short and encouraging. If the learner's version is different from the reference but still correct and natural, say it's also fine." +
-        GLOBISH,
+        "You are an English tutor. A Korean learner translates a Korean sentence into English. Compare it to the lesson's reference sentence. Feedback in Korean, short. If the learner's version is different from the reference but still correct and natural, say it's also fine." +
+        GLOBISH +
+        SASSY,
       messages: [
         {
           role: "user",
