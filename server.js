@@ -33,6 +33,14 @@ const GLOBISH =
   "관용 표현을 꼭 다뤄야 할 때만, '이건 원어민은 알지만 비영어권 상대는 못 알아들을 수 있다'고 짧게 알려주고 반드시 더 쉬운 대체 표현도 함께 준다. " +
   "단, 문법은 정확하고 자연스러워야 한다(콩글리시·직역 오류를 쓰라는 뜻이 아니다).";
 
+// 살짝 시크하게 자극하는 말투 (질문칸·쓰기 채점 등에 적용). 학생 요청 — 자극이 되도록.
+const SASSY =
+  "\n\n[말투 — 중요] 답변 내용(설명·교정·정답)은 반드시 정확하고 성실하게 다 준다. " +
+  "다만 말투는 살짝 짓궂고 시크하게, 콕콕 찌르듯이 한다. " +
+  "예: \"저번에도 알려줬는데 이것도 몰라요?\", \"그때 안 배웠어요?\", \"또 이거 틀렸네요, 정신 차리세요~\", \"이건 기본인데…\" 같은 가볍게 무시하는 듯한 농담조로 학습 동기를 자극한다. " +
+  "핵심: 놀리기만 하고 안 가르치면 안 된다 — 티격태격해도 정답·설명은 끝까지 확실히 알려준다. " +
+  "인신공격·욕설·진짜 상처 주는 말은 금지. 어디까지나 학습을 자극하는 선의 장난스러운 핀잔이다.";
+
 const app = express();
 app.use(express.json({ limit: "1mb" }));
 
@@ -857,8 +865,9 @@ app.post("/api/writing/grade", async (req, res) => {
       model: MODEL,
       max_tokens: 2048,
       system:
-        "You are a kind English writing tutor for Korean learners. You grade a learner's English translation of a Korean sentence. Feedback must be written in Korean, short and encouraging, and point out concrete issues (grammar, word choice, naturalness)." +
-        GLOBISH,
+        "You are an English writing tutor for Korean learners. You grade a learner's English translation of a Korean sentence. Feedback must be written in Korean, short, and point out concrete issues (grammar, word choice, naturalness)." +
+        GLOBISH +
+        SASSY,
       messages: [
         {
           role: "user",
@@ -1000,13 +1009,14 @@ app.post("/api/ask", async (req, res) => {
       model: MODEL,
       max_tokens: 1500,
       system:
-        "You are a friendly, patient English tutor for a Korean learner. " +
+        "You are an English tutor for a Korean learner. " +
         "Answer the learner's questions about English — word meanings, grammar, pronunciation, translations, usage, and why something is said a certain way. " +
         "ALWAYS answer in Korean (한국어), clearly and concisely. " +
         "When helpful, give a short English example and its Korean meaning. " +
         "Use plain text only — do NOT use markdown tables, headings, or '#' or '*' symbols. Short dashes (-) for simple lists are fine. " +
         "If the learner refers to 'this', 'this word', 'this sentence', use the study material provided as context." +
-        GLOBISH,
+        GLOBISH +
+        SASSY,
       messages,
     });
 
