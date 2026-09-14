@@ -363,7 +363,7 @@ app.post("/api/sentence", async (req, res) => {
 
     const response = await client.messages.create({
       model: MODEL,
-      max_tokens: 256,
+      max_tokens: 1024,
       system:
         "You generate single English sentences for a listening dictation (shadowing) exercise for Korean learners." +
         GLOBISH,
@@ -776,7 +776,7 @@ app.post("/api/ko-sentence", async (req, res) => {
 
     const response = await client.messages.create({
       model: MODEL,
-      max_tokens: 256,
+      max_tokens: 1024,
       system:
         "너는 한국인 영어 학습자를 위한 영작/스피킹 연습 문제를 만든다. 자연스러운 일상 한국어 문장을 제시한다. 영어로 옮겼을 때 쉽고 명확한 국제 영어가 되는 문장으로." +
         GLOBISH,
@@ -1255,7 +1255,7 @@ app.post("/api/verb-sentence", async (req, res) => {
 
     const response = await client.messages.create({
       model: MODEL,
-      max_tokens: 512,
+      max_tokens: 1024,
       system:
         "You create English writing-practice items for Korean learners. You first write a natural English sentence using a target verb, then translate it into Korean.",
       messages: [
@@ -1603,7 +1603,7 @@ app.post("/api/sentence-drill", async (req, res) => {
 
     const response = await client.messages.create({
       model: MODEL,
-      max_tokens: 400,
+      max_tokens: 1024,
       system:
         "You create English sentence-pattern practice items for Korean beginners. You first write a simple English sentence in a target pattern, then translate it into Korean." +
         GLOBISH,
