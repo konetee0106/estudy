@@ -33,6 +33,14 @@ const GLOBISH =
   "관용 표현을 꼭 다뤄야 할 때만, '이건 원어민은 알지만 비영어권 상대는 못 알아들을 수 있다'고 짧게 알려주고 반드시 더 쉬운 대체 표현도 함께 준다. " +
   "단, 문법은 정확하고 자연스러워야 한다(콩글리시·직역 오류를 쓰라는 뜻이 아니다).";
 
+// 문장/지문을 "생성"할 때 쓰는 버전 — 어렵고 애매한 관용구만 피하고, 누구나 아는 흔한 표현은 살린다.
+const GLOBISH_GEN =
+  "\n\n[생성 규칙] 네가 만들어 내는 영어 문장·지문은 비영어권(인도·인도네시아·일본·유럽) 사람과 실제로 통하는 영어여야 한다. " +
+  "그래서 비영어권 사람이 못 알아들을 만한 '어렵거나 애매한 원어민 전용 관용구·슬랭·비유'(예: on track, touch base, circle back, ballpark, hit the ground running, piece of cake, break the ice, on the same page, get the ball rolling, up in the air, call it a day, cut corners)는 쓰지 마라. " +
+  "단, 전 세계 비영어권 사람도 거의 다 아는 '아주 흔한 표현'은 자연스럽게 써도 된다 — 오히려 억지로 빼지 마라. " +
+  "예: by the way, of course, make sure, look forward to, get in touch / keep in touch, take care, find out, figure out, as soon as possible, in charge of, pick up, set up, check in / check out, no problem, a lot of, on time. " +
+  "핵심: 어렵고 헷갈리는 관용구만 피하고, 누구나 아는 쉬운 표현은 살려서 딱딱하지 않고 자연스럽게. 문법은 정확하게.";
+
 // 아주 세게 자극하는 말투 (질문칸·쓰기 채점 등). 학생 본인 요청 — 반말로 세게 굴려달라고 함.
 const SASSY =
   "\n\n[말투 — 매우 중요] 모든 피드백은 반드시 '반말'로 한다. 존댓말('-요', '-습니다', '-세요')은 절대 쓰지 마라. 친구/형/선배가 막말하듯 반말로.\n" +
@@ -366,7 +374,7 @@ app.post("/api/sentence", async (req, res) => {
       max_tokens: 1024,
       system:
         "You generate single English sentences for a listening dictation (shadowing) exercise for Korean learners." +
-        GLOBISH,
+        GLOBISH_GEN,
       messages: [
         {
           role: "user",
@@ -531,7 +539,7 @@ app.post("/api/passage", async (req, res) => {
       max_tokens: 8000,
       system:
         "You write English reading-practice passages for Korean learners, with Korean translations." +
-        GLOBISH,
+        GLOBISH_GEN,
       messages: [
         {
           role: "user",
@@ -779,7 +787,7 @@ app.post("/api/ko-sentence", async (req, res) => {
       max_tokens: 1024,
       system:
         "너는 한국인 영어 학습자를 위한 영작/스피킹 연습 문제를 만든다. 자연스러운 일상 한국어 문장을 제시한다. 영어로 옮겼을 때 쉽고 명확한 국제 영어가 되는 문장으로." +
-        GLOBISH,
+        GLOBISH_GEN,
       messages: [
         {
           role: "user",
@@ -1531,7 +1539,7 @@ app.post("/api/sentence-guide", async (req, res) => {
       max_tokens: 4000,
       system:
         "You are an English grammar teacher explaining the 5 basic English sentence patterns (5형식) to a Korean learner. Be clear, accurate, and beginner-friendly. All explanations in Korean; example sentences in English with Korean translations." +
-        GLOBISH,
+        GLOBISH_GEN,
       messages: [
         {
           role: "user",
@@ -1606,7 +1614,7 @@ app.post("/api/sentence-drill", async (req, res) => {
       max_tokens: 1024,
       system:
         "You create English sentence-pattern practice items for Korean beginners. You first write a simple English sentence in a target pattern, then translate it into Korean." +
-        GLOBISH,
+        GLOBISH_GEN,
       messages: [
         {
           role: "user",
