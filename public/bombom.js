@@ -38,12 +38,18 @@ const listenAllBtn = document.getElementById("listenAllBtn");
 const viewBtn = document.getElementById("viewBtn");
 const writeBtn = document.getElementById("writeBtn");
 const studyBtn = document.getElementById("studyBtn");
+const keyBtn = document.getElementById("keyBtn");
+const qaBtn = document.getElementById("qaBtn");
 const viewModeBar = document.getElementById("viewModeBar");
 const nativeAudio = document.getElementById("nativeAudio");
 const progressEl = document.getElementById("progress");
 const viewSection = document.getElementById("viewSection");
 const writeSection = document.getElementById("writeSection");
 const studySection = document.getElementById("studySection");
+const keySection = document.getElementById("keySection");
+const qaSection = document.getElementById("qaSection");
+const keyListEl = document.getElementById("keyList");
+const qaListEl = document.getElementById("qaList");
 const passageEl = document.getElementById("passage");
 const writeListEl = document.getElementById("writeList");
 const writeRevealBtn = document.getElementById("writeRevealBtn");
@@ -241,7 +247,7 @@ async function loadLessons() {
     if (p && lessons.some((l) => l.day === p.day)) {
       day = p.day;
       idx = p.idx || 0;
-      if (["view", "write", "study"].includes(p.mode)) mode = p.mode;
+      if (["view", "write", "study", "key", "qa"].includes(p.mode)) mode = p.mode;
     }
   } catch {}
   lessonSelect.value = day;
@@ -266,7 +272,91 @@ function selectLesson(day) {
   renderView();
   renderWrite();
   renderStudy();
+  renderKey();
+  renderQA();
+  // 이 강의에 해당 자료가 없으면 버튼 숨김
+  keyBtn.style.display = (lesson.keyExpressions || []).length ? "" : "none";
+  qaBtn.style.display = (lesson.qa || []).length ? "" : "none";
   setMode(mode);
+}
+
+// ===== ⭐ 오늘 중요한 문장 (핵심표현) =====
+function renderKey() {
+  if (!lesson) return;
+  const kes = lesson.keyExpressions || [];
+  if (!kes.length) {
+    keyListEl.innerHTML = `<div class="reading-empty">이 강의엔 핵심표현 자료가 없어요.</div>`;
+    return;
+  }
+  keyListEl.innerHTML = kes
+    .map((k) => {
+      const ex = (k.examples || [])
+        .map(
+          (e) => `<li class="ke-ex">
+            <div class="ke-en">${esc(e.en)}
+              <button class="icon-btn spk" data-text="${esc(e.en)}" title="듣기">🔊</button>
+            </div>
+            <div class="ke-ko">${esc(e.ko)}</div>
+          </li>`
+        )
+        .join("");
+      return `<div class="ke-item">
+        <div class="ke-pattern">${esc(k.pattern)} <span class="ke-meaning">${esc(k.meaning || "")}</span></div>
+        <ul class="ke-examples">${ex}</ul>
+      </div>`;
+    })
+    .join("");
+  bindSpk(keyListEl);
+}
+
+// ===== 🗣️ 묻고 답하기 =====
+function renderQA() {
+  if (!lesson) return;
+  const qas = lesson.qa || [];
+  if (!qas.length) {
+    qaListEl.innerHTML = `<div class="reading-empty">이 강의엔 묻고 답하기 자료가 없어요.</div>`;
+    return;
+  }
+  qaListEl.innerHTML = qas
+    .map((q, i) => {
+      const ans = (q.answers || [])
+        .map(
+          (a) => `<li class="qa-ans">
+            <div class="ke-en">${esc(a.en)}
+              <button class="icon-btn spk" data-text="${esc(a.en)}" title="듣기">🔊</button>
+            </div>
+            <div class="ke-ko">${esc(a.ko)}</div>
+          </li>`
+        )
+        .join("");
+      return `<div class="qa-item" data-i="${i}">
+        <div class="qa-q">Q. ${esc(q.q)}
+          <button class="icon-btn spk" data-text="${esc(q.q)}" title="질문 듣기">🔊</button>
+        </div>
+        <div class="qa-qko">${esc(q.qKo || "")}</div>
+        <button type="button" class="qa-reveal stop">💬 예시 답변 보기</button>
+        <ul class="qa-answers" style="display:none">${ans}</ul>
+      </div>`;
+    })
+    .join("");
+  bindSpk(qaListEl);
+  qaListEl.querySelectorAll(".qa-reveal").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const ul = btn.parentElement.querySelector(".qa-answers");
+      ul.style.display = ul.style.display === "none" ? "" : "none";
+      btn.textContent = ul.style.display === "none" ? "💬 예시 답변 보기" : "🙈 답변 숨기기";
+    });
+  });
+}
+
+// 🔊 버튼 공통 바인딩 (화자 성별 없음 → 기본 음성)
+function bindSpk(root) {
+  root.querySelectorAll(".spk").forEach((b) =>
+    b.addEventListener("click", () => {
+      warmUpSpeech();
+      speak(b.dataset.text);
+    })
+  );
 }
 
 // 공부 완료 표시 토글
@@ -287,18 +377,26 @@ function setMode(m) {
   viewSection.style.display = m === "view" ? "" : "none";
   writeSection.style.display = m === "write" ? "" : "none";
   studySection.style.display = m === "study" ? "" : "none";
+  keySection.style.display = m === "key" ? "" : "none";
+  qaSection.style.display = m === "qa" ? "" : "none";
   viewModeBar.style.display = m === "view" ? "" : "none";
   viewBtn.classList.toggle("active", m === "view");
   writeBtn.classList.toggle("active", m === "write");
   studyBtn.classList.toggle("active", m === "study");
+  keyBtn.classList.toggle("active", m === "key");
+  qaBtn.classList.toggle("active", m === "qa");
   saveProgress();
   if (m === "view") setStatus("전체 영문 보기 — 위 토글로 영어/한글을 바꾸고, 문장을 드래그하면 그 부분을 읽어줘요.");
   else if (m === "write") setStatus("한글 자막을 보고 전체를 영어로 써보세요. '정답 보기'로 확인해요.");
+  else if (m === "key") setStatus("오늘 중요한 문장(핵심표현) — 🔊로 듣고 소리 내어 따라 해봐요.");
+  else if (m === "qa") setStatus("묻고 답하기 — 질문을 듣고 소리 내어 답한 뒤, '예시 답변 보기'로 비교해봐요.");
   else setStatus("한 문장씩 — 한글을 영어로 옮겨 적고 '정답 확인'을 누르세요.");
 }
 viewBtn.addEventListener("click", () => setMode("view"));
 writeBtn.addEventListener("click", () => setMode("write"));
 studyBtn.addEventListener("click", () => setMode("study"));
+keyBtn.addEventListener("click", () => setMode("key"));
+qaBtn.addEventListener("click", () => setMode("qa"));
 
 function saveProgress() {
   if (!lesson) return;

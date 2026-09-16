@@ -50,6 +50,8 @@
         <button id="viewBtn" class="mic" title="전체 영문 보기">📖 전체 영문 보기</button>
         <button id="writeBtn" class="stop" title="한글 자막 보고 전체 영작">✍️ 한글 자막 보기</button>
         <button id="studyBtn" class="stop" title="한 문장씩 공부하기">📝 한 문장씩</button>
+        <button id="keyBtn" class="stop" title="오늘 중요한 문장(핵심표현)">⭐ 중요 문장</button>
+        <button id="qaBtn" class="stop" title="묻고 답하기(스피킹)">🗣️ 묻고 답하기</button>
       </div>
 
       <!-- 전체 영문 보기: 보기 모드 토글 -->
@@ -101,6 +103,18 @@
             <button id="prevBtn" class="stop">◀ 이전</button>
             <button id="nextBtn" class="mic">다음 ▶</button>
           </div>
+        </section>
+
+        <!-- ⭐ 오늘 중요한 문장 (핵심표현) -->
+        <section id="keySection" class="shadow-card" style="display: none">
+          <div class="label">⭐ 오늘 중요한 문장 (핵심표현)</div>
+          <div id="keyList" class="bombom-keylist"></div>
+        </section>
+
+        <!-- 🗣️ 묻고 답하기 (스피킹) -->
+        <section id="qaSection" class="shadow-card" style="display: none">
+          <div class="label">🗣️ 묻고 답하기 — 질문을 듣고 소리 내어 답한 뒤, 예시 답변과 비교해봐요</div>
+          <div id="qaList" class="bombom-qalist"></div>
         </section>
       </main>
 

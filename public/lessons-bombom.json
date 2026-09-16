@@ -66,6 +66,56 @@
         "en": "Yes, exactly! She's so good at explaining things.",
         "ko": "네, 맞아요! 앨리스는 설명을 정말 잘해요."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "help A with B",
+        "meaning": "A가 B하는 것을 도와주다",
+        "examples": [
+          {
+            "en": "Can you help me with my homework? It's due tomorrow but I'm stuck now.",
+            "ko": "내 숙제 좀 도와줄 수 있어? 내일까지인데 지금 막혔어."
+          },
+          {
+            "en": "If you're okay with it, I'll help you with the project.",
+            "ko": "괜찮다면 내가 그 프로젝트를 도와줄게."
+          },
+          {
+            "en": "She helped me with that issue and it worked out well.",
+            "ko": "그녀가 그 문제를 도와줘서 잘 해결됐어."
+          }
+        ]
+      },
+      {
+        "pattern": "look forward to ~ing",
+        "meaning": "~을 기대하다, 고대하다",
+        "examples": [
+          {
+            "en": "I've been looking forward to meeting you.",
+            "ko": "당신을 만나기를 기대하고 있었어요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Is there anything you're looking forward to right now?",
+        "qKo": "지금 기대하고 있는 것이 있나요?",
+        "answers": [
+          {
+            "en": "Yes, I'm looking forward to my family trip to Guam.",
+            "ko": "네, 저는 가족과 함께 가는 괌 여행을 기대하고 있어요."
+          },
+          {
+            "en": "Of course. I'm looking forward to moving to my new apartment.",
+            "ko": "물론이죠. 저는 새 아파트로 이사하는 것을 기대하고 있어요."
+          },
+          {
+            "en": "Not really. Nothing comes to mind at the moment.",
+            "ko": "딱히요. 지금은 떠오르는 게 없어요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -114,6 +164,46 @@
         "speaker": "",
         "en": "Waking up early has truly become a great way to start my day with energy and focus.",
         "ko": "일찍 일어나는 것은 정말로 활기차고 집중력 있게 하루를 시작하는 좋은 방법이 되었어요."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "help A B (동사원형)",
+        "meaning": "A가 B하는 것을 도와주다",
+        "examples": [
+          {
+            "en": "She helped me solve the problem and I really appreciated it.",
+            "ko": "그녀가 그 문제를 푸는 걸 도와줘서 정말 고마웠어."
+          },
+          {
+            "en": "Can you help me carry this? I need to move it to the kitchen.",
+            "ko": "이것 좀 옮기는 걸 도와줄 수 있어? 부엌으로 옮겨야 해."
+          },
+          {
+            "en": "Let me help you clean this up. It won't take long.",
+            "ko": "이거 치우는 거 도와줄게. 오래 안 걸려."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Are you a morning person or a night person?",
+        "qKo": "당신은 아침형 인간인가요, 저녁형 인간인가요?",
+        "answers": [
+          {
+            "en": "I'm definitely a morning person. I feel more productive in the morning.",
+            "ko": "저는 확실히 아침형 인간이에요. 아침에 더 생산적으로 느껴져요."
+          },
+          {
+            "en": "I'm more of a night person. I enjoy staying up late.",
+            "ko": "저는 저녁형 인간에 더 가까워요. 늦게까지 깨어 있는 걸 즐겨요."
+          },
+          {
+            "en": "I think I'm in between. I just go with the flow.",
+            "ko": "저는 그 중간인 것 같아요. 그냥 흐름에 맡기는 편이에요."
+          }
+        ]
       }
     ]
   },
@@ -164,6 +254,54 @@
         "en": "Sure, you're welcome anytime. I'll definitely keep you in mind and let you know.",
         "ko": "물론이지, 언제든 환영이야. 꼭 기억해뒀다가 알려줄게."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "Let me know if + 주어 + 동사",
+        "meaning": "~하면 알려줘",
+        "examples": [
+          {
+            "en": "Let me know if you need any help. I'll be happy to help.",
+            "ko": "도움이 필요하면 알려줘. 기꺼이 도와줄게."
+          },
+          {
+            "en": "Thank you for listening and let me know if you have any questions.",
+            "ko": "들어줘서 고마워요, 질문이 있으면 알려주세요."
+          },
+          {
+            "en": "Take your time to think about it. Let me know if you change your mind.",
+            "ko": "천천히 생각해봐. 마음이 바뀌면 알려줘."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What do you usually do in your free time?",
+        "qKo": "여가 시간에 주로 무엇을 하나요?",
+        "answers": [
+          {
+            "en": "I like watching movies and TV shows on Netflix with my family.",
+            "ko": "저는 가족과 함께 넷플릭스로 영화와 TV 프로그램 보는 걸 좋아해요."
+          },
+          {
+            "en": "I love hiking and enjoying the scenery.",
+            "ko": "저는 등산하며 경치를 즐기는 걸 좋아해요."
+          },
+          {
+            "en": "I like going around to different places and taking photos.",
+            "ko": "저는 여러 곳을 돌아다니며 사진 찍는 걸 좋아해요."
+          },
+          {
+            "en": "I like to relax at home and just chill. I work a lot during the week.",
+            "ko": "저는 집에서 편히 쉬며 그냥 여유를 즐기는 걸 좋아해요. 주중에 일을 많이 하거든요."
+          },
+          {
+            "en": "I enjoy reading books with a cup of coffee.",
+            "ko": "저는 커피 한 잔과 함께 책 읽는 걸 즐겨요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -213,6 +351,54 @@
         "en": "I believe that these small steps I take now will make a big difference in the future.",
         "ko": "지금 제가 밟는 이 작은 단계들이 미래에 큰 차이를 만들 거라고 믿어요."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "It shows me exactly where my money goes.",
+        "meaning": "의문사절을 목적어로 쓰는 표현 (어디에/무엇을/누구인지 등)",
+        "examples": [
+          {
+            "en": "It shows me exactly where my money goes.",
+            "ko": "그것은 내 돈이 정확히 어디로 가는지 보여줘요."
+          },
+          {
+            "en": "I don't know where my phone is. It was on the table earlier.",
+            "ko": "내 휴대폰이 어디 있는지 모르겠어. 아까는 탁자 위에 있었는데."
+          },
+          {
+            "en": "I'm not sure what time the meeting starts. Can you check the schedule for me?",
+            "ko": "회의가 몇 시에 시작하는지 잘 모르겠어. 일정 좀 확인해줄 수 있어?"
+          },
+          {
+            "en": "I have no idea who that person is. Do you happen to know?",
+            "ko": "저 사람이 누구인지 전혀 모르겠어. 혹시 알아?"
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "How do you usually save money?",
+        "qKo": "당신은 보통 어떻게 돈을 절약하나요?",
+        "answers": [
+          {
+            "en": "I save money by using public transportation during the week. I can spend less on gas and parking fees.",
+            "ko": "저는 주중에 대중교통을 이용해서 돈을 아껴요. 기름값과 주차비를 덜 쓸 수 있거든요."
+          },
+          {
+            "en": "I bring my own lunch instead of buying it. It's much cheaper.",
+            "ko": "저는 점심을 사 먹는 대신 도시락을 싸 와요. 훨씬 저렴해요."
+          },
+          {
+            "en": "I make a budget every month and try to spend within it.",
+            "ko": "저는 매달 예산을 짜고 그 안에서 지출하려고 노력해요."
+          },
+          {
+            "en": "Actually, I'm not very good at saving, so sometimes I end up overspending.",
+            "ko": "사실 저는 저축을 잘 못해서 가끔 과소비하게 돼요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -256,6 +442,54 @@
         "speaker": "Jinsu",
         "en": "Sounds like a good plan! Maybe I'll try that, too.",
         "ko": "좋은 방법인 것 같아! 나도 그렇게 해봐야겠다."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I'm not a great/good + 명사, so ~",
+        "meaning": "나는 ~을 잘하지 못해서 ~하다",
+        "examples": [
+          {
+            "en": "I'm not a great cook, so I prefer simple meals.",
+            "ko": "저는 요리를 잘하지 못해서 간단한 식사를 선호해요."
+          },
+          {
+            "en": "I'm not a good singer, so I don't usually sing in front of others.",
+            "ko": "저는 노래를 잘 못해서 보통 다른 사람들 앞에서 노래하지 않아요."
+          },
+          {
+            "en": "I'm not a good driver, so I avoid driving long distances.",
+            "ko": "저는 운전을 잘 못해서 장거리 운전을 피해요."
+          },
+          {
+            "en": "She's a great athlete, so she's good at every sport.",
+            "ko": "그녀는 뛰어난 운동선수라서 모든 스포츠를 잘해요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "How often do you cook?",
+        "qKo": "당신은 얼마나 자주 요리하나요?",
+        "answers": [
+          {
+            "en": "I cook almost every day. I enjoy making my own meals.",
+            "ko": "저는 거의 매일 요리해요. 제 손으로 식사 만드는 걸 즐겨요."
+          },
+          {
+            "en": "I hardly cook. I usually eat out before coming home.",
+            "ko": "저는 거의 요리하지 않아요. 보통 집에 오기 전에 외식해요."
+          },
+          {
+            "en": "My husband and I both work late, so we often order food.",
+            "ko": "남편과 저는 둘 다 늦게까지 일해서 음식을 자주 주문해요."
+          },
+          {
+            "en": "My wife mostly cooks, and I'm in charge of the dishes.",
+            "ko": "주로 아내가 요리하고, 저는 설거지를 담당해요."
+          }
+        ]
       }
     ]
   },
@@ -311,6 +545,50 @@
         "en": "Carrying a light jacket is a good idea to stay comfortable throughout the day.",
         "ko": "하루 종일 편안하게 지내려면 가벼운 재킷을 챙기는 것이 좋다."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "You should be mindful of ~",
+        "meaning": "~에 유의해야 한다, ~을 신경 써야 한다",
+        "examples": [
+          {
+            "en": "You should be mindful of your health.",
+            "ko": "당신은 건강에 유의해야 합니다."
+          },
+          {
+            "en": "You should be mindful of your words around kids. Try to use positive language.",
+            "ko": "아이들 주변에서는 말에 유의해야 합니다. 긍정적인 언어를 사용하도록 하세요."
+          },
+          {
+            "en": "You should be mindful of others' feelings. Otherwise, you might hurt someone.",
+            "ko": "다른 사람의 감정에 유의해야 합니다. 그렇지 않으면 누군가에게 상처를 줄 수 있어요."
+          },
+          {
+            "en": "You should be mindful of what you eat. Try to avoid eating too much sugar or salt.",
+            "ko": "무엇을 먹는지에 유의해야 합니다. 설탕이나 소금을 너무 많이 먹지 않도록 하세요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "How do you like spring in Korea?",
+        "qKo": "한국의 봄은 어떤가요?",
+        "answers": [
+          {
+            "en": "I get cold easily, so I like spring because it's warm.",
+            "ko": "저는 추위를 잘 타서 봄이 따뜻해서 좋아요."
+          },
+          {
+            "en": "I like spring because it feels like everything is starting fresh.",
+            "ko": "모든 것이 새롭게 시작되는 느낌이 들어서 봄을 좋아해요."
+          },
+          {
+            "en": "I don't really like spring because I'm allergic to pollen. Every spring, I get a runny nose and itchy eyes.",
+            "ko": "저는 꽃가루 알레르기가 있어서 봄을 별로 좋아하지 않아요. 봄마다 콧물이 나고 눈이 가려워요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -355,6 +633,54 @@
         "en": "About 50 minutes, door to door. It's not that far in Seoul.",
         "ko": "집에서 회사까지 약 50분. 서울에서는 그렇게 먼 건 아니야."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "How long does it take to ~ ?",
+        "meaning": "~하는 데 얼마나 걸리나요?",
+        "examples": [
+          {
+            "en": "How long does it take to get to Incheon Airport?",
+            "ko": "인천공항까지 가는 데 얼마나 걸리나요?"
+          },
+          {
+            "en": "It takes about an hour by subway from Hongdae.",
+            "ko": "홍대에서 지하철로 약 한 시간 걸려요."
+          },
+          {
+            "en": "How long does it take to fly from Incheon to New York?",
+            "ko": "인천에서 뉴욕까지 비행하는 데 얼마나 걸리나요?"
+          },
+          {
+            "en": "It takes about 14 hours. It's a long flight.",
+            "ko": "약 14시간 걸려요. 긴 비행이에요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "How do you get there? / How long does it take to commute?",
+        "qKo": "거기에 어떻게 가나요? / 통근하는 데 얼마나 걸리나요?",
+        "answers": [
+          {
+            "en": "I drive to work. It takes about half an hour.",
+            "ko": "저는 차로 출근해요. 약 30분 걸려요."
+          },
+          {
+            "en": "I live close to my school, so I just walk there.",
+            "ko": "학교와 가까이 살아서 그냥 걸어가요."
+          },
+          {
+            "en": "I work from home, so I don't have to commute.",
+            "ko": "저는 재택근무를 해서 통근할 필요가 없어요."
+          },
+          {
+            "en": "I take the airport bus to Incheon Airport.",
+            "ko": "저는 인천공항까지 공항버스를 타요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -398,6 +724,46 @@
         "speaker": "",
         "en": "We hope you enjoy your stay with us!",
         "ko": "저희와 함께하는 즐거운 숙박이 되시길 바랍니다!"
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "Let me give you ~",
+        "meaning": "~을 드릴게요, ~해 드릴게요",
+        "examples": [
+          {
+            "en": "You must be tired. Let me give you a ride.",
+            "ko": "피곤하시겠어요. 제가 태워 드릴게요."
+          },
+          {
+            "en": "Let me give you a hand. It'll be faster if we do it together.",
+            "ko": "제가 도와 드릴게요. 함께 하면 더 빠를 거예요."
+          },
+          {
+            "en": "To help you understand better, let me give you an example.",
+            "ko": "더 잘 이해하실 수 있도록 예를 하나 들어 드릴게요."
+          },
+          {
+            "en": "Let me give you this book. I think you'll enjoy it.",
+            "ko": "이 책을 드릴게요. 마음에 드실 것 같아요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What services do you use most often when you stay at a hotel?",
+        "qKo": "호텔에 묵을 때 어떤 서비스를 가장 자주 이용하나요?",
+        "answers": [
+          {
+            "en": "I like to enjoy breakfast at the hotel restaurant.",
+            "ko": "저는 호텔 레스토랑에서 아침 식사를 즐기는 것을 좋아해요."
+          },
+          {
+            "en": "I usually use room service for meals.",
+            "ko": "저는 보통 식사를 룸서비스로 이용해요."
+          }
+        ]
       }
     ]
   },
@@ -458,6 +824,50 @@
         "en": "Of course, I take a multivitamin every day.",
         "ko": "물론이지, 매일 종합비타민을 먹어."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "You should try to ~",
+        "meaning": "~하도록 노력해야 한다",
+        "examples": [
+          {
+            "en": "You should try to eat healthier meals. You are what you eat!",
+            "ko": "더 건강한 식사를 하도록 노력해야 해요. 먹는 것이 곧 당신이에요!"
+          },
+          {
+            "en": "You should try to spend more time with your family. Nothing is more important than your loved ones.",
+            "ko": "가족과 더 많은 시간을 보내도록 노력해야 해요. 사랑하는 사람보다 중요한 것은 없어요."
+          },
+          {
+            "en": "You should try to exercise regularly. Health becomes more important as you age.",
+            "ko": "규칙적으로 운동하도록 노력해야 해요. 나이가 들수록 건강이 더 중요해져요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "How many hours do you sleep at night?",
+        "qKo": "밤에 몇 시간 주무시나요?",
+        "answers": [
+          {
+            "en": "I sleep around 8 hours and I feel well-rested.",
+            "ko": "저는 약 8시간 자고 잘 쉰 느낌이에요."
+          },
+          {
+            "en": "I don't sleep much, maybe 5 hours. I'm always short on sleep.",
+            "ko": "저는 많이 못 자요, 아마 5시간 정도요. 늘 수면이 부족해요."
+          },
+          {
+            "en": "It depends. Sometimes I stay up late, and other times I go to bed early.",
+            "ko": "때에 따라 달라요. 어떤 때는 늦게까지 깨어 있고, 어떤 때는 일찍 자요."
+          },
+          {
+            "en": "As I get older, I sleep less and wake up often.",
+            "ko": "나이가 들면서 잠도 줄고 자주 깨요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -501,6 +911,46 @@
         "speaker": "",
         "en": "Although the weather can be tough, summer in Korea is a lively season full of energy and activities.",
         "ko": "날씨가 힘들 수 있지만, 한국의 여름은 활기와 활동으로 가득한 생동감 넘치는 계절이다."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "It's important to ~",
+        "meaning": "~하는 것이 중요하다",
+        "examples": [
+          {
+            "en": "It's important to be on time. Being late can leave a bad impression.",
+            "ko": "시간을 지키는 것이 중요해요. 늦으면 나쁜 인상을 줄 수 있어요."
+          },
+          {
+            "en": "It's important to respect other people's opinions. Listen carefully and try to understand their point of view.",
+            "ko": "다른 사람의 의견을 존중하는 것이 중요해요. 주의 깊게 듣고 그들의 관점을 이해하려고 노력하세요."
+          },
+          {
+            "en": "It's important to keep a good balance between work and rest. Without balance, you may feel stressed or burned out.",
+            "ko": "일과 휴식 사이의 균형을 잘 유지하는 것이 중요해요. 균형이 없으면 스트레스를 받거나 지칠 수 있어요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "How do you like summer in Korea?",
+        "qKo": "한국의 여름은 어떤가요?",
+        "answers": [
+          {
+            "en": "Summer is my favorite season. I enjoy outdoor activities under the sun and summer sports like surfing.",
+            "ko": "여름은 제가 가장 좋아하는 계절이에요. 햇빛 아래에서 야외 활동과 서핑 같은 여름 스포츠를 즐겨요."
+          },
+          {
+            "en": "I can't handle the heat well, so summer is really tough for me. I feel like I run out of energy easily.",
+            "ko": "저는 더위를 잘 못 견뎌서 여름이 정말 힘들어요. 에너지가 쉽게 소진되는 느낌이에요."
+          },
+          {
+            "en": "I don't like cold weather, so I prefer the heat instead. Plus, I like summer because I can go on vacation.",
+            "ko": "저는 추운 날씨를 좋아하지 않아서 더위를 더 선호해요. 게다가 휴가를 갈 수 있어서 여름이 좋아요."
+          }
+        ]
       }
     ]
   },
@@ -576,6 +1026,50 @@
         "en": "Thanks, Jinsu! Talk to you later.",
         "ko": "고마워, 진수! 나중에 또 얘기하자."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "Make sure to",
+        "meaning": "꼭 ~하세요 (반드시 ~하도록 하세요)",
+        "examples": [
+          {
+            "en": "The restaurant is so popular. Make sure to book ahead.",
+            "ko": "그 식당은 정말 인기가 많아요. 꼭 미리 예약하세요."
+          },
+          {
+            "en": "Make sure to eat well and get enough sleep. Health comes first.",
+            "ko": "잘 먹고 충분히 자는 것을 꼭 챙기세요. 건강이 우선이에요."
+          },
+          {
+            "en": "The forecast says it's going to rain. Make sure to bring an umbrella.",
+            "ko": "일기예보에서 비가 온다고 해요. 꼭 우산을 챙기세요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What are you doing these days?",
+        "qKo": "요즘 뭐 하고 지내세요?",
+        "answers": [
+          {
+            "en": "I'm learning tennis these days. It's harder than I thought, but I'm enjoying it.",
+            "ko": "요즘 테니스를 배우고 있어요. 생각보다 어렵지만 즐기고 있어요."
+          },
+          {
+            "en": "I'm really into studying English these days. It's a bit challenging but I'm having fun.",
+            "ko": "요즘 영어 공부에 푹 빠져 있어요. 조금 어렵지만 재미있어요."
+          },
+          {
+            "en": "I recently moved, and I'm still adjusting.",
+            "ko": "최근에 이사를 해서 아직 적응하는 중이에요."
+          },
+          {
+            "en": "Nothing special. Just the same routine.",
+            "ko": "특별한 건 없어요. 그냥 똑같은 일상이에요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -629,6 +1123,46 @@
         "speaker": "",
         "en": "If you use this sale period well, you can buy good-quality items at very low prices.",
         "ko": "이 세일 기간을 잘 활용하면 좋은 품질의 물건을 아주 저렴한 가격에 살 수 있다."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "It's a great time to",
+        "meaning": "~하기 좋은 때예요",
+        "examples": [
+          {
+            "en": "It's a great time to shop for winter clothes. If you shop now, you can find great deals.",
+            "ko": "겨울 옷을 사기 좋은 때예요. 지금 사면 좋은 할인을 찾을 수 있어요."
+          },
+          {
+            "en": "It's a great time to try something new. Whether it's a hobby or a skill, how about learning something new?",
+            "ko": "새로운 것을 시도하기 좋은 때예요. 취미든 기술이든, 새로운 것을 배워보는 건 어때요?"
+          },
+          {
+            "en": "It's a great time to catch up with friends. How about reaching out to your friends first?",
+            "ko": "친구들과 회포를 풀기 좋은 때예요. 먼저 친구들에게 연락해보는 건 어때요?"
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you shop online often? What do you usually buy?",
+        "qKo": "온라인 쇼핑을 자주 하시나요? 보통 무엇을 사세요?",
+        "answers": [
+          {
+            "en": "Yes, I shop online all the time. I usually buy clothes and electronics.",
+            "ko": "네, 저는 항상 온라인 쇼핑을 해요. 보통 옷과 전자제품을 사요."
+          },
+          {
+            "en": "Yes, especially during sales. I often buy cosmetics online.",
+            "ko": "네, 특히 세일 기간에요. 온라인으로 화장품을 자주 사요."
+          },
+          {
+            "en": "Not really. I prefer to shop in stores, so I can see the items before buying.",
+            "ko": "별로요. 저는 매장에서 사는 걸 선호해요. 사기 전에 물건을 볼 수 있으니까요."
+          }
+        ]
       }
     ]
   },
@@ -709,6 +1243,50 @@
         "en": "The more you practice, the better you become.",
         "ko": "연습을 많이 할수록 더 잘하게 돼."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "Maybe you can",
+        "meaning": "~하면 될 것 같아요 (~해보는 건 어때요)",
+        "examples": [
+          {
+            "en": "Maybe you can talk to your boss about the problem. He will give you some good advice.",
+            "ko": "그 문제에 대해 상사에게 이야기해보는 건 어때요. 좋은 조언을 해줄 거예요."
+          },
+          {
+            "en": "I know you're having a hard time. Maybe you can ask your parents for help.",
+            "ko": "힘든 거 알아요. 부모님께 도움을 요청해보는 건 어때요."
+          },
+          {
+            "en": "Maybe you can take an English class. I can recommend a good class for you.",
+            "ko": "영어 수업을 들어보는 건 어때요. 좋은 수업을 추천해줄 수 있어요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Can you drive? If so, are you a good driver?",
+        "qKo": "운전할 수 있으세요? 그렇다면 운전을 잘하시나요?",
+        "answers": [
+          {
+            "en": "Yes, I can. I think I'm a good driver. I've been driving for almost 20 years without any accidents.",
+            "ko": "네, 할 수 있어요. 저는 운전을 잘하는 편이라고 생각해요. 거의 20년 동안 사고 없이 운전해왔어요."
+          },
+          {
+            "en": "I can drive, but I'm not a good driver. I try to avoid long distance or night driving.",
+            "ko": "운전은 할 수 있지만 잘하지는 못해요. 장거리나 야간 운전은 피하려고 해요."
+          },
+          {
+            "en": "I have a driver's license, but I've never driven a car.",
+            "ko": "운전면허는 있지만 운전을 해본 적은 없어요."
+          },
+          {
+            "en": "I don't have a driver's license yet, but I want to get it soon.",
+            "ko": "아직 운전면허가 없지만 곧 따고 싶어요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -767,6 +1345,46 @@
         "speaker": "",
         "en": "Autumn in Korea is not only about the beauty of nature but also a season of rich harvest and celebration.",
         "ko": "한국의 가을은 자연의 아름다움뿐만 아니라 풍성한 수확과 축하의 계절이기도 하다."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "One of the + (최상급)",
+        "meaning": "가장 ~한 것 중 하나",
+        "examples": [
+          {
+            "en": "She is one of the most popular singers in Korea. I love her unique voice and beautiful lyrics.",
+            "ko": "그녀는 한국에서 가장 인기 있는 가수 중 한 명이에요. 저는 그녀의 독특한 목소리와 아름다운 가사를 좋아해요."
+          },
+          {
+            "en": "This is one of the best movies that I've ever seen. The story was so touching, and the acting was incredible.",
+            "ko": "이건 제가 본 영화 중 가장 좋은 영화 중 하나예요. 이야기가 정말 감동적이었고 연기도 훌륭했어요."
+          },
+          {
+            "en": "One of the richest people in the world is Warren Buffet. He is famous for his successful investment skills.",
+            "ko": "세계에서 가장 부유한 사람 중 한 명은 워런 버핏이에요. 그는 성공적인 투자 실력으로 유명해요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What's your favorite thing about autumn?",
+        "qKo": "가을에서 가장 좋아하는 것은 무엇인가요?",
+        "answers": [
+          {
+            "en": "Autumn is my favorite season. I enjoy hiking in the mountains to see danpung, the colorful autumn leaves.",
+            "ko": "가을은 제가 가장 좋아하는 계절이에요. 알록달록한 단풍을 보러 산에 등산 가는 것을 즐겨요."
+          },
+          {
+            "en": "I like autumn because the cool and crisp air makes me feel refreshed. It's the perfect season for reading.",
+            "ko": "저는 가을을 좋아해요. 시원하고 상쾌한 공기가 저를 개운하게 해주거든요. 독서하기에 완벽한 계절이에요."
+          },
+          {
+            "en": "Actually, I'm not a big fan of autumn. It gets colder and the days get shorter. I feel a bit gloomy during this season.",
+            "ko": "사실 저는 가을을 별로 좋아하지 않아요. 날씨가 추워지고 낮이 짧아지거든요. 이 계절에는 좀 우울해져요."
+          }
+        ]
       }
     ]
   },
@@ -841,6 +1459,42 @@
         "speaker": "Staff",
         "en": "My pleasure. Have a great day! We'll see you tomorrow.",
         "ko": "천만에요. 좋은 하루 보내세요! 내일 뵙겠습니다."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "May I ~?",
+        "meaning": "~해도 될까요?",
+        "examples": [
+          {
+            "en": "May I sit here? - Sure, go ahead. / Sorry, but this seat is taken.",
+            "ko": "여기 앉아도 될까요? - 물론이죠, 앉으세요. / 죄송하지만 이 자리는 임자가 있어요."
+          },
+          {
+            "en": "May I borrow your pen? - Sure, here you are. / I'm sorry but I need it right now.",
+            "ko": "펜 좀 빌려도 될까요? - 물론이죠, 여기 있어요. / 죄송하지만 지금 제가 써야 해요."
+          },
+          {
+            "en": "May I have your attention, please? Let me begin my presentation.",
+            "ko": "주목해 주시겠어요? 발표를 시작하겠습니다."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "May I know your name, please?",
+        "qKo": "성함을 여쭤봐도 될까요?",
+        "answers": [
+          {
+            "en": "Yes, it's Jenna Kim.",
+            "ko": "네, 제나 킴입니다."
+          },
+          {
+            "en": "Could you spell your name, please? - Sure, it's J-E-N-N-A, K-I-M. J as in John, E as in Elephant, N as in Nancy, N as in Nancy, A as in Apple, K as in Kite, I as in Ice cream, M as in Mary.",
+            "ko": "이름의 철자를 말씀해 주시겠어요? - 네, J-E-N-N-A, K-I-M입니다. John의 J, Elephant의 E, Nancy의 N, Nancy의 N, Apple의 A, Kite의 K, Ice cream의 I, Mary의 M입니다."
+          }
+        ]
       }
     ]
   },
@@ -925,6 +1579,46 @@
         "speaker": "",
         "en": "I hope Choco stays healthy and lives with me for a long time.",
         "ko": "나는 초코가 건강하게 오래도록 나와 함께 살기를 바란다."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "so + 형용사/부사 + that + 주어 + 동사",
+        "meaning": "너무 ~해서 ~하다",
+        "examples": [
+          {
+            "en": "It was such a busy day. I was so tired that I just passed out.",
+            "ko": "정말 바쁜 하루였어. 너무 피곤해서 그냥 기절하듯 잠들었어."
+          },
+          {
+            "en": "The movie was so funny that I couldn't stop laughing. I highly recommend it.",
+            "ko": "그 영화가 너무 웃겨서 웃음을 멈출 수가 없었어. 강력 추천해."
+          },
+          {
+            "en": "It snowed heavily last night and the road was so slippery that we had to drive very slowly.",
+            "ko": "어젯밤 눈이 많이 와서 길이 너무 미끄러워 아주 천천히 운전해야 했어."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Have you ever raised any pets?",
+        "qKo": "애완동물을 키워본 적 있나요?",
+        "answers": [
+          {
+            "en": "Yes, I've raised a dog. Her name was Momo, and she was a Maltese. We used to go for a walk every evening. I miss her.",
+            "ko": "네, 개를 키웠어요. 이름은 모모였고 말티즈였어요. 매일 저녁 산책을 하곤 했죠. 그 아이가 그리워요."
+          },
+          {
+            "en": "Yes, I have a cat right now. You should meet him. He's so cute and smart.",
+            "ko": "네, 지금 고양이를 키우고 있어요. 한번 만나보세요. 정말 귀엽고 똑똑해요."
+          },
+          {
+            "en": "No, I haven't. I'm allergic to animal fur, but my children want to have a pet, so I'm not sure what to do.",
+            "ko": "아니요, 없어요. 저는 동물 털 알레르기가 있는데 아이들이 애완동물을 원해서 어떻게 해야 할지 모르겠어요."
+          }
+        ]
       }
     ]
   },
@@ -1015,6 +1709,50 @@
         "en": "Great! I'll help you stay healthy. You'll thank me later!",
         "ko": "좋아! 내가 네 건강 유지하는 걸 도와줄게. 나중에 나한테 고마워할걸!"
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I feel like + 주어 + 동사",
+        "meaning": "~인 것 같다, ~한 느낌이 든다",
+        "examples": [
+          {
+            "en": "I feel like I'm catching a cold. I don't feel well. I need to go see a doctor.",
+            "ko": "감기에 걸리는 것 같아요. 몸이 안 좋아요. 병원에 가봐야겠어요."
+          },
+          {
+            "en": "I feel like it's going to rain soon. We should hurry and wrap it up.",
+            "ko": "곧 비가 올 것 같아요. 서둘러 마무리해야겠어요."
+          },
+          {
+            "en": "I feel like we've met before. You look familiar. Do I know you?",
+            "ko": "우리 전에 만난 적 있는 것 같아요. 낯이 익네요. 제가 아는 분인가요?"
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you exercise? If so, what kind of exercise do you do?",
+        "qKo": "운동을 하나요? 한다면 어떤 운동을 하나요?",
+        "answers": [
+          {
+            "en": "I do. I go to the gym three times a week, and I go hiking every weekend.",
+            "ko": "네, 해요. 일주일에 세 번 헬스장에 가고 주말마다 등산을 가요."
+          },
+          {
+            "en": "Yes, I take a long walk every day, and I play golf once a week.",
+            "ko": "네, 매일 오래 산책을 하고 일주일에 한 번 골프를 쳐요."
+          },
+          {
+            "en": "Sure, I take yoga classes twice a week, and I ride my exercise bike at home.",
+            "ko": "물론이죠, 일주일에 두 번 요가 수업을 듣고 집에서 실내 자전거를 타요."
+          },
+          {
+            "en": "Not really. I know I have to, but it's hard to make time for exercise.",
+            "ko": "별로요. 해야 한다는 건 알지만 운동할 시간을 내기가 어려워요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -1083,6 +1821,68 @@
         "speaker": "",
         "en": "After the ceremony, they enjoy a special meal together, including tteokguk (rice cake soup), which symbolizes growing one year older.",
         "ko": "의식이 끝난 후, 가족들은 한 살 더 먹는 것을 상징하는 떡국을 포함한 특별한 식사를 함께 즐긴다."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "need to + 동사",
+        "meaning": "~할 필요가 있다, ~해야 한다",
+        "examples": [
+          {
+            "en": "I need to go grocery shopping this afternoon. There's nothing to eat at home.",
+            "ko": "오늘 오후에 장을 보러 가야 해요. 집에 먹을 게 하나도 없어요."
+          },
+          {
+            "en": "I need to charge my phone. The battery is almost dead.",
+            "ko": "휴대폰을 충전해야 해요. 배터리가 거의 다 됐어요."
+          }
+        ]
+      },
+      {
+        "pattern": "must / have to / need to / should",
+        "meaning": "의무·필요·조언을 나타내는 조동사 표현",
+        "examples": [
+          {
+            "en": "You must not enter this area without permission.",
+            "ko": "허가 없이는 이 구역에 들어가면 안 됩니다."
+          },
+          {
+            "en": "I have to finish this report by tomorrow.",
+            "ko": "내일까지 이 보고서를 끝내야 해요."
+          },
+          {
+            "en": "You need to study harder if you want to pass the exam.",
+            "ko": "시험에 합격하려면 더 열심히 공부해야 해요."
+          },
+          {
+            "en": "You should call her and apologize.",
+            "ko": "그녀에게 전화해서 사과하는 게 좋겠어요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "How do you like winter in Korea?",
+        "qKo": "한국의 겨울은 어떤가요?",
+        "answers": [
+          {
+            "en": "I like winter because I love skiing and snowboarding. Every winter, I look forward to visiting ski resorts.",
+            "ko": "저는 스키와 스노보드를 아주 좋아해서 겨울이 좋아요. 매년 겨울마다 스키장 가는 걸 기대해요."
+          },
+          {
+            "en": "Winter can be freezing, but I enjoy eating winter food like hotteok.",
+            "ko": "겨울은 몹시 춥지만 호떡 같은 겨울 음식을 먹는 걸 즐겨요."
+          },
+          {
+            "en": "I don't like winter because it's so dry, and it makes my skin itchy.",
+            "ko": "겨울은 너무 건조해서 피부가 가려워지기 때문에 싫어요."
+          },
+          {
+            "en": "I'm not a big fan of winter. I get cold easily, so I don't feel like going out this season.",
+            "ko": "저는 겨울을 별로 좋아하지 않아요. 추위를 잘 타서 이 계절엔 밖에 나가고 싶지 않아요."
+          }
+        ]
       }
     ]
   },
@@ -1157,6 +1957,50 @@
         "speaker": "Jinsu",
         "en": "That's a great dream, Alice. I'm sure you'll make it happen.",
         "ko": "정말 멋진 꿈이야, 앨리스. 넌 분명히 이룰 거야."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I'm sure + 주어 + 동사",
+        "meaning": "~라고 확신해, 분명 ~일 거야",
+        "examples": [
+          {
+            "en": "I'm sure you'll do great. Just be yourself!",
+            "ko": "넌 분명 잘할 거야. 그냥 평소대로 하면 돼!"
+          },
+          {
+            "en": "I'm sure this is the right way. But let's double-check, just in case.",
+            "ko": "이 길이 맞는 게 확실해. 그래도 혹시 모르니 다시 확인해 보자."
+          },
+          {
+            "en": "I'm sure he didn't mean to upset you. Don't take it personally.",
+            "ko": "그가 너를 화나게 하려던 건 아니었을 거야. 개인적으로 받아들이지 마."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What do you want to do in 10 years?",
+        "qKo": "10년 후에 무엇을 하고 싶나요?",
+        "answers": [
+          {
+            "en": "In 10 years, my children will be adults, and then I want to travel around the world.",
+            "ko": "10년 후면 아이들이 성인이 될 거고, 그때 저는 세계 여행을 하고 싶어요."
+          },
+          {
+            "en": "I'll probably retire in 10 years and I want to start my own business.",
+            "ko": "10년 후면 아마 은퇴할 텐데, 제 사업을 시작하고 싶어요."
+          },
+          {
+            "en": "I want to improve my English skills so I can make foreign friends and talk with them.",
+            "ko": "영어 실력을 향상시켜서 외국인 친구를 사귀고 그들과 대화하고 싶어요."
+          },
+          {
+            "en": "Well, I don't have any special plans. We never know what will happen in the future.",
+            "ko": "글쎄요, 특별한 계획은 없어요. 미래에 무슨 일이 일어날지는 아무도 모르잖아요."
+          }
+        ]
       }
     ]
   },
@@ -1262,6 +2106,50 @@
         "en": "I want us to enjoy a peaceful and relaxing life together.",
         "ko": "나는 우리가 함께 평화롭고 여유로운 삶을 즐기기를 바란다."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "want A to + 동사",
+        "meaning": "A가 ~하기를 원하다",
+        "examples": [
+          {
+            "en": "Your room is too messy. I want you to clean it yourself.",
+            "ko": "네 방이 너무 지저분해. 네가 직접 청소했으면 좋겠어."
+          },
+          {
+            "en": "I want you to be happy. Nothing else matters. Please take care of yourself.",
+            "ko": "네가 행복했으면 좋겠어. 다른 건 중요하지 않아. 몸 잘 챙겨."
+          },
+          {
+            "en": "Do you want me to help you? Just let me know if you need anything.",
+            "ko": "내가 도와줄까? 필요한 게 있으면 말해줘."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you have any siblings? (= Do you have any brothers or sisters?)",
+        "qKo": "형제자매가 있나요?",
+        "answers": [
+          {
+            "en": "Yes, I have a younger brother. I'm the oldest and he is 3 years younger than me.",
+            "ko": "네, 남동생이 하나 있어요. 제가 맏이고 그는 저보다 세 살 어려요."
+          },
+          {
+            "en": "Yes, I have an older brother and a younger sister. I'm in the middle and we are very close.",
+            "ko": "네, 오빠(형)와 여동생이 있어요. 저는 가운데이고 우리는 아주 가까워요."
+          },
+          {
+            "en": "Yes, I'm from a big family. I have two sisters and two brothers. I'm the third out of five.",
+            "ko": "네, 저는 대가족 출신이에요. 자매 둘, 형제 둘이 있어요. 다섯 중 셋째예요."
+          },
+          {
+            "en": "No, I'm an only child, but I have a lot of cousins, so I never felt lonely.",
+            "ko": "아니요, 저는 외동이지만 사촌이 많아서 외로웠던 적이 없어요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -1336,6 +2224,62 @@
         "en": "Absolutely! Thanks so much.",
         "ko": "완전 그래! 정말 고마워."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I'm thinking of ~ing",
+        "meaning": "~할까 생각 중이다",
+        "examples": [
+          {
+            "en": "I'm thinking of ordering pizza for dinner, because I don't feel like cooking. I had a hard day.",
+            "ko": "저녁으로 피자를 주문할까 생각 중이에요, 요리하고 싶지 않아서요. 힘든 하루였거든요."
+          },
+          {
+            "en": "I'm thinking of changing my hairstyle, because I'm tired of my current one. Maybe I'll try a shorter style.",
+            "ko": "헤어스타일을 바꿀까 생각 중이에요, 지금 스타일이 지겨워서요. 아마 좀 더 짧은 스타일을 시도해볼까 봐요."
+          },
+          {
+            "en": "I'm thinking of buying a new phone, because my current one is too slow. I'm not sure which to buy, iPhone or Galaxy.",
+            "ko": "새 폰을 살까 생각 중이에요, 지금 쓰는 게 너무 느려서요. 아이폰과 갤럭시 중 뭘 살지 모르겠어요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you have any special plans for this weekend?",
+        "qKo": "이번 주말에 특별한 계획이 있나요?",
+        "answers": [
+          {
+            "en": "I'm going to travel to Jeju Island.",
+            "ko": "저는 제주도로 여행 갈 거예요."
+          },
+          {
+            "en": "I'm planning to travel to Jeju Island.",
+            "ko": "저는 제주도로 여행 갈 계획이에요."
+          },
+          {
+            "en": "I'm thinking of traveling to Jeju Island.",
+            "ko": "저는 제주도로 여행 갈까 생각 중이에요."
+          },
+          {
+            "en": "I'm going to attend my nephew's wedding. I'm planning to drive there, but I think the traffic will be heavy.",
+            "ko": "조카 결혼식에 참석할 거예요. 운전해서 갈 계획인데 차가 많이 막힐 것 같아요."
+          },
+          {
+            "en": "I have a family gathering this Saturday. My mother's birthday is coming, so we're going to celebrate it.",
+            "ko": "이번 토요일에 가족 모임이 있어요. 어머니 생신이 다가와서 축하할 거예요."
+          },
+          {
+            "en": "Not yet. I'm just planning to organize my closet. The season is changing, so I need to put away my summer clothes.",
+            "ko": "아직 없어요. 그냥 옷장을 정리할 계획이에요. 계절이 바뀌어서 여름옷을 정리해야 해요."
+          },
+          {
+            "en": "Not really. I haven't thought about it. I might just rest at home and watch a movie.",
+            "ko": "딱히 없어요. 생각 안 해봤어요. 그냥 집에서 쉬면서 영화나 볼까 봐요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -1399,6 +2343,50 @@
         "speaker": "",
         "en": "Taking care of my mind is just as important as taking care of my body.",
         "ko": "마음을 돌보는 것은 몸을 돌보는 것만큼이나 중요하다."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I spend + 시간/돈 + ~ing",
+        "meaning": "~하는 데 시간/돈을 쓰다",
+        "examples": [
+          {
+            "en": "I spend an hour studying English every day. I take online lessons from Monday to Friday, and I read aloud the day's passage.",
+            "ko": "저는 매일 영어 공부하는 데 한 시간을 써요. 월요일부터 금요일까지 온라인 수업을 듣고, 그날의 지문을 소리 내어 읽어요."
+          },
+          {
+            "en": "I'm worried about my son. He spends too much time playing computer games. I've talked to him several times, but he doesn't listen.",
+            "ko": "아들이 걱정돼요. 컴퓨터 게임 하는 데 시간을 너무 많이 써요. 여러 번 얘기했지만 듣지를 않아요."
+          },
+          {
+            "en": "I spent almost 500 dollars eating out last month. I think I should cut back and start saving money.",
+            "ko": "지난달에 외식하는 데 거의 500달러를 썼어요. 줄이고 저축을 시작해야 할 것 같아요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "How do you handle your stress?",
+        "qKo": "스트레스를 어떻게 푸나요?",
+        "answers": [
+          {
+            "en": "When I'm stressed, I enjoy eating spicy foods like maratang. It helps with minor stress, but I always end up gaining weight.",
+            "ko": "스트레스를 받으면 마라탕 같은 매운 음식을 즐겨 먹어요. 사소한 스트레스에는 도움이 되지만 항상 살이 쪄요."
+          },
+          {
+            "en": "When I'm stressed, I go out to exercise. For me, moving my body is the best way to relieve stress.",
+            "ko": "스트레스를 받으면 나가서 운동해요. 저에게는 몸을 움직이는 게 스트레스를 푸는 최고의 방법이에요."
+          },
+          {
+            "en": "When I'm stressed, I just sleep. The problem doesn't go away, but I feel better after sleeping. Then, I think about what to do next.",
+            "ko": "스트레스를 받으면 그냥 자요. 문제가 사라지진 않지만 자고 나면 기분이 나아져요. 그다음에 뭘 할지 생각해요."
+          },
+          {
+            "en": "When I'm stressed, I have a drink with my best friend and talk about my problem. Once I open up, I feel much better.",
+            "ko": "스트레스를 받으면 가장 친한 친구와 술을 마시며 제 문제를 얘기해요. 마음을 털어놓으면 훨씬 기분이 나아져요."
+          }
+        ]
       }
     ]
   },
@@ -1469,6 +2457,54 @@
         "en": "Absolutely! Let's make it a great year!",
         "ko": "당연하지! 멋진 한 해로 만들자!"
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "My goal is to ~",
+        "meaning": "내 목표는 ~하는 것이다",
+        "examples": [
+          {
+            "en": "My goal is to get a license as an English guide. I want to help foreign tourists experience Korean culture.",
+            "ko": "제 목표는 영어 가이드 자격증을 따는 거예요. 외국인 관광객이 한국 문화를 경험하도록 돕고 싶어요."
+          },
+          {
+            "en": "My goal is to learn how to play the piano. I'm planning to take lessons and practice regularly.",
+            "ko": "제 목표는 피아노 치는 법을 배우는 거예요. 레슨을 받고 꾸준히 연습할 계획이에요."
+          },
+          {
+            "en": "My goal is to spend more quality time with my family. My children are growing up so quickly, and I don't want to miss out on precious moments.",
+            "ko": "제 목표는 가족과 더 소중한 시간을 보내는 거예요. 아이들이 너무 빨리 자라서 소중한 순간들을 놓치고 싶지 않아요."
+          },
+          {
+            "en": "My goal is to be more considerate and understanding. I'll try to listen more and judge less.",
+            "ko": "제 목표는 더 배려하고 이해심 있는 사람이 되는 거예요. 더 많이 듣고 덜 판단하려고 노력할 거예요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you have any New Year's resolutions?",
+        "qKo": "새해 결심이 있나요?",
+        "answers": [
+          {
+            "en": "I'm motivated to study English now, so I'm going to keep studying English. I believe in the power of consistency.",
+            "ko": "지금 영어 공부에 의욕이 넘쳐서 계속 영어를 공부할 거예요. 저는 꾸준함의 힘을 믿어요."
+          },
+          {
+            "en": "I'm going to quit smoking. It's time to make a change, and I want to set a good example for my kids.",
+            "ko": "저는 담배를 끊을 거예요. 변화할 때가 됐고, 아이들에게 좋은 본보기가 되고 싶어요."
+          },
+          {
+            "en": "I want to travel to New Zealand. I've heard the country has amazing landscapes.",
+            "ko": "저는 뉴질랜드로 여행 가고 싶어요. 그 나라 경치가 굉장하다고 들었어요."
+          },
+          {
+            "en": "I want to reflect more on myself and become a better person as I get older.",
+            "ko": "저는 나이가 들면서 저 자신을 더 돌아보고 더 나은 사람이 되고 싶어요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -1533,6 +2569,50 @@
         "en": "I know alcohol isn't great for my health, but I think drinking in moderation can make me feel good and create a pleasant atmosphere.",
         "ko": "술이 건강에 좋지 않다는 것은 알지만, 적당히 마시면 기분이 좋아지고 즐거운 분위기를 만들 수 있다고 생각한다."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I'm focused on ~ing",
+        "meaning": "나는 ~하는 데 집중하고 있다",
+        "examples": [
+          {
+            "en": "I felt tired all the time, so I thought I had to do something. Now, I'm focused on staying healthy.",
+            "ko": "항상 피곤해서 뭔가 해야겠다고 생각했어요. 지금은 건강을 유지하는 데 집중하고 있어요."
+          },
+          {
+            "en": "I'm focused on studying English now. It's not easy, but I feel like I'm improving little by little.",
+            "ko": "지금은 영어 공부에 집중하고 있어요. 쉽지 않지만 조금씩 나아지고 있는 것 같아요."
+          },
+          {
+            "en": "I'm focused on raising my kids right now. I miss working, but I'm happy that I can spend more time with them.",
+            "ko": "지금은 아이들을 키우는 데 집중하고 있어요. 일하던 게 그립긴 하지만 아이들과 더 많은 시간을 보낼 수 있어서 행복해요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you drink? If yes, what's your favorite drink?",
+        "qKo": "술을 마시나요? 마신다면 가장 좋아하는 술은 무엇인가요?",
+        "answers": [
+          {
+            "en": "Yes, I like beer, but I'm not a big drinker. I hate hangovers.",
+            "ko": "네, 맥주를 좋아하지만 술을 많이 마시진 않아요. 숙취를 싫어해요."
+          },
+          {
+            "en": "Yes, I enjoy drinking soju with samgyeopsal (pork belly), but I try to drink in moderation.",
+            "ko": "네, 삼겹살과 함께 소주 마시는 걸 즐기지만 적당히 마시려고 해요."
+          },
+          {
+            "en": "Yes, but only a little. I drink socially when I'm with friends, so I don't have any favorite drinks.",
+            "ko": "네, 하지만 조금만요. 친구들과 있을 때 어울려서 마셔서 특별히 좋아하는 술은 없어요."
+          },
+          {
+            "en": "No, I don't drink at all because it's genetic. I usually drink soda when I'm at a party with drinks, but I really enjoy eating anju (food paired with alcohol).",
+            "ko": "아니요, 유전적인 이유로 전혀 안 마셔요. 술자리 파티에서는 보통 탄산음료를 마시지만 안주 먹는 건 정말 즐겨요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -1596,6 +2676,50 @@
         "speaker": "Alice",
         "en": "You can do it, Jinsu! Just let me know if you need more tips. When it comes to dieting, I'm quite an expert myself.",
         "ko": "넌 할 수 있어, 진수! 더 필요한 팁 있으면 알려 줘. 다이어트에 관해서는 내가 꽤 전문가거든."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "When it comes to ~",
+        "meaning": "~에 관해서라면",
+        "examples": [
+          {
+            "en": "When it comes to fried chicken, I think that restaurant is the best. It's a little expensive, but it's worth the price.",
+            "ko": "프라이드치킨에 관해서라면 저 식당이 최고인 것 같아요. 조금 비싸지만 그만한 값어치가 있어요."
+          },
+          {
+            "en": "When it comes to cleaning, no one can beat my mother. She's very neat and tidy, and she always keeps the house spotless.",
+            "ko": "청소에 관해서라면 저희 어머니를 이길 사람이 없어요. 아주 깔끔하고 정리를 잘하셔서 항상 집을 티끌 하나 없이 유지하세요."
+          },
+          {
+            "en": "When it comes to learning a language, consistency is the key. Over time, you'll notice your skills improve.",
+            "ko": "언어를 배우는 것에 관해서라면 꾸준함이 핵심이에요. 시간이 지나면 실력이 느는 걸 알게 될 거예요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Have you ever been on a diet?",
+        "qKo": "다이어트를 해본 적 있나요?",
+        "answers": [
+          {
+            "en": "Yes, a few years ago, I suddenly gained weight, so I combined exercise with a diet. I ended up losing 5 kilograms.",
+            "ko": "네, 몇 년 전에 갑자기 살이 쪄서 운동과 식단을 병행했어요. 결국 5킬로그램을 뺐어요."
+          },
+          {
+            "en": "Of course, and I'm still on a diet. I'm doing intermittent fasting. I think it works the best for me.",
+            "ko": "물론이죠, 지금도 다이어트 중이에요. 간헐적 단식을 하고 있어요. 저에게는 그게 가장 잘 맞는 것 같아요."
+          },
+          {
+            "en": "Well, I always try, but it doesn't work well. Losing weight is harder as I age.",
+            "ko": "음, 항상 시도하지만 잘 안 돼요. 나이가 들수록 살 빼기가 더 어려워요."
+          },
+          {
+            "en": "No, I haven't. I think I'm naturally slim and I'm not a big eater.",
+            "ko": "아니요, 없어요. 저는 원래 마른 편이고 많이 먹지 않아요."
+          }
+        ]
       }
     ]
   },
@@ -1670,6 +2794,54 @@
         "speaker": "",
         "en": "I need to find a good balance in using it.",
         "ko": "스마트폰을 사용하는 데 있어 좋은 균형을 찾아야 해요."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I'm afraid + 문장",
+        "meaning": "유감이지만 ~인 것 같다 (부정적/미안한 내용을 부드럽게 전할 때)",
+        "examples": [
+          {
+            "en": "I'm afraid I might be late. The traffic is really bad.",
+            "ko": "늦을 것 같아요. 차가 너무 막혀요."
+          },
+          {
+            "en": "I'm afraid I didn't get that. Could you say that again?",
+            "ko": "죄송하지만 못 알아들었어요. 다시 말씀해 주시겠어요?"
+          },
+          {
+            "en": "I'm afraid I can't make it tomorrow. I have another plan.",
+            "ko": "미안하지만 내일은 못 갈 것 같아요. 다른 계획이 있어요."
+          },
+          {
+            "en": "I'm afraid we ran out of oranges. How about apple juice?",
+            "ko": "죄송하지만 오렌지가 다 떨어졌어요. 사과 주스는 어떠세요?"
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Which app do you use the most?",
+        "qKo": "어떤 앱을 가장 많이 사용하나요?",
+        "answers": [
+          {
+            "en": "I think it's YouTube. I watch a lot of videos there every day.",
+            "ko": "유튜브인 것 같아요. 매일 거기서 영상을 많이 봐요."
+          },
+          {
+            "en": "I use Samsung Pay the most. I don't carry a wallet these days and pay for everything with it.",
+            "ko": "삼성페이를 가장 많이 써요. 요즘은 지갑을 안 들고 다니고 모든 걸 그걸로 결제해요."
+          },
+          {
+            "en": "Absolutely KakaoTalk. I use it to chat with my friends and family every day.",
+            "ko": "당연히 카카오톡이죠. 매일 친구와 가족과 대화하는 데 써요."
+          },
+          {
+            "en": "Probably Naver. I use it to read the news or search for information.",
+            "ko": "아마 네이버일 거예요. 뉴스를 읽거나 정보를 검색하는 데 써요."
+          }
+        ]
       }
     ]
   },
@@ -1755,6 +2927,46 @@
         "en": "You can say that again!",
         "ko": "정말 그래요!"
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "as long as + 문장",
+        "meaning": "~하기만 하면, ~하는 한",
+        "examples": [
+          {
+            "en": "You can go out as long as you finish your homework first. How much have you finished?",
+            "ko": "숙제를 먼저 끝내기만 하면 나가도 돼. 얼마나 했니?"
+          },
+          {
+            "en": "We can go hiking as long as it doesn't rain. Have you checked the weather forecast?",
+            "ko": "비만 안 오면 등산 갈 수 있어. 일기예보 확인했어?"
+          },
+          {
+            "en": "I want to watch the movie as long as it's not too scary. Have you watched the trailer?",
+            "ko": "너무 무섭지만 않다면 그 영화 보고 싶어. 예고편 봤어?"
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What kind of clothes do you usually wear?",
+        "qKo": "평소에 어떤 옷을 주로 입나요?",
+        "answers": [
+          {
+            "en": "I usually wear simple and comfortable clothes like cotton shirts and loose pants. However, when I go out, I prefer to dress neatly in collared shirts and slacks.",
+            "ko": "평소에는 면 셔츠와 헐렁한 바지처럼 단순하고 편한 옷을 입어요. 하지만 외출할 때는 카라 셔츠와 슬랙스로 깔끔하게 입는 걸 선호해요."
+          },
+          {
+            "en": "I wear a suit when I have a business meeting. But I wear a T-shirt and sweatpants at home.",
+            "ko": "업무 미팅이 있을 때는 정장을 입어요. 하지만 집에서는 티셔츠와 운동복 바지를 입어요."
+          },
+          {
+            "en": "I prefer to wear long skirts instead of pants because they're more comfortable.",
+            "ko": "바지보다 긴 치마를 입는 걸 선호해요. 더 편하거든요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -1829,6 +3041,54 @@
         "en": "Raising little humans is a huge responsibility, but it's absolutely worth it.",
         "ko": "어린 사람을 키우는 것은 엄청난 책임이지만, 정말 그럴 만한 가치가 있어요."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "It's worth ~ing / worth the 명사",
+        "meaning": "~할 가치가 있다",
+        "examples": [
+          {
+            "en": "Learning English is challenging, but it's worth the effort.",
+            "ko": "영어를 배우는 건 힘들지만 노력할 가치가 있어요."
+          },
+          {
+            "en": "The book is worth reading. I learned so much from it.",
+            "ko": "그 책은 읽을 가치가 있어요. 그걸로 정말 많이 배웠어요."
+          },
+          {
+            "en": "If you're interested in history, that spot is perfect. It's worth visiting.",
+            "ko": "역사에 관심이 있다면 그곳이 딱이에요. 방문할 가치가 있어요."
+          },
+          {
+            "en": "There's a long line in the restaurant, but it's worth the wait. I'm sure you won't regret it.",
+            "ko": "그 식당은 줄이 길지만 기다릴 가치가 있어요. 분명 후회하지 않을 거예요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you enjoy being around kids?",
+        "qKo": "아이들과 함께 있는 걸 좋아하나요?",
+        "answers": [
+          {
+            "en": "Yes, I really enjoy being around kids. It's so much fun when I'm with them.",
+            "ko": "네, 아이들과 함께 있는 걸 정말 좋아해요. 그들과 함께 있으면 정말 즐거워요."
+          },
+          {
+            "en": "Not really, I'm not very good with kids. They're cute, but I get tired after a while.",
+            "ko": "별로요, 저는 아이들을 잘 다루지 못해요. 귀엽긴 한데 조금 지나면 지쳐요."
+          },
+          {
+            "en": "Well, I didn't like kids very much, but my own child is just adorable.",
+            "ko": "음, 원래 아이들을 별로 안 좋아했는데 제 아이는 정말 사랑스러워요."
+          },
+          {
+            "en": "Yes, I do. I especially love spending time with my grandchildren. I have 2 grandsons and 1 granddaughter. They are my great joy.",
+            "ko": "네, 좋아해요. 특히 손주들과 시간을 보내는 걸 정말 좋아해요. 손자 둘과 손녀 하나가 있어요. 그들은 저의 큰 기쁨이에요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -1902,6 +3162,54 @@
         "speaker": "Alice",
         "en": "Yeah, probably not. But I'm glad you had fun!",
         "ko": "네, 아마 그럴 거예요. 그래도 진수가 재미있게 봤다니 기뻐요!"
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I'm glad + 문장",
+        "meaning": "~해서 기쁘다/다행이다",
+        "examples": [
+          {
+            "en": "I'm glad you like it. It suits you well.",
+            "ko": "마음에 든다니 기뻐요. 당신에게 잘 어울려요."
+          },
+          {
+            "en": "I'm glad you came. Make yourself at home and help yourself.",
+            "ko": "와 주셔서 기뻐요. 편하게 계시고 마음껏 드세요."
+          },
+          {
+            "en": "I'm glad you feel better. Take it easy and don't push yourself.",
+            "ko": "몸이 나아졌다니 다행이에요. 무리하지 말고 편히 쉬세요."
+          },
+          {
+            "en": "I'm glad it worked out. I hope everything goes smoothly.",
+            "ko": "잘 풀려서 다행이에요. 모든 게 순조롭게 되길 바라요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "How was your weekend? Did you do anything special?",
+        "qKo": "주말 어땠어요? 특별한 일 했나요?",
+        "answers": [
+          {
+            "en": "It was great. I had so much fun with my friends. We went to Busan for a trip.",
+            "ko": "좋았어요. 친구들과 정말 즐거웠어요. 부산으로 여행을 갔어요."
+          },
+          {
+            "en": "I spent quality time with my family at the park. It was so relaxing.",
+            "ko": "공원에서 가족과 좋은 시간을 보냈어요. 정말 편안했어요."
+          },
+          {
+            "en": "Not much. I did some housework and then just relaxed at home.",
+            "ko": "별거 없었어요. 집안일 좀 하고 집에서 그냥 쉬었어요."
+          },
+          {
+            "en": "It wasn't great. I caught a cold and stayed in bed all weekend.",
+            "ko": "별로였어요. 감기에 걸려서 주말 내내 침대에 누워 있었어요."
+          }
+        ]
       }
     ]
   },
@@ -1987,6 +3295,46 @@
         "en": "I hope we can have moments like this more often.",
         "ko": "이런 순간을 더 자주 가질 수 있으면 좋겠어요."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "It was my first time ~ing",
+        "meaning": "~하는 게 처음이었다",
+        "examples": [
+          {
+            "en": "It was my first time traveling abroad and also my first time flying on a plane. I was excited and nervous at the same time.",
+            "ko": "해외 여행도 처음이었고 비행기를 타는 것도 처음이었어요. 설레면서 동시에 긴장됐어요."
+          },
+          {
+            "en": "It was my first time trying Thai food. I tried Pad Thai and green curry, and I really liked them.",
+            "ko": "태국 음식을 먹어 본 게 처음이었어요. 팟타이와 그린 커리를 먹어 봤는데 정말 좋았어요."
+          },
+          {
+            "en": "It was my first time feeling so nervous. My heart was beating so fast, and my mind went completely blank.",
+            "ko": "그렇게 긴장해 본 게 처음이었어요. 심장이 너무 빨리 뛰고 머릿속이 완전히 하얘졌어요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What did you do on your last vacation? Did you go somewhere nice?",
+        "qKo": "지난 휴가 때 뭐 했어요? 좋은 곳에 갔나요?",
+        "answers": [
+          {
+            "en": "Yes, I went to Jeju Island with my family. It was my third time visiting, and I enjoy it every time I go.",
+            "ko": "네, 가족과 제주도에 갔어요. 세 번째 방문이었는데 갈 때마다 즐거워요."
+          },
+          {
+            "en": "Yes, I went camping in Jirisan Mountain with my friends. We had a great barbecue, enjoyed the stunning views and chatted around the campfire.",
+            "ko": "네, 친구들과 지리산으로 캠핑을 갔어요. 멋진 바비큐를 즐기고 아름다운 경치를 감상하며 캠프파이어 주위에서 이야기를 나눴어요."
+          },
+          {
+            "en": "Well, I stayed home and caught up on some sleep. Then, I watched movies and read books. It was so relaxing.",
+            "ko": "음, 집에 있으면서 밀린 잠을 잤어요. 그리고 영화도 보고 책도 읽었어요. 정말 편안했어요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -2060,6 +3408,50 @@
         "speaker": "Alice",
         "en": "Sure! I'd be happy to show you around.",
         "ko": "물론이지! 내가 기꺼이 구경시켜 줄게."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I'd be happy to ~",
+        "meaning": "기꺼이 ~해 드릴게요",
+        "examples": [
+          {
+            "en": "I'd be happy to lend you my book. It's one of my favorite books. I think you'll enjoy it.",
+            "ko": "기꺼이 제 책을 빌려드릴게요. 제가 가장 좋아하는 책 중 하나예요. 당신도 즐길 거라고 생각해요."
+          },
+          {
+            "en": "I'd be happy to take care of your dog while you're away. Just let me know if you have any special instructions.",
+            "ko": "당신이 없는 동안 기꺼이 당신의 강아지를 돌봐드릴게요. 특별한 지시사항이 있으면 알려주세요."
+          },
+          {
+            "en": "I'd be happy to meet with you tomorrow. What time works best for you and where would you like to meet?",
+            "ko": "내일 기꺼이 당신을 만날게요. 몇 시가 가장 좋으시고 어디서 만나고 싶으세요?"
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Where did you grow up and what were you like as a kid?",
+        "qKo": "당신은 어디서 자랐고 어릴 때 어떤 아이였나요?",
+        "answers": [
+          {
+            "en": "I was born and raised in Jeongseon, a small village in Gangwon-do. I was really curious and loved exploring nature.",
+            "ko": "저는 강원도의 작은 마을인 정선에서 태어나고 자랐어요. 저는 정말 호기심이 많았고 자연을 탐험하는 것을 좋아했어요."
+          },
+          {
+            "en": "I was born in Daejeon but I grew up in Seoul during my school days. I was quiet and shy but I liked playing with other kids.",
+            "ko": "저는 대전에서 태어났지만 학창 시절에는 서울에서 자랐어요. 저는 조용하고 수줍음이 많았지만 다른 아이들과 노는 것을 좋아했어요."
+          },
+          {
+            "en": "I was born in Jeju and lived there until I was 13. Then I moved to Busan because of my dad's job. I was playful and energetic.",
+            "ko": "저는 제주에서 태어나 13살까지 그곳에서 살았어요. 그 후 아버지의 직업 때문에 부산으로 이사했어요. 저는 장난기가 많고 활기찼어요."
+          },
+          {
+            "en": "I'm from Seoul. I've lived my whole life there. I was gentle and obedient as a kid.",
+            "ko": "저는 서울 출신이에요. 평생 그곳에서 살았어요. 어릴 때 저는 온순하고 말을 잘 들었어요."
+          }
+        ]
       }
     ]
   },
@@ -2145,6 +3537,50 @@
         "en": "It's one of the happiest memories of my life, and I will always treasure it.",
         "ko": "그것은 내 인생에서 가장 행복한 추억 중 하나이며, 나는 그것을 언제나 소중히 간직할 것이다."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I will never ~",
+        "meaning": "저는 결코 ~하지 않을 거예요",
+        "examples": [
+          {
+            "en": "I will never give up. I will keep trying until I make it.",
+            "ko": "저는 결코 포기하지 않을 거예요. 성공할 때까지 계속 노력할 거예요."
+          },
+          {
+            "en": "I will never forget this moment. It means a lot to me.",
+            "ko": "저는 결코 이 순간을 잊지 않을 거예요. 저에게 큰 의미가 있어요."
+          },
+          {
+            "en": "I will never do that again. I promise. You can trust me on this.",
+            "ko": "저는 결코 다시는 그러지 않을 거예요. 약속해요. 이것에 대해 저를 믿어도 돼요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What were you doing during the 2002 World Cup?",
+        "qKo": "2002년 월드컵 동안 당신은 무엇을 하고 있었나요?",
+        "answers": [
+          {
+            "en": "I was in high school back then. Everyone was talking about the World Cup, so it was hard to focus on studying.",
+            "ko": "저는 그때 고등학생이었어요. 모두가 월드컵 이야기를 해서 공부에 집중하기 힘들었어요."
+          },
+          {
+            "en": "I was an office worker back then. I cheered in the streets watching the matches on a big screen. Everyone was so excited and it was really fun.",
+            "ko": "저는 그때 회사원이었어요. 큰 화면으로 경기를 보며 거리에서 응원했어요. 모두가 정말 신나 있었고 정말 재미있었어요."
+          },
+          {
+            "en": "I was living in LA at the time and watched Korea's matches with my Korean-American friends. I felt so proud because the Korean team played so well.",
+            "ko": "저는 그때 LA에 살고 있어서 재미교포 친구들과 한국 경기를 봤어요. 한국 팀이 너무 잘해서 정말 자랑스러웠어요."
+          },
+          {
+            "en": "I wasn't a big fan of soccer, but the 2002 World Cup was different. I think I started liking soccer from that time.",
+            "ko": "저는 축구를 그다지 좋아하지 않았지만 2002년 월드컵은 달랐어요. 그때부터 축구를 좋아하기 시작한 것 같아요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -2203,6 +3639,54 @@
         "speaker": "Jinsu",
         "en": "We're complete opposites! It's funny how different we are.",
         "ko": "우린 완전히 정반대네! 우리가 이렇게 다르다는 게 재미있다."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I'm not good with ~",
+        "meaning": "저는 ~에 서툴러요 / ~을 잘 못 다뤄요",
+        "examples": [
+          {
+            "en": "I'm not good with computers. I usually ask my son for help.",
+            "ko": "저는 컴퓨터를 잘 못 다뤄요. 보통 아들에게 도움을 청해요."
+          },
+          {
+            "en": "I'm not good with directions. I often get lost, even with the navigation.",
+            "ko": "저는 길을 잘 못 찾아요. 내비게이션이 있어도 자주 길을 잃어요."
+          },
+          {
+            "en": "I'm not good with strangers, so it takes time to get close to new people.",
+            "ko": "저는 낯선 사람을 잘 대하지 못해서 새로운 사람과 가까워지는 데 시간이 걸려요."
+          },
+          {
+            "en": "I'm not good with spicy food. I can eat it, but only a little.",
+            "ko": "저는 매운 음식을 잘 못 먹어요. 먹을 수는 있지만 조금만 먹어요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What was your favorite and least favorite subject in school?",
+        "qKo": "학교에서 가장 좋아했던 과목과 가장 싫어했던 과목은 무엇이었나요?",
+        "answers": [
+          {
+            "en": "My favorite subject was English, and my least favorite subject was music. I was really bad at singing.",
+            "ko": "제가 가장 좋아했던 과목은 영어였고, 가장 싫어했던 과목은 음악이었어요. 저는 노래를 정말 못했어요."
+          },
+          {
+            "en": "I loved science, but I hated history. It was too much memorization.",
+            "ko": "저는 과학을 정말 좋아했지만 역사는 싫어했어요. 외울 게 너무 많았어요."
+          },
+          {
+            "en": "I liked all the subjects except math. It was too hard for me.",
+            "ko": "저는 수학을 빼고 모든 과목을 좋아했어요. 저에게는 너무 어려웠어요."
+          },
+          {
+            "en": "Well, I didn't like studying, so lunchtime was my favorite in school.",
+            "ko": "음, 저는 공부를 좋아하지 않아서 학교에서 점심시간이 가장 좋았어요."
+          }
+        ]
       }
     ]
   },
@@ -2283,6 +3767,50 @@
         "en": "It was far from perfect, but it was an unforgettable trip for both of us.",
         "ko": "그것은 완벽과는 거리가 멀었지만, 우리 두 사람 모두에게 잊지 못할 여행이었다."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "decide to ~",
+        "meaning": "~하기로 결정하다",
+        "examples": [
+          {
+            "en": "I decided to stay home tonight. I think I need some time to recharge.",
+            "ko": "저는 오늘 밤 집에 있기로 결정했어요. 재충전할 시간이 좀 필요한 것 같아요."
+          },
+          {
+            "en": "I was shocked by my last check-up, so I decided to drink less.",
+            "ko": "지난번 건강검진에 충격을 받아서 술을 줄이기로 결정했어요."
+          },
+          {
+            "en": "I decided not to start my own business because the economy is too bad.",
+            "ko": "경제가 너무 안 좋아서 저는 창업하지 않기로 결정했어요."
+          },
+          {
+            "en": "We decided not to buy that house. The price was way over our budget.",
+            "ko": "우리는 그 집을 사지 않기로 결정했어요. 가격이 우리 예산을 훨씬 초과했어요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you have any unforgettable trips?",
+        "qKo": "잊을 수 없는 여행이 있나요?",
+        "answers": [
+          {
+            "en": "My unforgettable trip was to Jeju Island. The scenery was breathtaking, and I really enjoyed the local dishes.",
+            "ko": "제 잊을 수 없는 여행은 제주도 여행이었어요. 경치가 숨 막힐 듯 아름다웠고, 현지 음식을 정말 즐겼어요."
+          },
+          {
+            "en": "I will never forget the trip to Switzerland. The views were just like a painting and everything was so expensive.",
+            "ko": "저는 스위스 여행을 결코 잊지 못할 거예요. 풍경이 마치 그림 같았고 모든 게 너무 비쌌어요."
+          },
+          {
+            "en": "Seven years ago, I went to Sydney. It was an unforgettable trip because my child suddenly got sick, and we had to go to the emergency room.",
+            "ko": "7년 전에 저는 시드니에 갔어요. 아이가 갑자기 아파서 응급실에 가야 했기 때문에 잊을 수 없는 여행이었어요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -2357,6 +3885,54 @@
         "en": "You can say that again!",
         "ko": "정말 그래, 두말하면 잔소리지!"
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I've heard of ~",
+        "meaning": "~에 대해 들어본 적이 있어요",
+        "examples": [
+          {
+            "en": "I've heard of that movie, but I haven't seen it yet.",
+            "ko": "그 영화에 대해 들어봤지만 아직 보지는 못했어요."
+          },
+          {
+            "en": "I've heard of her. She's a well-known author in Korea, right?",
+            "ko": "그녀에 대해 들어봤어요. 한국에서 유명한 작가죠, 맞나요?"
+          },
+          {
+            "en": "I've heard of this brand. People say their products are high-quality.",
+            "ko": "이 브랜드에 대해 들어봤어요. 사람들이 이 제품들이 고품질이라고 하더라고요."
+          },
+          {
+            "en": "I've heard of that company. It has a great reputation.",
+            "ko": "그 회사에 대해 들어봤어요. 평판이 아주 좋아요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What did you want to be when you were a child?",
+        "qKo": "어릴 때 당신은 무엇이 되고 싶었나요?",
+        "answers": [
+          {
+            "en": "I wanted to be an athlete because I enjoyed playing sports and was good at them.",
+            "ko": "저는 운동을 즐기고 잘했기 때문에 운동선수가 되고 싶었어요."
+          },
+          {
+            "en": "I wanted to be a doctor because I wanted to help sick people in need, like Schweitzer.",
+            "ko": "저는 슈바이처처럼 도움이 필요한 아픈 사람들을 돕고 싶어서 의사가 되고 싶었어요."
+          },
+          {
+            "en": "I wanted to be a celebrity because I liked being in front of people and enjoyed getting attention.",
+            "ko": "저는 사람들 앞에 서는 것을 좋아하고 관심받는 것을 즐겨서 연예인이 되고 싶었어요."
+          },
+          {
+            "en": "I wanted to be a pilot because I dreamed of flying and seeing the world. And I made that dream come true.",
+            "ko": "저는 하늘을 날며 세상을 보는 꿈을 꿔서 파일럿이 되고 싶었어요. 그리고 그 꿈을 이뤘어요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -2425,6 +4001,46 @@
         "speaker": "",
         "en": "Korea is currently one of the world's leading examples of effective recycling and waste separation.",
         "ko": "한국은 현재 효과적인 재활용과 쓰레기 분리의 세계적인 모범 사례 중 하나이다."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "encourage A to +동사",
+        "meaning": "A가 ~하도록 격려하다/권하다",
+        "examples": [
+          {
+            "en": "My friend encouraged me to apply for the job, and I finally got it.",
+            "ko": "내 친구가 그 일자리에 지원하라고 격려해줘서, 나는 결국 그 일을 얻었다."
+          },
+          {
+            "en": "My parents trusted me completely, and encouraged me to pursue my dream.",
+            "ko": "부모님은 나를 완전히 믿어주셨고, 내 꿈을 좇도록 격려해주셨다."
+          },
+          {
+            "en": "We should encourage our children to be independent. Then, they can live their lives on their own.",
+            "ko": "우리는 아이들이 독립적이 되도록 격려해야 한다. 그러면 그들은 스스로 자신의 삶을 살아갈 수 있다."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you recycle? If so, how often do you recycle trash?",
+        "qKo": "당신은 재활용을 하나요? 그렇다면 얼마나 자주 쓰레기를 재활용하나요?",
+        "answers": [
+          {
+            "en": "Of course. In my neighborhood, we can put out recyclable trash every Thursday. And it's my responsibility in my family.",
+            "ko": "물론이죠. 우리 동네에서는 매주 목요일에 재활용 쓰레기를 내놓을 수 있어요. 그리고 그건 우리 가족 안에서 제 담당이에요."
+          },
+          {
+            "en": "I do. In my apartment, we put out recyclable trash twice a week, on Tuesdays and Fridays.",
+            "ko": "해요. 우리 아파트에서는 일주일에 두 번, 화요일과 금요일에 재활용 쓰레기를 내놓아요."
+          },
+          {
+            "en": "I'm living abroad now, and there's no separate recycling system in my area. Everything goes into one bin.",
+            "ko": "저는 지금 해외에 살고 있는데, 우리 지역에는 분리수거 시스템이 없어요. 모든 게 하나의 통에 들어가요."
+          }
+        ]
       }
     ]
   },
@@ -2520,6 +4136,50 @@
         "en": "Mom, this is serious! Please help me!",
         "ko": "엄마, 이건 심각해요! 제발 도와주세요!"
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "Did you hear + 주어+동사 / 명사?",
+        "meaning": "~라는 것 (소식)을 들었니?",
+        "examples": [
+          {
+            "en": "Did you hear what happened to Sarah? She got a promotion at work. I'm happy for her.",
+            "ko": "사라에게 무슨 일이 있었는지 들었어? 그녀가 직장에서 승진했어. 나는 그녀를 위해 기뻐."
+          },
+          {
+            "en": "Did you hear she's getting married? I had no idea she was seeing someone!",
+            "ko": "그녀가 결혼한다는 소식 들었어? 나는 그녀가 누군가를 만나고 있는 줄 전혀 몰랐어!"
+          },
+          {
+            "en": "Did you hear the news about our company? Our office is moving to a new location.",
+            "ko": "우리 회사에 대한 소식 들었어? 우리 사무실이 새 장소로 이전한대."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you often nag your kids? If so, what's it usually about?",
+        "qKo": "당신은 자녀에게 자주 잔소리를 하나요? 그렇다면 보통 무엇에 관한 건가요?",
+        "answers": [
+          {
+            "en": "Yes, I often nag my son about cleaning his room. It's really messy.",
+            "ko": "네, 저는 아들에게 방 청소하라고 자주 잔소리해요. 방이 정말 지저분하거든요."
+          },
+          {
+            "en": "All the time! It's usually about their phones, because they're always on them.",
+            "ko": "항상요! 보통 휴대폰에 관한 거예요, 애들이 늘 휴대폰만 붙잡고 있거든요."
+          },
+          {
+            "en": "I try not to, but sometimes I can't help it when they don't listen.",
+            "ko": "안 하려고 하는데, 애들이 말을 안 들으면 가끔은 어쩔 수 없어요."
+          },
+          {
+            "en": "Which parent doesn't? Nagging is part of everyday life.",
+            "ko": "안 하는 부모가 어디 있겠어요? 잔소리는 일상의 일부죠."
+          }
+        ]
+      }
     ]
   },
   {
@@ -2533,6 +4193,58 @@
         "speaker": "",
         "en": "[38] K-Food",
         "ko": "[38] K-푸드"
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "지각동사(see/hear/feel) + 목적어 + 동사원형/-ing",
+        "meaning": "~가 …하는 것을 보다/듣다/느끼다 (원형: 동작 전체, -ing: 진행 중인 동작)",
+        "examples": [
+          {
+            "en": "I saw him cross the street.",
+            "ko": "나는 그가 길을 건너는 것을 보았다. (건너는 동작 전체)"
+          },
+          {
+            "en": "I saw him crossing the street.",
+            "ko": "나는 그가 길을 건너고 있는 것을 보았다. (건너는 도중)"
+          },
+          {
+            "en": "I heard her sing a song.",
+            "ko": "나는 그녀가 노래 부르는 것을 들었다."
+          },
+          {
+            "en": "I heard her singing a song.",
+            "ko": "나는 그녀가 노래 부르고 있는 것을 들었다."
+          },
+          {
+            "en": "I felt something touch my shoulder, but when I turned around, there was no one.",
+            "ko": "나는 무언가가 내 어깨를 만지는 것을 느꼈지만, 돌아보니 아무도 없었다."
+          },
+          {
+            "en": "I felt something touching my shoulder, and it turned out to be a spider.",
+            "ko": "나는 무언가가 내 어깨를 만지고 있는 것을 느꼈는데, 알고 보니 거미였다."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Have you ever tried Korean food? If not, is there any Korean food you want to try?",
+        "qKo": "한국 음식을 먹어본 적이 있나요? 없다면, 먹어보고 싶은 한국 음식이 있나요?",
+        "answers": [
+          {
+            "en": "Yes, I have and I love it! My favorite is gimbap.",
+            "ko": "네, 먹어봤고 정말 좋아해요! 제가 제일 좋아하는 건 김밥이에요."
+          },
+          {
+            "en": "Of course! I've been to a Korean restaurant several times. I really like japchae. I could eat it every day.",
+            "ko": "물론이죠! 한국 식당에 여러 번 가봤어요. 저는 잡채를 정말 좋아해요. 매일 먹을 수도 있어요."
+          },
+          {
+            "en": "Not yet, but I really want to try Korean BBQ. It looks delicious!",
+            "ko": "아직요, 하지만 한국식 바비큐를 꼭 먹어보고 싶어요. 정말 맛있어 보여요!"
+          }
+        ]
       }
     ]
   },
@@ -2607,6 +4319,54 @@
         "speaker": "Alice",
         "en": "I hope I can go there soon. I can't wait!",
         "ko": "곧 거기 갈 수 있으면 좋겠어. 너무 기대돼!"
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "even if + 주어+동사",
+        "meaning": "비록 ~일지라도, 설령 ~하더라도",
+        "examples": [
+          {
+            "en": "Even if I'm tired, I always walk my dog in the evening.",
+            "ko": "비록 피곤할지라도, 나는 저녁에 항상 강아지를 산책시킨다."
+          },
+          {
+            "en": "Even if it rains tomorrow, the event will still take place.",
+            "ko": "내일 비가 오더라도, 그 행사는 그대로 열릴 것이다."
+          },
+          {
+            "en": "Even if you fail, it's okay. You can try again.",
+            "ko": "설령 실패하더라도 괜찮아. 다시 시도하면 돼."
+          },
+          {
+            "en": "Even if you don't have experience, you can still apply.",
+            "ko": "경험이 없더라도, 당신은 여전히 지원할 수 있어요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Have you ever been to London?",
+        "qKo": "런던에 가본 적이 있나요?",
+        "answers": [
+          {
+            "en": "Yes, I visited London during my trip to Europe. It was an impressive city.",
+            "ko": "네, 유럽 여행 중에 런던을 방문했어요. 인상적인 도시였어요."
+          },
+          {
+            "en": "Yes, I have, but it wasn't my favorite place. The weather was especially bad.",
+            "ko": "네, 가봤어요. 하지만 제가 제일 좋아하는 곳은 아니었어요. 특히 날씨가 좋지 않았어요."
+          },
+          {
+            "en": "Not yet, but I'd like to go there someday. I want to watch a musical in the West End.",
+            "ko": "아직요, 하지만 언젠가 가보고 싶어요. 웨스트엔드에서 뮤지컬을 보고 싶어요."
+          },
+          {
+            "en": "No, I haven't, but it's on my bucket list. I heard that it's a beautiful city.",
+            "ko": "아니요, 안 가봤지만 제 버킷리스트에 있어요. 아름다운 도시라고 들었어요."
+          }
+        ]
       }
     ]
   },
@@ -2686,6 +4446,50 @@
         "speaker": "",
         "en": "This way, you can have good relationships and feel happy too.",
         "ko": "이렇게 하면 좋은 관계를 맺고 자신도 행복함을 느낄 수 있다."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "ask if + 주어+동사",
+        "meaning": "~인지 (아닌지) 물어보다",
+        "examples": [
+          {
+            "en": "I'll ask if he is available tomorrow. If not, we can find another time.",
+            "ko": "내가 그가 내일 시간이 되는지 물어볼게. 안 되면 다른 시간을 찾으면 돼."
+          },
+          {
+            "en": "Can you ask if she is coming this Saturday? I hope so. I haven't seen her in a while.",
+            "ko": "그녀가 이번 토요일에 오는지 물어봐 줄래? 그러길 바라. 그녀를 못 본 지 좀 됐거든."
+          },
+          {
+            "en": "Ask if he wants something to drink. We have coffee, green tea, and orange juice.",
+            "ko": "그가 마실 것을 원하는지 물어봐. 우리는 커피, 녹차, 오렌지 주스가 있어."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "How do you maintain a good relationship with others?",
+        "qKo": "당신은 다른 사람들과 좋은 관계를 어떻게 유지하나요?",
+        "answers": [
+          {
+            "en": "I try to keep in touch with my friends, so we don't grow apart.",
+            "ko": "저는 친구들과 계속 연락하려고 노력해요, 그래서 우리가 멀어지지 않도록요."
+          },
+          {
+            "en": "I text my friends to check in, and sometimes make plans to meet up.",
+            "ko": "저는 안부를 묻기 위해 친구들에게 문자를 보내고, 가끔은 만날 약속을 잡아요."
+          },
+          {
+            "en": "I'm not the type to reach out first, but I respond warmly when someone contacts me.",
+            "ko": "저는 먼저 연락하는 타입은 아니지만, 누군가 연락해오면 따뜻하게 응답해요."
+          },
+          {
+            "en": "I'm not a very social person, but I avoid talking behind people's backs.",
+            "ko": "저는 사교적인 사람은 아니지만, 사람들 뒤에서 험담하는 것은 피해요."
+          }
+        ]
       }
     ]
   },
@@ -2776,6 +4580,50 @@
         "en": "See? That was perfect!",
         "ko": "봐? 완벽했어!"
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I meant to ~ , but ~",
+        "meaning": "~하려고 했는데, ~했다 (의도했으나 못 함)",
+        "examples": [
+          {
+            "en": "I meant to wake up early, but I overslept. I barely made it on time.",
+            "ko": "일찍 일어나려고 했는데 늦잠을 잤어요. 겨우 제시간에 도착했어요."
+          },
+          {
+            "en": "I meant to tell you about it. But I didn't get the chance.",
+            "ko": "그것에 대해 말하려고 했어요. 그런데 기회가 없었어요."
+          },
+          {
+            "en": "I didn't mean to hurt you. But if I did, I'm really sorry.",
+            "ko": "당신에게 상처 줄 의도는 없었어요. 하지만 그랬다면 정말 미안해요."
+          },
+          {
+            "en": "I didn't mean to say that. I wasn't thinking. I apologize.",
+            "ko": "그런 말을 할 의도는 없었어요. 생각이 짧았어요. 사과할게요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Have you ever experienced culture shock in Korea?",
+        "qKo": "한국에서 문화 충격을 경험한 적이 있나요?",
+        "answers": [
+          {
+            "en": "I was surprised that people bow so often. At first, it was unfamiliar, but now I like it because it's polite.",
+            "ko": "사람들이 너무 자주 인사하는 것에 놀랐어요. 처음엔 낯설었지만 지금은 예의 바른 게 좋아요."
+          },
+          {
+            "en": "I didn't expect that asking someone's age was so common. In my country, it's a bit personal.",
+            "ko": "나이를 묻는 게 그렇게 흔할 줄 몰랐어요. 우리나라에서는 조금 사적인 일이에요."
+          },
+          {
+            "en": "I was amazed by how fast everything is, from food delivery to internet speed.",
+            "ko": "음식 배달부터 인터넷 속도까지 모든 게 얼마나 빠른지 놀랐어요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -2855,6 +4703,56 @@
         "en": "Living in Korea has been a great experience, and I hope to stay here for as long as possible.",
         "ko": "한국에서 사는 것은 멋진 경험이었고, 나는 가능한 한 오래 이곳에 머물고 싶다."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "There is + 단수 : ~이 있다",
+        "meaning": "단수 명사가 있음을 나타냄",
+        "examples": [
+          {
+            "en": "There is a restroom over there, but it's out of order.",
+            "ko": "저기 화장실이 있는데 고장 났어요."
+          },
+          {
+            "en": "There is a problem with my phone. The battery drains too fast.",
+            "ko": "제 휴대폰에 문제가 있어요. 배터리가 너무 빨리 닳아요."
+          }
+        ]
+      },
+      {
+        "pattern": "There are + 복수 : ~들이 있다",
+        "meaning": "복수 명사가 있음을 나타냄",
+        "examples": [
+          {
+            "en": "There are a few cars on the road, but overall, the traffic is light.",
+            "ko": "도로에 차가 몇 대 있지만 전체적으로 교통이 한산해요."
+          },
+          {
+            "en": "There are no classes tomorrow, so I'm going to sleep in and then hang out with my friends.",
+            "ko": "내일 수업이 없어서 늦잠 자고 친구들과 놀 거예요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "How do you like living in Korea?",
+        "qKo": "한국에서 사는 것이 어떤가요?",
+        "answers": [
+          {
+            "en": "It's great! Living here is really safe and convenient.",
+            "ko": "정말 좋아요! 여기 사는 건 정말 안전하고 편리해요."
+          },
+          {
+            "en": "I enjoy living in Korea. There are so many good things about it, but sometimes, I miss home and my family.",
+            "ko": "저는 한국에서 사는 걸 즐겨요. 좋은 점이 정말 많지만, 가끔은 고향과 가족이 그리워요."
+          },
+          {
+            "en": "It's a bit challenging. I'm still getting used to the culture and language.",
+            "ko": "조금 힘들어요. 아직 문화와 언어에 적응하는 중이에요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -2919,6 +4817,46 @@
         "en": "Yes, absolutely. I'll make it my top priority and get it done as soon as possible.",
         "ko": "네, 물론입니다. 최우선으로 삼아서 가능한 한 빨리 끝내겠습니다."
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "as A as possible : 가능한 한 A하게",
+        "meaning": "가능한 한 최대로 A한 상태로",
+        "examples": [
+          {
+            "en": "Can you call me back as soon as possible? It's urgent.",
+            "ko": "가능한 한 빨리 다시 전화해 주시겠어요? 급해요."
+          },
+          {
+            "en": "Please handle this package as carefully as possible. It's very fragile.",
+            "ko": "이 소포를 가능한 한 조심히 다뤄 주세요. 매우 깨지기 쉬워요."
+          },
+          {
+            "en": "I try to walk as much as possible every day. For example, I often take the stairs instead of the elevator.",
+            "ko": "저는 매일 가능한 한 많이 걸으려고 해요. 예를 들어, 엘리베이터 대신 계단을 자주 이용해요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Have you said sorry to anyone recently?",
+        "qKo": "최근에 누군가에게 미안하다고 말한 적이 있나요?",
+        "answers": [
+          {
+            "en": "I said sorry to my wife for forgetting our wedding anniversary. It was almost a disaster.",
+            "ko": "결혼기념일을 잊어버려서 아내에게 미안하다고 했어요. 하마터면 큰일 날 뻔했어요."
+          },
+          {
+            "en": "I apologized to a customer for making a mistake. Fortunately, she understood.",
+            "ko": "실수를 해서 고객에게 사과했어요. 다행히 그분이 이해해 주셨어요."
+          },
+          {
+            "en": "I stepped on someone's foot in the subway and said sorry. I was so embarrassed.",
+            "ko": "지하철에서 누군가의 발을 밟아서 미안하다고 했어요. 정말 창피했어요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -2932,6 +4870,56 @@
         "speaker": "",
         "en": "(SNS)",
         "ko": "(SNS)"
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "feel happy with : ~에 만족하다, 기쁘다",
+        "meaning": "~에 대해 만족스럽고 행복함을 느낌",
+        "examples": [
+          {
+            "en": "I feel happy with my new home. It's spacious and full of light.",
+            "ko": "새 집이 만족스러워요. 넓고 햇빛이 잘 들어요."
+          },
+          {
+            "en": "Do you feel happy with your job, or do you want to try something new?",
+            "ko": "당신은 직업에 만족하나요, 아니면 새로운 걸 시도해 보고 싶나요?"
+          }
+        ]
+      },
+      {
+        "pattern": "feel unhappy with : ~에 불만이다, 불만족하다",
+        "meaning": "~에 대해 만족하지 못하고 불행함을 느낌",
+        "examples": [
+          {
+            "en": "I feel unhappy with my new haircut. I hope it grows out quickly.",
+            "ko": "새 머리 스타일이 마음에 안 들어요. 빨리 자랐으면 좋겠어요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you use social media? If so, which social media app do you use the most?",
+        "qKo": "소셜 미디어를 사용하나요? 그렇다면 어떤 소셜 미디어 앱을 가장 많이 사용하나요?",
+        "answers": [
+          {
+            "en": "Yes, I do. I mostly use Instagram to stay in touch with friends.",
+            "ko": "네, 사용해요. 친구들과 연락하기 위해 주로 인스타그램을 사용해요."
+          },
+          {
+            "en": "Well, I check Facebook sometimes, but I only browse other people's posts.",
+            "ko": "음, 가끔 페이스북을 확인하지만 다른 사람들의 게시물만 둘러봐요."
+          },
+          {
+            "en": "Not really. I have an Instagram account, but I don't really use it.",
+            "ko": "별로요. 인스타그램 계정은 있지만 잘 사용하지 않아요."
+          },
+          {
+            "en": "Not at all. I used to use Kakao Story, but I don't anymore.",
+            "ko": "전혀요. 예전엔 카카오스토리를 썼지만 이제는 안 써요."
+          }
+        ]
       }
     ]
   },
@@ -3001,6 +4989,82 @@
         "speaker": "Alice",
         "en": "Thanks a lot!",
         "ko": "정말 고마워!"
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I have + 증상 : ~ 증상이 있다",
+        "meaning": "몸의 증상을 표현할 때 사용",
+        "examples": [
+          {
+            "en": "What are your common symptoms when you catch a cold?",
+            "ko": "감기에 걸렸을 때 흔한 증상은 무엇인가요?"
+          },
+          {
+            "en": "I usually have a fever and a sore throat.",
+            "ko": "저는 보통 열이 나고 목이 아파요."
+          },
+          {
+            "en": "I have a high fever.",
+            "ko": "고열이 있어요."
+          },
+          {
+            "en": "I have a mild fever.",
+            "ko": "미열이 있어요."
+          },
+          {
+            "en": "I have chills.",
+            "ko": "오한이 있어요."
+          },
+          {
+            "en": "I have a headache.",
+            "ko": "두통이 있어요."
+          },
+          {
+            "en": "I have a sore throat.",
+            "ko": "목이 아파요."
+          },
+          {
+            "en": "I have a cough.",
+            "ko": "기침이 나요."
+          },
+          {
+            "en": "I have a runny nose.",
+            "ko": "콧물이 나요."
+          },
+          {
+            "en": "I have a stuffy nose.",
+            "ko": "코가 막혔어요."
+          },
+          {
+            "en": "I have body aches.",
+            "ko": "몸살이 나요."
+          },
+          {
+            "en": "I have phlegm.",
+            "ko": "가래가 있어요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Have you had a cold recently? If so, what were your symptoms?",
+        "qKo": "최근에 감기에 걸린 적이 있나요? 그렇다면 증상이 어땠나요?",
+        "answers": [
+          {
+            "en": "Yes, I caught a bad cold last week, and I had a runny and stuffy nose. It was really tough.",
+            "ko": "네, 지난주에 심한 감기에 걸려서 콧물이 나고 코가 막혔어요. 정말 힘들었어요."
+          },
+          {
+            "en": "Yes, I suffered from the flu last month. I had a high fever and chills, so I had to get an IV drip.",
+            "ko": "네, 지난달에 독감에 걸렸어요. 고열과 오한이 있어서 링거를 맞아야 했어요."
+          },
+          {
+            "en": "No, not recently. I guess I've been lucky. The cold going around these days is really bad.",
+            "ko": "아니요, 최근엔 없어요. 운이 좋았나 봐요. 요즘 도는 감기가 정말 독해요."
+          }
+        ]
       }
     ]
   },
@@ -3075,6 +5139,54 @@
         "speaker": "",
         "en": "It can be tiring, but I feel happy that I can use my free time to earn money.",
         "ko": "힘들 수도 있지만, 여가 시간을 활용해 돈을 벌 수 있어서 행복해요."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "let A + 동사원형",
+        "meaning": "A가 ~하게 해주다/허락하다",
+        "examples": [
+          {
+            "en": "My father lets me use his car, but I have to pay for the gas.",
+            "ko": "아빠는 내가 차를 쓰게 해주시지만, 기름값은 내가 내야 해요."
+          },
+          {
+            "en": "My mother didn't let me drink coffee when I was a child.",
+            "ko": "엄마는 내가 어렸을 때 커피를 마시지 못하게 하셨어요."
+          },
+          {
+            "en": "Just let them do it. They're all grown up now.",
+            "ko": "그냥 그들이 하게 두세요. 이제 다 컸잖아요."
+          },
+          {
+            "en": "Just let it go. It's not a big deal.",
+            "ko": "그냥 내버려 둬. 별일 아니야."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Have you ever had a part-time job?",
+        "qKo": "아르바이트를 해본 적이 있나요?",
+        "answers": [
+          {
+            "en": "Yes, I used to work at a restaurant. It was quite hard, but I learned a lot from it.",
+            "ko": "네, 식당에서 일했었어요. 꽤 힘들었지만 많은 걸 배웠어요."
+          },
+          {
+            "en": "Yes, I worked at a construction site. It was physically tough, but the pay was good.",
+            "ko": "네, 공사장에서 일했어요. 육체적으로 힘들었지만 보수는 좋았어요."
+          },
+          {
+            "en": "Well, I have a part-time job now. I'm delivering food in my free time after work.",
+            "ko": "음, 지금 아르바이트를 하고 있어요. 퇴근 후 여가 시간에 음식 배달을 해요."
+          },
+          {
+            "en": "No, I haven't. I've never had a part-time job before.",
+            "ko": "아니요, 없어요. 아르바이트를 해본 적이 한 번도 없어요."
+          }
+        ]
       }
     ]
   },
@@ -3160,6 +5272,54 @@
         "en": "Yeah, I should. Thanks!",
         "ko": "응, 그래야겠어. 고마워!"
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "must have p.p",
+        "meaning": "~했음에 틀림없다 (과거에 대한 강한 추측)",
+        "examples": [
+          {
+            "en": "I must have left my phone at home. Can you call my number and check?",
+            "ko": "휴대폰을 집에 두고 온 게 틀림없어. 내 번호로 전화해서 확인해줄래?"
+          },
+          {
+            "en": "You must have been shocked! What did you do after that?",
+            "ko": "정말 충격받았겠다! 그 후에 어떻게 했어?"
+          },
+          {
+            "en": "He must have been tired. He kept dozing off.",
+            "ko": "그는 피곤했던 게 틀림없어. 계속 졸더라고."
+          },
+          {
+            "en": "This must have been really expensive. Where did you get it?",
+            "ko": "이거 정말 비쌌겠다. 어디서 샀어?"
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Have you ever lost something important?",
+        "qKo": "중요한 물건을 잃어버린 적이 있나요?",
+        "answers": [
+          {
+            "en": "Of course. I lost my wallet last year. I had to cancel all my cards.",
+            "ko": "물론이죠. 작년에 지갑을 잃어버렸어요. 카드를 다 정지시켜야 했어요."
+          },
+          {
+            "en": "Yes, I lost my wedding ring once, but luckily, I found it later.",
+            "ko": "네, 결혼반지를 한 번 잃어버렸는데 다행히 나중에 찾았어요."
+          },
+          {
+            "en": "Yes, I lost my phone while traveling abroad. I think someone took it.",
+            "ko": "네, 해외여행 중에 휴대폰을 잃어버렸어요. 누군가 가져간 것 같아요."
+          },
+          {
+            "en": "No, I've never lost anything important. I'm pretty careful.",
+            "ko": "아니요, 중요한 걸 잃어버린 적은 없어요. 저는 꽤 조심하는 편이에요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -3238,6 +5398,50 @@
         "speaker": "",
         "en": "Unless something special happens, I'd love to live here for a long time.",
         "ko": "특별한 일이 없는 한, 저는 이곳에서 오래오래 살고 싶어요."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "what I love about A is ~",
+        "meaning": "내가 A에 대해 정말 좋아하는 점은 ~이다",
+        "examples": [
+          {
+            "en": "What I love about autumn is the colorful leaves. You can see them anywhere in Korea.",
+            "ko": "내가 가을에 대해 정말 좋아하는 점은 알록달록한 단풍이에요. 한국 어디서나 볼 수 있죠."
+          },
+          {
+            "en": "What I love about Jeonju is the delicious food. It's the best place to enjoy authentic Korean food.",
+            "ko": "내가 전주에 대해 정말 좋아하는 점은 맛있는 음식이에요. 정통 한식을 즐기기에 최고의 장소죠."
+          },
+          {
+            "en": "What I love about my best friend is that she always listens to me. She's very caring and understanding.",
+            "ko": "내가 가장 친한 친구에 대해 정말 좋아하는 점은 항상 내 말을 들어준다는 거예요. 아주 다정하고 이해심이 많아요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What do you like about your neighborhood?",
+        "qKo": "당신의 동네에서 마음에 드는 점은 무엇인가요?",
+        "answers": [
+          {
+            "en": "There are many parks and green spaces, so it's a great place to take a walk.",
+            "ko": "공원과 녹지가 많아서 산책하기에 좋은 곳이에요."
+          },
+          {
+            "en": "There are schools nearby, so it's a great place to raise children.",
+            "ko": "근처에 학교가 있어서 아이들을 키우기에 좋은 곳이에요."
+          },
+          {
+            "en": "I like that it's close to the subway, so getting around is really easy.",
+            "ko": "지하철이 가까워서 이동이 정말 편해서 좋아요."
+          },
+          {
+            "en": "I like that it's quiet and peaceful, so life here is more relaxing.",
+            "ko": "조용하고 평화로워서 이곳 생활이 더 여유로운 점이 좋아요."
+          }
+        ]
       }
     ]
   },
@@ -3322,6 +5526,50 @@
         "speaker": "Alice",
         "en": "Sounds perfect. I can't wait! See you there!",
         "ko": "완벽해. 정말 기대돼! 거기서 봐!"
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I'm not sure if + 주어 + 동사",
+        "meaning": "~인지 잘 모르겠다/확실하지 않다",
+        "examples": [
+          {
+            "en": "I'm not sure if I can make it tomorrow. Something came up.",
+            "ko": "내일 갈 수 있을지 모르겠어요. 일이 생겼어요."
+          },
+          {
+            "en": "I'm not sure if he's coming. He hasn't replied yet.",
+            "ko": "그가 올지 모르겠어요. 아직 답을 안 했어요."
+          },
+          {
+            "en": "I'm not sure if she'll like it. She's quite picky.",
+            "ko": "그녀가 좋아할지 모르겠어요. 꽤 까다롭거든요."
+          },
+          {
+            "en": "I'm not sure if this is the right way. Let's ask someone.",
+            "ko": "이게 맞는 길인지 모르겠어요. 누군가에게 물어봅시다."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you usually have a lot of plans?",
+        "qKo": "평소에 계획이 많은 편인가요?",
+        "answers": [
+          {
+            "en": "Yes, my schedule is usually packed. I'm always busy with work, family gatherings, and social events.",
+            "ko": "네, 제 일정은 보통 꽉 차 있어요. 일, 가족 모임, 사교 행사로 항상 바빠요."
+          },
+          {
+            "en": "Not much. I usually just go with the flow. I don't like making too many plans.",
+            "ko": "별로요. 저는 보통 흐름에 맡겨요. 계획을 너무 많이 세우는 걸 좋아하지 않아요."
+          },
+          {
+            "en": "Sometimes I do, sometimes I don't. It depends on the situation.",
+            "ko": "많을 때도 있고 없을 때도 있어요. 상황에 따라 달라요."
+          }
+        ]
       }
     ]
   },
@@ -3422,6 +5670,54 @@
         "en": "Enjoy your visit to Times Square!",
         "ko": "타임스퀘어 방문 즐겁게 하세요!"
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "Would you like me to ~?",
+        "meaning": "제가 ~해드릴까요?",
+        "examples": [
+          {
+            "en": "Would you like me to help you with your luggage?",
+            "ko": "짐 옮기는 걸 도와드릴까요?"
+          },
+          {
+            "en": "Would you like me to refill your water?",
+            "ko": "물을 다시 채워드릴까요?"
+          },
+          {
+            "en": "Would you like me to take your plates now?",
+            "ko": "지금 접시를 치워드릴까요?"
+          },
+          {
+            "en": "Would you like me to bring the check now?",
+            "ko": "지금 계산서를 가져다 드릴까요?"
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Have you asked for directions recently?",
+        "qKo": "최근에 길을 물어본 적이 있나요?",
+        "answers": [
+          {
+            "en": "Yes, I have. I got lost last week and had to ask someone.",
+            "ko": "네, 있어요. 지난주에 길을 잃어서 누군가에게 물어봐야 했어요."
+          },
+          {
+            "en": "Yes, I have. Google Maps wasn't working, so I had to ask someone.",
+            "ko": "네, 있어요. 구글 지도가 작동하지 않아서 누군가에게 물어봐야 했어요."
+          },
+          {
+            "en": "No, I haven't. I usually use my phone for directions.",
+            "ko": "아니요, 없어요. 저는 보통 휴대폰으로 길을 찾아요."
+          },
+          {
+            "en": "No, I haven't. I'm pretty good with directions.",
+            "ko": "아니요, 없어요. 저는 길 찾는 데 꽤 능숙해요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -3475,6 +5771,60 @@
         "speaker": "Jinsu",
         "en": "You're welcome! Enjoy your time in Seoul!",
         "ko": "천만에요! 서울에서 즐거운 시간 보내세요!"
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "Should I ~?",
+        "meaning": "내가 ~해야 할까? (조언·결정을 구할 때)",
+        "examples": [
+          {
+            "en": "Should I get the beige one or the khaki one? I can't decide!",
+            "ko": "베이지색으로 할까 카키색으로 할까? 결정을 못 하겠어!"
+          },
+          {
+            "en": "Should I change my outfit? Is this too casual?",
+            "ko": "옷을 갈아입어야 할까? 이거 너무 캐주얼한가?"
+          },
+          {
+            "en": "Should I pick you up, or are you taking the bus?",
+            "ko": "내가 데리러 갈까, 아니면 버스 탈 거야?"
+          }
+        ]
+      },
+      {
+        "pattern": "Excuse me, I'd like to go to ~. Could you tell me how to get there?",
+        "meaning": "실례합니다, ~에 가고 싶은데요. 가는 방법을 알려주시겠어요?",
+        "examples": [
+          {
+            "en": "Excuse me, do you need any help?",
+            "ko": "실례합니다, 도움이 필요하세요?"
+          },
+          {
+            "en": "Excuse me, I'd like to go to COEX. Could you tell me how to get there?",
+            "ko": "실례합니다, 코엑스에 가고 싶은데요. 가는 방법을 알려주시겠어요?"
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Excuse me, I'd like to go to COEX. Could you tell me how to get there?",
+        "qKo": "실례합니다, 코엑스에 가고 싶은데요. 가는 방법을 알려주시겠어요?",
+        "answers": [
+          {
+            "en": "Take Line 4 toward Oido and get off at Sadang Station. Then, transfer to Line 2 toward Jamsil. Get off at Samseong Station, and head toward Exit 6. You will find COEX there.",
+            "ko": "오이도 방향 4호선을 타고 사당역에서 내리세요. 그다음 잠실 방향 2호선으로 갈아타세요. 삼성역에서 내려서 6번 출구로 가세요. 거기서 코엑스를 찾을 수 있어요."
+          },
+          {
+            "en": "There's a bus stop over there. Take bus 143 or 2413, and stay on the bus for about 20 minutes. Get off at COEX Artium, and COEX Mall will be nearby.",
+            "ko": "저기에 버스 정류장이 있어요. 143번이나 2413번 버스를 타고 약 20분 정도 타고 가세요. 코엑스 아티움에서 내리면 코엑스몰이 근처에 있어요."
+          },
+          {
+            "en": "Take Exit 4 at Samseong Station, then go straight for two blocks and turn left. Walk one more block straight, then cross the street. You'll see the Ibis Hotel on your left.",
+            "ko": "삼성역 4번 출구로 나와서 두 블록 직진한 다음 왼쪽으로 도세요. 한 블록 더 직진한 후 길을 건너세요. 왼쪽에 이비스 호텔이 보일 거예요."
+          }
+        ]
       }
     ]
   },
@@ -3549,6 +5899,46 @@
         "speaker": "",
         "en": "I should use it wisely and try to balance it with real life.",
         "ko": "나는 그것을 현명하게 사용하고 실제 삶과 균형을 맞추려고 노력해야 한다."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "There was a time when I ~",
+        "meaning": "~하던 때가 있었다 (지금은 다름)",
+        "examples": [
+          {
+            "en": "There was a time when I wanted to be a singer, but now I just sing as a hobby.",
+            "ko": "가수가 되고 싶었던 때가 있었지만, 지금은 그냥 취미로 노래해요."
+          },
+          {
+            "en": "There was a time when I drank too much, but now I drink just a little.",
+            "ko": "술을 너무 많이 마시던 때가 있었지만, 지금은 조금만 마셔요."
+          },
+          {
+            "en": "There was a time when I went on a strict diet, but now I focus more on my health.",
+            "ko": "엄격한 다이어트를 하던 때가 있었지만, 지금은 건강에 더 집중해요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you often watch YouTube? If so, what's your favorite YouTube channel?",
+        "qKo": "유튜브를 자주 보나요? 그렇다면 좋아하는 유튜브 채널은 무엇인가요?",
+        "answers": [
+          {
+            "en": "Yes, I watch YouTube almost every day, and I especially love travel channels like \"Pani Bottle\".",
+            "ko": "네, 거의 매일 유튜브를 봐요. 특히 '빠니보틀' 같은 여행 채널을 정말 좋아해요."
+          },
+          {
+            "en": "Yes, I watch it a lot, especially before bed at night. My favorite channel is \"Korean Englishman\". It's hilarious.",
+            "ko": "네, 특히 밤에 자기 전에 많이 봐요. 제가 좋아하는 채널은 '영국남자'예요. 정말 웃겨요."
+          },
+          {
+            "en": "Sometimes I do, sometimes I don't. I don't have a favorite channel, but I enjoy watching movie channels.",
+            "ko": "볼 때도 있고 안 볼 때도 있어요. 좋아하는 채널은 딱히 없지만 영화 채널 보는 걸 즐겨요."
+          }
+        ]
       }
     ]
   },
@@ -3649,6 +6039,58 @@
         "en": "Thanks! You too!",
         "ko": "감사합니다! 당신도요!"
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "Would you like ~? / Would you like to ~?",
+        "meaning": "~하시겠어요? / ~를 원하세요? (정중한 제안)",
+        "examples": [
+          {
+            "en": "Would you like some coffee? Or would you prefer tea?",
+            "ko": "커피 좀 드시겠어요? 아니면 차가 더 좋으세요?"
+          },
+          {
+            "en": "Would you like a seat over here, or would you like to wait for a different table?",
+            "ko": "여기 자리에 앉으시겠어요, 아니면 다른 테이블을 기다리시겠어요?"
+          },
+          {
+            "en": "Would you like anything else? Let me know if you need anything!",
+            "ko": "다른 거 필요하신 거 있으세요? 필요한 게 있으면 알려주세요!"
+          },
+          {
+            "en": "Would you like to join us? Or do you have other plans?",
+            "ko": "저희랑 같이 하시겠어요? 아니면 다른 계획이 있으세요?"
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "I'm looking for this jacket. Do you have this in your store?",
+        "qKo": "이 재킷을 찾고 있어요. 이 가게에 있나요?",
+        "answers": [
+          {
+            "en": "Is this on sale? How much is it after the discount?",
+            "ko": "이거 세일 중인가요? 할인 후에는 얼마인가요?"
+          },
+          {
+            "en": "Do you accept exchanges and returns?",
+            "ko": "교환이나 환불이 되나요?"
+          },
+          {
+            "en": "Yes, we accept exchanges and returns within 30 days with the original receipt.",
+            "ko": "네, 영수증 원본이 있으면 30일 이내에 교환과 환불이 가능합니다."
+          },
+          {
+            "en": "Sorry, we do not accept exchanges or returns on sale items.",
+            "ko": "죄송하지만 세일 상품은 교환이나 환불이 되지 않습니다."
+          },
+          {
+            "en": "Thank you, but I think I'll pass on this one.",
+            "ko": "감사하지만 이건 사지 않을게요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -3748,6 +6190,46 @@
         "en": "Have a wonderful evening!",
         "ko": "멋진 저녁 보내세요!"
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "Please feel free to ~",
+        "meaning": "편하게 ~하세요 (부담 갖지 말고)",
+        "examples": [
+          {
+            "en": "Please feel free to have some snacks. There's plenty, so help yourself!",
+            "ko": "편하게 간식 좀 드세요. 많으니까 마음껏 드세요!"
+          },
+          {
+            "en": "Please feel free to contact me anytime. I'm happy to help.",
+            "ko": "언제든지 편하게 연락하세요. 기꺼이 도와드릴게요."
+          },
+          {
+            "en": "Please feel free to look around. Take your time and enjoy!",
+            "ko": "편하게 둘러보세요. 천천히 즐기세요!"
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Have you seen any shows recently?",
+        "qKo": "최근에 공연을 본 적이 있나요?",
+        "answers": [
+          {
+            "en": "Yes, I saw a play last month. It was better than I expected.",
+            "ko": "네, 지난달에 연극을 봤어요. 기대했던 것보다 좋았어요."
+          },
+          {
+            "en": "Not recently, but I went to a BlackPink concert two years ago. It was fantastic!",
+            "ko": "최근에는 아니지만, 2년 전에 블랙핑크 콘서트에 갔어요. 정말 환상적이었어요!"
+          },
+          {
+            "en": "No, I haven't. But if I get the chance, I'd love to go to a BTS concert.",
+            "ko": "아니요, 없어요. 하지만 기회가 되면 BTS 콘서트에 정말 가보고 싶어요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -3837,6 +6319,108 @@
         "en": "Got it! Thanks a lot!",
         "ko": "알겠어요! 정말 감사합니다!"
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "give + A(사람) + B(사물) : A에게 B를 주다",
+        "meaning": "A에게 B를 주다",
+        "examples": [
+          {
+            "en": "I'll give you a ride to the airport. Let me know when you're ready.",
+            "ko": "공항까지 태워다 줄게. 준비되면 알려줘."
+          },
+          {
+            "en": "It was his birthday yesterday. Did you give him a birthday present?",
+            "ko": "어제가 그의 생일이었어. 그에게 생일 선물 줬어?"
+          },
+          {
+            "en": "I'm in the middle of something. Can you give me some time?",
+            "ko": "내가 뭔가 하는 중이야. 시간 좀 줄 수 있어?"
+          },
+          {
+            "en": "I waved at her. She gave me a smile.",
+            "ko": "내가 그녀에게 손을 흔들었어. 그녀는 나에게 미소를 지어줬어."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Hello, how can I help you?",
+        "qKo": "안녕하세요, 무엇을 도와드릴까요?",
+        "answers": [
+          {
+            "en": "I have a sore throat.",
+            "ko": "목이 아파요."
+          },
+          {
+            "en": "I have a fever.",
+            "ko": "열이 나요."
+          },
+          {
+            "en": "I have chills and body aches.",
+            "ko": "오한이 나고 몸이 쑤셔요."
+          },
+          {
+            "en": "I have a runny nose and congestion.",
+            "ko": "콧물이 나고 코가 막혔어요."
+          },
+          {
+            "en": "I have a cough.",
+            "ko": "기침이 나요."
+          },
+          {
+            "en": "I have a stomachache.",
+            "ko": "배가 아파요."
+          },
+          {
+            "en": "I have indigestion.",
+            "ko": "소화가 안 돼요."
+          },
+          {
+            "en": "I feel nauseous.",
+            "ko": "메스꺼워요."
+          },
+          {
+            "en": "I threw up.",
+            "ko": "토했어요."
+          },
+          {
+            "en": "I have diarrhea.",
+            "ko": "설사를 해요."
+          },
+          {
+            "en": "My eyes are itchy and irritated.",
+            "ko": "눈이 가렵고 따가워요."
+          },
+          {
+            "en": "I have a cut on my finger.",
+            "ko": "손가락을 베였어요."
+          },
+          {
+            "en": "I have a burn on my finger.",
+            "ko": "손가락에 화상을 입었어요."
+          },
+          {
+            "en": "I have a sunburn on my shoulder.",
+            "ko": "어깨가 햇볕에 탔어요."
+          },
+          {
+            "en": "I was bitten by an insect.",
+            "ko": "벌레에 물렸어요."
+          }
+        ]
+      },
+      {
+        "q": "How long have you had it?",
+        "qKo": "그 증상이 얼마나 오래됐나요?",
+        "answers": [
+          {
+            "en": "It started yesterday.",
+            "ko": "어제 시작됐어요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -3900,6 +6484,46 @@
         "speaker": "",
         "en": "I also want to live a life that focuses on values rather than possessions.",
         "ko": "나는 또한 소유보다 가치에 초점을 맞춘 삶을 살고 싶다."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "I'm currently ~ing",
+        "meaning": "나는 현재 ~하고 있다",
+        "examples": [
+          {
+            "en": "I'm currently living in London. I moved here for work, and I'm pretty happy with my life here.",
+            "ko": "나는 현재 런던에 살고 있어요. 일 때문에 이곳으로 이사 왔고, 여기 생활에 꽤 만족해요."
+          },
+          {
+            "en": "I'm currently working on a new project. It's quite challenging, so I'm struggling a bit.",
+            "ko": "나는 현재 새 프로젝트를 진행하고 있어요. 꽤 어려워서 조금 고전하고 있어요."
+          },
+          {
+            "en": "I'm currently taking tennis lessons, and I feel like I'm improving.",
+            "ko": "나는 현재 테니스 레슨을 받고 있는데, 실력이 늘고 있는 것 같아요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What's your all-time favorite book?",
+        "qKo": "당신이 가장 좋아하는 책은 무엇인가요?",
+        "answers": [
+          {
+            "en": "My all-time favorite book is Demian. I really relate to the main character, and the story is so moving.",
+            "ko": "제가 가장 좋아하는 책은 데미안이에요. 주인공에게 정말 공감이 가고, 이야기가 무척 감동적이에요."
+          },
+          {
+            "en": "I love Romance of the Three Kingdoms. It's full of strategy, leadership, and amazing characters. Every time I read it, I pick up something new.",
+            "ko": "저는 삼국지를 좋아해요. 전략, 리더십, 멋진 인물들로 가득해요. 읽을 때마다 새로운 것을 발견해요."
+          },
+          {
+            "en": "I'd say Tuesdays with Morrie. It gives deep insights into life and death. I highly recommend it.",
+            "ko": "저는 모리와 함께한 화요일을 꼽을게요. 삶과 죽음에 대한 깊은 통찰을 줘요. 강력히 추천해요."
+          }
+        ]
       }
     ]
   },
@@ -3974,6 +6598,50 @@
         "speaker": "Alice",
         "en": "Yeah, you should! I think you'll like it.",
         "ko": "응, 꼭 봐! 네가 좋아할 것 같아."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "get tired of ~",
+        "meaning": "~에 싫증이 나다, 질리다",
+        "examples": [
+          {
+            "en": "I'm getting tired of eating pizza these days. I need a break from greasy food.",
+            "ko": "요즘 피자 먹는 게 질려요. 기름진 음식은 좀 쉬어야겠어요."
+          },
+          {
+            "en": "I never get tired of Gomtang. It's my perfect comfort food.",
+            "ko": "저는 곰탕이 절대 질리지 않아요. 제게 완벽한 위안 음식이에요."
+          },
+          {
+            "en": "She got tired of his lies, and broke up with him.",
+            "ko": "그녀는 그의 거짓말에 질려서 그와 헤어졌어요."
+          },
+          {
+            "en": "Are you getting tired of your routine? Try something new!",
+            "ko": "일상이 지겨워지고 있나요? 새로운 것을 시도해 보세요!"
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What's your all-time favorite movie?",
+        "qKo": "당신이 가장 좋아하는 영화는 무엇인가요?",
+        "answers": [
+          {
+            "en": "My all-time favorite movie is Casablanca. It's an old movie, but I love the atmosphere of the movie.",
+            "ko": "제가 가장 좋아하는 영화는 카사블랑카예요. 오래된 영화지만 그 분위기를 정말 좋아해요."
+          },
+          {
+            "en": "I really like Parasite. It was so intense and thought-provoking.",
+            "ko": "저는 기생충을 정말 좋아해요. 아주 강렬하고 생각할 거리를 많이 줬어요."
+          },
+          {
+            "en": "I love About Time. It's such a heartwarming and touching story.",
+            "ko": "저는 어바웃 타임을 좋아해요. 정말 마음이 따뜻해지고 감동적인 이야기예요."
+          }
+        ]
       }
     ]
   },
@@ -4059,6 +6727,54 @@
         "en": "Start with a small habit today!",
         "ko": "오늘 작은 습관으로 시작하라!"
       }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "You don't have to ~",
+        "meaning": "당신은 ~할 필요가 없다",
+        "examples": [
+          {
+            "en": "You don't have to worry about it. I'll take care of it.",
+            "ko": "그것에 대해 걱정할 필요 없어요. 제가 처리할게요."
+          },
+          {
+            "en": "You don't have to hurry. We have plenty of time.",
+            "ko": "서두를 필요 없어요. 시간 충분해요."
+          },
+          {
+            "en": "You don't have to bring anything. Just bring yourself.",
+            "ko": "아무것도 가져올 필요 없어요. 그냥 몸만 오세요."
+          },
+          {
+            "en": "You don't have to dress formally. Just come as you are. It's a casual dinner.",
+            "ko": "격식 차려 입을 필요 없어요. 그냥 편하게 오세요. 편안한 저녁 식사예요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Do you have any daily habits?",
+        "qKo": "당신은 매일 하는 습관이 있나요?",
+        "answers": [
+          {
+            "en": "Yes, I do. I always start my day with a glass of lukewarm water. After that, I usually do some light stretching.",
+            "ko": "네, 있어요. 저는 항상 미지근한 물 한 잔으로 하루를 시작해요. 그다음에 보통 가벼운 스트레칭을 해요."
+          },
+          {
+            "en": "Yes, I read before bed every night. After that, I set my alarm for the next day.",
+            "ko": "네, 저는 매일 밤 자기 전에 책을 읽어요. 그다음에 다음 날 알람을 맞춰요."
+          },
+          {
+            "en": "Yes, I walk my dog after dinner every day. We take a walk in the park near my place.",
+            "ko": "네, 저는 매일 저녁 식사 후에 개를 산책시켜요. 집 근처 공원에서 산책해요."
+          },
+          {
+            "en": "Yes, I write in my journal every day, and reflect on my day.",
+            "ko": "네, 저는 매일 일기를 쓰고 하루를 돌아봐요."
+          }
+        ]
+      }
     ]
   },
   {
@@ -4127,6 +6843,58 @@
         "speaker": "Front Desk Agent",
         "en": "You're very welcome! Please let us know if you need anything else.",
         "ko": "천만에요! 다른 필요하신 것이 있으면 알려주세요."
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "Would it be possible to ~?",
+        "meaning": "~하는 것이 가능할까요?",
+        "examples": [
+          {
+            "en": "Would it be possible to get a refund? The item is defective.",
+            "ko": "환불받는 것이 가능할까요? 물건에 결함이 있어요."
+          },
+          {
+            "en": "Would it be possible to check my luggage again? It hasn't arrived yet.",
+            "ko": "제 짐을 다시 확인해 주는 것이 가능할까요? 아직 도착하지 않았어요."
+          },
+          {
+            "en": "Would it be possible to get a new dish? I found a hair in my food.",
+            "ko": "새 음식을 받는 것이 가능할까요? 음식에서 머리카락이 나왔어요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Hello, how may I help you?",
+        "qKo": "안녕하세요, 무엇을 도와드릴까요?",
+        "answers": [
+          {
+            "en": "Hi, I have a problem. My room is too cold. Could you check the heating, please?",
+            "ko": "안녕하세요, 문제가 있어요. 방이 너무 추워요. 난방을 확인해 주시겠어요?"
+          },
+          {
+            "en": "My room is too hot. Could you check the air conditioning, please?",
+            "ko": "제 방이 너무 더워요. 에어컨을 확인해 주시겠어요?"
+          },
+          {
+            "en": "The TV isn't working. Could you check it, please?",
+            "ko": "TV가 작동하지 않아요. 확인해 주시겠어요?"
+          },
+          {
+            "en": "There's no hot water. Could you fix it, please?",
+            "ko": "뜨거운 물이 나오지 않아요. 고쳐 주시겠어요?"
+          },
+          {
+            "en": "My room is very noisy. Would it be possible to change rooms?",
+            "ko": "제 방이 너무 시끄러워요. 방을 바꾸는 것이 가능할까요?"
+          },
+          {
+            "en": "The Wi-Fi isn't working. It keeps disconnecting.",
+            "ko": "와이파이가 작동하지 않아요. 계속 연결이 끊겨요."
+          }
+        ]
       }
     ]
   },
@@ -4226,6 +6994,50 @@
         "speaker": "",
         "en": "My English journey doesn't end here--it's just beginning!",
         "ko": "나의 영어 여정은 여기서 끝나지 않는다—이제 막 시작일 뿐이다!"
+      }
+    ],
+    "keyExpressions": [
+      {
+        "pattern": "That was the moment + 주어 + 동사",
+        "meaning": "그때가 바로 ~한 순간이었다",
+        "examples": [
+          {
+            "en": "That was the moment I decided to quit my job. I knew I needed a change in my life.",
+            "ko": "그때가 바로 제가 일을 그만두기로 결심한 순간이었어요. 제 삶에 변화가 필요하다는 걸 알았거든요."
+          },
+          {
+            "en": "That was the moment I felt truly happy. I had nothing to envy.",
+            "ko": "그때가 바로 제가 진정으로 행복을 느낀 순간이었어요. 부러울 게 하나도 없었어요."
+          },
+          {
+            "en": "That was the moment I realized I was late. I started running as fast as I could.",
+            "ko": "그때가 바로 제가 늦었다는 걸 깨달은 순간이었어요. 저는 있는 힘껏 달리기 시작했어요."
+          }
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "What would you like to do once your English gets better?",
+        "qKo": "영어 실력이 좋아지면 무엇을 하고 싶나요?",
+        "answers": [
+          {
+            "en": "I'd like to travel abroad, and talk to locals in English.",
+            "ko": "저는 해외여행을 가서 현지인들과 영어로 이야기하고 싶어요."
+          },
+          {
+            "en": "I want to read English books, and watch TED talks without subtitles.",
+            "ko": "저는 영어 책을 읽고 자막 없이 TED 강연을 보고 싶어요."
+          },
+          {
+            "en": "I want to search for information in English on Google.",
+            "ko": "저는 구글에서 영어로 정보를 검색하고 싶어요."
+          },
+          {
+            "en": "I want to understand and enjoy English YouTube channels.",
+            "ko": "저는 영어 유튜브 채널을 이해하고 즐기고 싶어요."
+          }
+        ]
       }
     ]
   }

@@ -1474,6 +1474,82 @@ footer {
   border-color: #16a34a;
 }
 
+/* ⭐ 중요 문장 / 🗣️ 묻고 답하기 */
+.bombom-keylist,
+.bombom-qalist {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+.ke-item {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.ke-item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.ke-pattern {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.ke-meaning {
+  font-weight: 400;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.ke-examples,
+.qa-answers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ke-ex,
+.qa-ans {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+.ke-en {
+  font-size: 1.02rem;
+  color: var(--text);
+}
+.ke-ko {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.qa-item {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+.qa-item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.qa-q {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.qa-qko {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 4px 0 10px;
+}
+.qa-reveal {
+  margin-bottom: 8px;
+}
+.qa-answers {
+  margin-top: 8px;
+}
+
 /* 따라하기 자막 버튼 바 */
 .echo-subtitle {
   margin-top: 12px;
