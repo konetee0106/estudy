@@ -4191,38 +4191,124 @@
     "lines": [
       {
         "speaker": "",
-        "en": "[38] K-Food",
-        "ko": "[38] K-푸드"
+        "en": "K-Food is gaining popularity all over the world.",
+        "ko": "K-푸드가 전 세계적으로 인기를 얻고 있습니다."
+      },
+      {
+        "speaker": "",
+        "en": "Many people enjoy dishes like bulgogi, japchae, and bibimbap.",
+        "ko": "많은 사람들이 불고기, 잡채, 비빔밥 같은 음식을 즐깁니다."
+      },
+      {
+        "speaker": "",
+        "en": "These dishes are tasty, healthy, and full of rich flavors.",
+        "ko": "이 음식들은 맛있고, 건강에 좋으며, 풍부한 맛으로 가득합니다."
+      },
+      {
+        "speaker": "",
+        "en": "One reason K-Food is becoming more popular is Korean culture, like movies, dramas, and K-pop.",
+        "ko": "K-푸드가 더 인기를 얻는 한 가지 이유는 영화, 드라마, K-팝 같은 한국 문화입니다."
+      },
+      {
+        "speaker": "",
+        "en": "Fans of K-culture see their favorite stars eating Korean food, like ramyeon, and this makes them want to try it too.",
+        "ko": "K-문화의 팬들은 좋아하는 스타들이 라면 같은 한국 음식을 먹는 것을 보고, 이는 그들도 그것을 먹어보고 싶게 만듭니다."
+      },
+      {
+        "speaker": "",
+        "en": "Another reason is that Korean food uses many different ingredients and seasonings to make rich and unique flavors.",
+        "ko": "또 다른 이유는 한국 음식이 여러 가지 다양한 재료와 양념을 사용해 풍부하고 독특한 맛을 낸다는 것입니다."
+      },
+      {
+        "speaker": "",
+        "en": "Eating Korean food is also a fun and exciting experience.",
+        "ko": "한국 음식을 먹는 것은 또한 재미있고 신나는 경험입니다."
+      },
+      {
+        "speaker": "",
+        "en": "For example, when you eat Korean barbecue like samgyeopsal, you can watch the meat cook on a charcoal grill right in front of you.",
+        "ko": "예를 들어, 삼겹살 같은 한국식 바비큐를 먹을 때, 여러분은 바로 눈앞의 숯불 그릴에서 고기가 익는 것을 볼 수 있습니다."
+      },
+      {
+        "speaker": "",
+        "en": "You can wrap the meat in lettuce, which is called ssam, or make fried rice with the leftover sauce.",
+        "ko": "고기를 상추에 싸서 먹을 수 있는데, 이것을 쌈이라고 부르며, 남은 소스로 볶음밥을 만들 수도 있습니다."
+      },
+      {
+        "speaker": "",
+        "en": "All these things spark the curiosity of foreigners.",
+        "ko": "이 모든 것이 외국인들의 호기심을 불러일으킵니다."
+      },
+      {
+        "speaker": "",
+        "en": "Have you tried K-Food yet?",
+        "ko": "여러분은 벌써 K-푸드를 먹어본 적이 있나요?"
+      },
+      {
+        "speaker": "",
+        "en": "If not, you should give it a try.",
+        "ko": "아직 아니라면, 한번 시도해 보세요."
+      },
+      {
+        "speaker": "",
+        "en": "It might open up a whole new world for you!",
+        "ko": "그것이 여러분에게 완전히 새로운 세계를 열어줄지도 모릅니다!"
       }
     ],
     "keyExpressions": [
       {
-        "pattern": "지각동사(see/hear/feel) + 목적어 + 동사원형/-ing",
-        "meaning": "~가 …하는 것을 보다/듣다/느끼다 (원형: 동작 전체, -ing: 진행 중인 동작)",
+        "pattern": "지각동사 + 목적어 + 동사원형 (see/hear/feel + O + V)",
+        "meaning": "어떤 동작의 전체 과정을 처음부터 끝까지 봤거나 들었을 때 동사원형을 쓴다.",
         "examples": [
           {
             "en": "I saw him cross the street.",
-            "ko": "나는 그가 길을 건너는 것을 보았다. (건너는 동작 전체)"
-          },
-          {
-            "en": "I saw him crossing the street.",
-            "ko": "나는 그가 길을 건너고 있는 것을 보았다. (건너는 도중)"
+            "ko": "나는 그가 길을 건너는 것을 (다) 보았다."
           },
           {
             "en": "I heard her sing a song.",
-            "ko": "나는 그녀가 노래 부르는 것을 들었다."
-          },
-          {
-            "en": "I heard her singing a song.",
-            "ko": "나는 그녀가 노래 부르고 있는 것을 들었다."
+            "ko": "나는 그녀가 노래를 (한 곡) 부르는 것을 들었다."
           },
           {
             "en": "I felt something touch my shoulder, but when I turned around, there was no one.",
-            "ko": "나는 무언가가 내 어깨를 만지는 것을 느꼈지만, 돌아보니 아무도 없었다."
+            "ko": "나는 무언가 내 어깨를 건드리는 것을 느꼈지만, 돌아보니 아무도 없었다."
+          }
+        ]
+      },
+      {
+        "pattern": "지각동사 + 목적어 + 동사-ing (see/hear/feel + O + V-ing)",
+        "meaning": "동작이 진행 중인 모습(일부 장면)을 보거나 들었을 때 -ing를 쓴다.",
+        "examples": [
+          {
+            "en": "I saw him crossing the street.",
+            "ko": "나는 그가 길을 건너고 있는 것을 보았다."
+          },
+          {
+            "en": "I heard her singing a song.",
+            "ko": "나는 그녀가 노래를 부르고 있는 것을 들었다."
           },
           {
             "en": "I felt something touching my shoulder, and it turned out to be a spider.",
-            "ko": "나는 무언가가 내 어깨를 만지고 있는 것을 느꼈는데, 알고 보니 거미였다."
+            "ko": "나는 무언가 내 어깨를 건드리고 있는 것을 느꼈는데, 알고 보니 거미였다."
+          }
+        ]
+      },
+      {
+        "pattern": "which is called ~",
+        "meaning": "'~라고 불리는'이라는 뜻으로 앞의 명사를 부연 설명한다.",
+        "examples": [
+          {
+            "en": "You can wrap the meat in lettuce, which is called ssam.",
+            "ko": "고기를 상추에 쌀 수 있는데, 이것을 쌈이라고 부릅니다."
+          }
+        ]
+      },
+      {
+        "pattern": "give it a try",
+        "meaning": "한번 시도해 보다",
+        "examples": [
+          {
+            "en": "If not, you should give it a try.",
+            "ko": "아직 아니라면, 한번 시도해 보세요."
           }
         ]
       }
@@ -4230,7 +4316,7 @@
     "qa": [
       {
         "q": "Have you ever tried Korean food? If not, is there any Korean food you want to try?",
-        "qKo": "한국 음식을 먹어본 적이 있나요? 없다면, 먹어보고 싶은 한국 음식이 있나요?",
+        "qKo": "한국 음식을 먹어본 적이 있나요? 아직 없다면, 먹어보고 싶은 한국 음식이 있나요?",
         "answers": [
           {
             "en": "Yes, I have and I love it! My favorite is gimbap.",
@@ -4238,11 +4324,11 @@
           },
           {
             "en": "Of course! I've been to a Korean restaurant several times. I really like japchae. I could eat it every day.",
-            "ko": "물론이죠! 한국 식당에 여러 번 가봤어요. 저는 잡채를 정말 좋아해요. 매일 먹을 수도 있어요."
+            "ko": "물론이죠! 한국 식당에 여러 번 가봤어요. 저는 잡채를 정말 좋아해요. 매일도 먹을 수 있어요."
           },
           {
             "en": "Not yet, but I really want to try Korean BBQ. It looks delicious!",
-            "ko": "아직요, 하지만 한국식 바비큐를 꼭 먹어보고 싶어요. 정말 맛있어 보여요!"
+            "ko": "아직 안 먹어봤지만, 한국식 바비큐를 꼭 먹어보고 싶어요. 맛있어 보여요!"
           }
         ]
       }
@@ -4861,39 +4947,118 @@
   },
   {
     "day": 44,
-    "title": "SNS",
-    "titleKo": "SNS",
+    "title": "소셜 미디어(SNS)",
+    "titleKo": "소셜 미디어(SNS)",
     "type": "monologue",
     "audio": "",
     "lines": [
       {
         "speaker": "",
-        "en": "(SNS)",
-        "ko": "(SNS)"
+        "en": "Social media like Facebook and Instagram are very popular today.",
+        "ko": "페이스북과 인스타그램 같은 소셜 미디어는 오늘날 매우 인기가 있습니다."
+      },
+      {
+        "speaker": "",
+        "en": "They help people stay connected, share their lives, and get information easily.",
+        "ko": "그것들은 사람들이 연결을 유지하고, 자신의 삶을 공유하며, 정보를 쉽게 얻도록 도와줍니다."
+      },
+      {
+        "speaker": "",
+        "en": "But at the same time, social media has some negative sides.",
+        "ko": "하지만 동시에 소셜 미디어는 몇 가지 부정적인 면도 가지고 있습니다."
+      },
+      {
+        "speaker": "",
+        "en": "One advantage of social media is that it helps people communicate.",
+        "ko": "소셜 미디어의 한 가지 장점은 사람들이 소통하도록 돕는다는 것입니다."
+      },
+      {
+        "speaker": "",
+        "en": "We can talk to friends and family even if they are far away.",
+        "ko": "우리는 친구와 가족이 멀리 있어도 그들과 이야기할 수 있습니다."
+      },
+      {
+        "speaker": "",
+        "en": "We can also make new friends and learn about different cultures.",
+        "ko": "우리는 또한 새로운 친구를 사귀고 다양한 문화에 대해 배울 수 있습니다."
+      },
+      {
+        "speaker": "",
+        "en": "Another advantage is that we can get news and useful information quickly.",
+        "ko": "또 다른 장점은 우리가 뉴스와 유용한 정보를 빠르게 얻을 수 있다는 것입니다."
+      },
+      {
+        "speaker": "",
+        "en": "Many people share interesting articles, photos, and videos.",
+        "ko": "많은 사람들이 흥미로운 기사, 사진, 영상을 공유합니다."
+      },
+      {
+        "speaker": "",
+        "en": "However, social media also has some disadvantages.",
+        "ko": "하지만 소셜 미디어는 몇 가지 단점도 가지고 있습니다."
+      },
+      {
+        "speaker": "",
+        "en": "One problem is that people spend too much time on it.",
+        "ko": "한 가지 문제는 사람들이 거기에 너무 많은 시간을 쓴다는 것입니다."
+      },
+      {
+        "speaker": "",
+        "en": "Some people check social media all day and don't focus on their real life.",
+        "ko": "어떤 사람들은 하루 종일 소셜 미디어를 확인하고 실제 생활에 집중하지 않습니다."
+      },
+      {
+        "speaker": "",
+        "en": "Another problem is that people compare their lives to those of others.",
+        "ko": "또 다른 문제는 사람들이 자신의 삶을 다른 사람들의 삶과 비교한다는 것입니다."
+      },
+      {
+        "speaker": "",
+        "en": "On social media, people usually post only the best parts of their lives, like happy moments, vacations, and achievements.",
+        "ko": "소셜 미디어에서 사람들은 보통 행복한 순간, 휴가, 성취처럼 자신의 삶에서 가장 좋은 부분만 올립니다."
+      },
+      {
+        "speaker": "",
+        "en": "Because of this, some people feel unhappy with their own lives.",
+        "ko": "이 때문에 어떤 사람들은 자신의 삶에 대해 불행하다고 느낍니다."
+      },
+      {
+        "speaker": "",
+        "en": "In conclusion, social media has both good and bad sides.",
+        "ko": "결론적으로, 소셜 미디어는 좋은 면과 나쁜 면을 모두 가지고 있습니다."
+      },
+      {
+        "speaker": "",
+        "en": "It is useful for communication and information, but we should use it carefully and not spend too much time on it.",
+        "ko": "그것은 소통과 정보에 유용하지만, 우리는 그것을 신중하게 사용하고 너무 많은 시간을 쓰지 말아야 합니다."
       }
     ],
     "keyExpressions": [
       {
-        "pattern": "feel happy with : ~에 만족하다, 기쁘다",
-        "meaning": "~에 대해 만족스럽고 행복함을 느낌",
+        "pattern": "feel happy with ~",
+        "meaning": "~에 대해 만족하다, 행복하다고 느끼다",
         "examples": [
           {
             "en": "I feel happy with my new home. It's spacious and full of light.",
-            "ko": "새 집이 만족스러워요. 넓고 햇빛이 잘 들어요."
+            "ko": "저는 새 집에 만족합니다. 넓고 빛이 가득해요."
           },
           {
             "en": "Do you feel happy with your job, or do you want to try something new?",
-            "ko": "당신은 직업에 만족하나요, 아니면 새로운 걸 시도해 보고 싶나요?"
+            "ko": "당신은 직업에 만족하나요, 아니면 새로운 것을 시도하고 싶나요?"
           }
         ]
       },
       {
-        "pattern": "feel unhappy with : ~에 불만이다, 불만족하다",
-        "meaning": "~에 대해 만족하지 못하고 불행함을 느낌",
+        "pattern": "feel unhappy with ~",
+        "meaning": "~에 대해 불만족하다, 불행하다고 느끼다",
         "examples": [
           {
             "en": "I feel unhappy with my new haircut. I hope it grows out quickly.",
-            "ko": "새 머리 스타일이 마음에 안 들어요. 빨리 자랐으면 좋겠어요."
+            "ko": "저는 새 머리 모양이 마음에 안 들어요. 빨리 자라면 좋겠어요."
+          },
+          {
+            "en": "Some people feel unhappy with their own lives.",
+            "ko": "어떤 사람들은 자신의 삶에 대해 불행하다고 느낍니다."
           }
         ]
       }
@@ -4901,23 +5066,23 @@
     "qa": [
       {
         "q": "Do you use social media? If so, which social media app do you use the most?",
-        "qKo": "소셜 미디어를 사용하나요? 그렇다면 어떤 소셜 미디어 앱을 가장 많이 사용하나요?",
+        "qKo": "당신은 소셜 미디어를 사용하나요? 그렇다면 어떤 소셜 미디어 앱을 가장 많이 사용하나요?",
         "answers": [
           {
             "en": "Yes, I do. I mostly use Instagram to stay in touch with friends.",
-            "ko": "네, 사용해요. 친구들과 연락하기 위해 주로 인스타그램을 사용해요."
+            "ko": "네, 사용해요. 저는 주로 친구들과 연락하기 위해 인스타그램을 사용해요."
           },
           {
             "en": "Well, I check Facebook sometimes, but I only browse other people's posts.",
-            "ko": "음, 가끔 페이스북을 확인하지만 다른 사람들의 게시물만 둘러봐요."
+            "ko": "음, 가끔 페이스북을 확인하지만, 다른 사람들의 게시물만 둘러봐요."
           },
           {
             "en": "Not really. I have an Instagram account, but I don't really use it.",
-            "ko": "별로요. 인스타그램 계정은 있지만 잘 사용하지 않아요."
+            "ko": "별로요. 인스타그램 계정이 있지만 잘 사용하지는 않아요."
           },
           {
             "en": "Not at all. I used to use Kakao Story, but I don't anymore.",
-            "ko": "전혀요. 예전엔 카카오스토리를 썼지만 이제는 안 써요."
+            "ko": "전혀요. 예전에 카카오스토리를 사용했지만 이제는 안 해요."
           }
         ]
       }
