@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import Anthropic from "@anthropic-ai/sdk";
+import crypto from "crypto";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
@@ -55,34 +56,106 @@ const SASSY =
 const app = express();
 app.use(express.json({ limit: "1mb" }));
 
-// ===== 접근 암호 (배포 시 보호) =====
-// 환경변수 APP_PASSWORD 가 설정돼 있으면, 그 암호를 입력해야 앱에 들어갈 수 있다.
-// (로컬 개발에서는 APP_PASSWORD 를 비워두면 잠금 없이 바로 사용 가능)
+// ===== 접근 암호 (배포 시 보호) — 쿠키 기반 =====
+// 환경변수 APP_PASSWORD 가 설정돼 있으면, 로그인 페이지에서 암호를 넣어야 앱에 들어갈 수 있다.
+// 한 번 로그인하면 쿠키가 저장되어(60일) 페이지를 넘나들어도 다시 묻지 않는다.
+// (예전 HTTP Basic 방식은 모바일에서 페이지 이동 시 가끔 재로그인을 요구하는 버그가 있었음)
+// 로컬 개발에서는 APP_PASSWORD 를 비워두면 잠금 없이 바로 사용 가능.
 const APP_PASSWORD = process.env.APP_PASSWORD;
 if (APP_PASSWORD) {
-  app.use((req, res, next) => {
-    const header = req.headers.authorization || "";
-    const [scheme, encoded] = header.split(" ");
-    if (scheme === "Basic" && encoded) {
-      const decoded = Buffer.from(encoded, "base64").toString("utf8");
-      const pass = decoded.slice(decoded.indexOf(":") + 1);
-      // 길이가 다르면 즉시 실패, 같으면 상수시간 비교
-      if (
-        pass.length === APP_PASSWORD.length &&
-        (() => {
-          let diff = 0;
-          for (let i = 0; i < pass.length; i++)
-            diff |= pass.charCodeAt(i) ^ APP_PASSWORD.charCodeAt(i);
-          return diff === 0;
-        })()
-      ) {
-        return next();
-      }
+  const COOKIE = "estudy_auth";
+  const TOKEN = crypto
+    .createHash("sha256")
+    .update("estudy:" + APP_PASSWORD)
+    .digest("hex");
+  const MAX_AGE = 60 * 60 * 24 * 60; // 60일
+
+  function cookieVal(req, name) {
+    const raw = req.headers.cookie || "";
+    for (const part of raw.split(";")) {
+      const eq = part.indexOf("=");
+      if (eq < 0) continue;
+      if (part.slice(0, eq).trim() === name)
+        return decodeURIComponent(part.slice(eq + 1).trim());
     }
-    res.set("WWW-Authenticate", 'Basic realm="estudy", charset="UTF-8"');
-    return res.status(401).send("인증이 필요합니다. (Authentication required)");
+    return "";
+  }
+  function safeEqual(a, b) {
+    const ba = Buffer.from(String(a));
+    const bb = Buffer.from(String(b));
+    if (ba.length !== bb.length) return false;
+    try {
+      return crypto.timingSafeEqual(ba, bb);
+    } catch {
+      return false;
+    }
+  }
+
+  const LOGIN_HTML = (err) => `<!doctype html><html lang="ko"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>로그인 — estudy</title>
+<style>
+  :root{color-scheme:dark}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    background:#0e1526;color:#e8edf7;font-family:Pretendard,system-ui,-apple-system,sans-serif}
+  .box{width:min(360px,90vw);background:#17203a;border:1px solid #2c3a55;border-radius:16px;padding:28px 24px;text-align:center}
+  h1{font-size:1.3rem;margin:0 0 6px}
+  p{color:#9aa6bd;font-size:.9rem;margin:0 0 18px}
+  input{width:100%;box-sizing:border-box;padding:13px 14px;border-radius:10px;border:1px solid #2c3a55;
+    background:#0e1526;color:#e8edf7;font-size:1rem;margin-bottom:12px}
+  button{width:100%;padding:13px;border:none;border-radius:10px;background:#5b8cff;color:#fff;font-size:1rem;font-weight:700;cursor:pointer}
+  .err{color:#ff8f8f;font-size:.88rem;min-height:1.2em;margin-top:10px}
+</style></head><body>
+  <form class="box" id="f">
+    <h1>🔒 estudy</h1>
+    <p>비밀번호를 입력하세요</p>
+    <input id="pw" type="password" autocomplete="current-password" placeholder="비밀번호" autofocus>
+    <button type="submit">들어가기</button>
+    <div class="err" id="e">${err || ""}</div>
+  </form>
+<script>
+  const f=document.getElementById('f'),e=document.getElementById('e');
+  f.addEventListener('submit',async(ev)=>{ev.preventDefault();e.textContent='';
+    try{const r=await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({password:document.getElementById('pw').value})});
+      const d=await r.json();
+      if(d.ok){location.href='/';}else{e.textContent=d.error||'비밀번호가 틀렸습니다.';}
+    }catch(_){e.textContent='오류가 발생했어요. 다시 시도하세요.';}
   });
-  console.log("[보안] APP_PASSWORD 가 설정되어 접근 암호가 활성화되었습니다.");
+</script></body></html>`;
+
+  // 로그인 페이지 + 처리 (인증 미들웨어보다 먼저 등록해 누구나 접근 가능)
+  app.get("/login", (req, res) => res.type("html").send(LOGIN_HTML("")));
+  app.post("/login", (req, res) => {
+    const pass = String(req.body?.password || "");
+    if (safeEqual(pass, APP_PASSWORD)) {
+      const secure =
+        req.secure || req.headers["x-forwarded-proto"] === "https";
+      res.setHeader(
+        "Set-Cookie",
+        `${COOKIE}=${TOKEN}; Path=/; HttpOnly; Max-Age=${MAX_AGE}; SameSite=Lax${
+          secure ? "; Secure" : ""
+        }`
+      );
+      return res.json({ ok: true });
+    }
+    return res.status(401).json({ ok: false, error: "비밀번호가 틀렸습니다." });
+  });
+  app.get("/logout", (req, res) => {
+    res.setHeader("Set-Cookie", `${COOKIE}=; Path=/; HttpOnly; Max-Age=0`);
+    res.redirect("/login");
+  });
+
+  // 인증 미들웨어: 쿠키 없으면 로그인 페이지로 (HTML) 또는 401 (API)
+  app.use((req, res, next) => {
+    if (safeEqual(cookieVal(req, COOKIE), TOKEN)) return next();
+    const accepts = req.headers.accept || "";
+    if (req.method === "GET" && accepts.includes("text/html")) {
+      return res.redirect("/login");
+    }
+    return res.status(401).json({ error: "인증이 필요합니다. 다시 로그인하세요." });
+  });
+  console.log("[보안] APP_PASSWORD 설정됨 — 쿠키 기반 로그인 활성화.");
 }
 
 app.use(express.static(join(__dirname, "public")));
