@@ -156,10 +156,21 @@ async function fetchQuestion() {
     pHint.style.display = "none";
     questionEl.style.display = "block";
     questionEl.innerHTML =
-      `<div class="q-label">🎲 이번 동사: <b class="core-verb-chip">${esc(
-        currentVerb
-      )}</b> — 이 동사를 써서 영어로 옮겨보세요</div>` +
+      `<div class="q-label">아래 문장을 영어로 옮겨보세요
+        <button type="button" id="hintVerbBtn" class="hint-verb-btn">💡 추천동사 보기</button>
+        <span id="hintVerb" class="core-verb-chip" style="display: none"></span>
+      </div>` +
       `<div class="q-text">${esc(currentKorean)}</div>`;
+    // 추천동사는 버튼을 눌러야 보인다 (먼저 스스로 고민 → 막히면 힌트)
+    const hintBtn = document.getElementById("hintVerbBtn");
+    const hintVerb = document.getElementById("hintVerb");
+    if (hintBtn) {
+      hintBtn.addEventListener("click", () => {
+        hintVerb.textContent = currentVerb;
+        hintVerb.style.display = "inline-block";
+        hintBtn.style.display = "none";
+      });
+    }
     resultEl.classList.remove("show");
     resultEl.innerHTML = "";
     answerInput.value = "";
