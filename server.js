@@ -1503,6 +1503,186 @@ app.post("/api/verb-grade", async (req, res) => {
   }
 });
 
+// ===== 핵심동사 랜덤 연습 =====
+// 중학교 수준의 쉽고, 실제로 아주 많이 쓰이는 "만능 동사"들.
+// 매 라운드 이 풀에서 랜덤으로 하나가 뽑혀 그 동사를 써서 영작하게 된다.
+// (기존 /api/verb-* 는 건드리지 않음)
+const CORE_VERBS = {
+  get: "get up, get to (arrive), get ready, get a taxi, get tired/hungry, get in touch, get back, get lost, get a discount",
+  take: "take a taxi, take a break, take time, take care of, take a look, take notes, take off, take over, take a photo",
+  put: "put on (clothes), put down, put away, put off (postpone), put together, put back, put in effort",
+  have: "have lunch, have a meeting, have a look, have time, have a problem, have to, have a break, have fun",
+  make: "make a plan, make a mistake, make money, make a call, make sure, make a decision, make dinner, make friends",
+  give: "give a hand, give up, give back, give a call, give advice, give a ride, give it a try",
+  keep: "keep quiet, keep going, keep in touch, keep a promise, keep calm, keep the change, keep up",
+  let: "let me know, let go, let in, let someone down, let it go",
+  hold: "hold on, hold a meeting, hold hands, hold the door, hold your breath, hold back",
+  bring: "bring an umbrella, bring up (a topic), bring back, bring a friend",
+  carry: "carry a bag, carry out, carry on, carry cash",
+  pick: "pick up, pick out, pick a color, pick someone up, pick a seat",
+  pull: "pull over, pull out, pull up, pull the door, pull a muscle",
+  push: "push the door, push a button, push back, push through",
+  drop: "drop off, drop by, drop a glass, drop out, drop a message",
+  grab: "grab a coffee, grab lunch, grab a seat, grab your bag, grab a taxi",
+  catch: "catch a bus, catch a cold, catch up, catch a ball",
+  throw: "throw away, throw a ball, throw a party, throw out",
+  turn: "turn on/off, turn left, turn around, turn down, turn up, turn into",
+  move: "move in, move out, move on, move a table, move forward",
+  run: "run late, run out of, run a business, run into (someone), go for a run",
+  find: "find out, find a job, find time, find a way, find my keys",
+  lose: "lose weight, lose a game, lose my keys, lose track, lose money",
+  leave: "leave early, leave a message, leave behind, leave home",
+  call: "call back, call off, make a call, call a taxi",
+  tell: "tell the truth, tell a story, tell the difference, tell someone",
+  ask: "ask a question, ask for help, ask out, ask around, ask a favor",
+  show: "show up, show around, show off, show the way",
+  help: "help out, help with, give a hand, help yourself",
+  try: "try again, try on, try out, give it a try, try hard",
+  look: "look for, look after, look up, look forward to, look around",
+  meet: "meet up, meet a client, meet a deadline, meet someone",
+  pay: "pay for, pay back, pay attention, pay in cash, pay a bill",
+  send: "send an email, send back, send over, send a message",
+  use: "use a pen, use up, get used to, make use of",
+  check: "check in, check out, check email, double-check, check the time",
+  break: "take a break, break down, break up, break a rule, break the ice",
+  stop: "stop by, stop working, stop a car, stop someone, make a stop",
+  start: "start over, start a business, start working, get started",
+  open: "open a door, open an account, open up, open a shop",
+  close: "close a door, close a deal, close down, close an account",
+  buy: "buy a ticket, buy groceries, buy time, buy someone a drink",
+  wait: "wait for, wait a minute, wait up, can't wait",
+  save: "save money, save time, save a seat, save a file",
+  change: "change clothes, change my mind, change trains, change a plan",
+};
+const CORE_VERB_LIST = Object.keys(CORE_VERBS);
+
+app.post("/api/core-sentence", async (req, res) => {
+  try {
+    let verb = String(req.body?.verb || "").trim().toLowerCase();
+    // 클라이언트가 동사를 안 주거나 풀에 없으면 서버가 랜덤으로 고른다.
+    if (!CORE_VERBS[verb]) {
+      verb = CORE_VERB_LIST[Math.floor(Math.random() * CORE_VERB_LIST.length)];
+    }
+    const recent = Array.isArray(req.body?.recent)
+      ? req.body.recent.slice(-20).map((s) => String(s))
+      : [];
+    const avoidEn = recent.length
+      ? `\n\nDo NOT reuse or lightly reword these recent sentences:\n- ${recent.join(
+          "\n- "
+        )}`
+      : "";
+
+    const uses = CORE_VERBS[verb];
+    const sentenceInstruction =
+      `Step 1: Write ONE BEGINNER-level English sentence (CEFR A2 — 4 to 9 words) that clearly and naturally uses the verb "${verb}" (such as: ${uses}). ` +
+      `Keep it SHORT and SIMPLE with easy, everyday words and a simple structure — it is for a beginner practicing speaking. ` +
+      `The verb "${verb}" must be the natural, best choice for the sentence — not one where another verb would clearly be better. Vary the use and situation each time (daily life, home, work, travel, friends).\n` +
+      `Step 2: Translate that English sentence into natural, conversational Korean.\n\n` +
+      `Return: "best" = the English sentence, "korean" = its natural Korean translation.`;
+
+    const response = await client.messages.create({
+      model: MODEL,
+      max_tokens: 1024,
+      system:
+        "You create English writing-practice items for Korean learners. You first write a natural English sentence using a target verb, then translate it into Korean.",
+      messages: [{ role: "user", content: sentenceInstruction + avoidEn }],
+      output_config: {
+        format: { type: "json_schema", schema: VERB_SENTENCE_SCHEMA },
+      },
+    });
+
+    const text = response.content.find((b) => b.type === "text")?.text ?? "{}";
+    let parsed;
+    try {
+      parsed = JSON.parse(text);
+    } catch {
+      parsed = { korean: "", best: "" };
+    }
+    const korean = (parsed.korean || "").trim();
+    const best = (parsed.best || "").trim();
+    if (!korean) throw new Error("문제 생성에 실패했습니다.");
+    res.json({ verb, korean, best });
+  } catch (err) {
+    console.error("[/api/core-sentence] 오류:", err?.message || err);
+    const status = err?.status && Number.isInteger(err.status) ? err.status : 500;
+    res
+      .status(status)
+      .json({ error: err?.message || "문제 생성 중 오류가 발생했습니다." });
+  }
+});
+
+app.post("/api/core-grade", async (req, res) => {
+  try {
+    const verb = String(req.body?.verb || "").trim().toLowerCase();
+    const korean = String(req.body?.korean || "").trim();
+    const answer = String(req.body?.answer || "").trim().slice(0, 1000);
+    if (!CORE_VERBS[verb] || !korean || !answer) {
+      return res.status(400).json({ error: "요청 정보가 부족합니다." });
+    }
+    const reference = String(req.body?.reference || "").trim();
+    const refBlock = reference
+      ? `A known-good reference answer that correctly uses the verb "${verb}" is: "${reference}". Use this as the "best" answer (or an equally natural sentence that also uses "${verb}").\n\n`
+      : "";
+
+    const response = await client.messages.create({
+      model: MODEL,
+      max_tokens: 2048,
+      system:
+        `You are an English writing tutor for Korean learners. The practice SUGGESTED the verb "${verb}", but that was only a suggestion. ` +
+        `IMPORTANT SCORING RULE: Score ONLY the correctness and naturalness of the learner's English as a translation of the Korean. ` +
+        `Do NOT lower the score just because the learner used a different main verb than "${verb}". ` +
+        `If their sentence is grammatically correct and natural, give it a high score even when it does not use "${verb}". ` +
+        `ALWAYS set "best" to a natural sentence that DOES use the suggested verb "${verb}", so the learner can see the verb and sentence that was intended. ` +
+        `In "alternatives", give 1-3 more natural sentences (they may or may not use "${verb}"). ` +
+        `In "otherVerbs", show 1-3 other natural ways to say the SAME thing with a DIFFERENT main verb (sentence, the verb, a short Korean nuance note). ` +
+        `Feedback (Korean): first judge the learner's sentence on its own merits (correct or what to fix). ` +
+        `If they used a different verb than "${verb}" but the sentence is fine, clearly say it is correct and does NOT lose points, then tell them the verb you had suggested was "${verb}" and show that "${verb}" version. ` +
+        `If the sentence has real errors, correct those.` +
+        GLOBISH +
+        SASSY,
+      messages: [
+        {
+          role: "user",
+          content:
+            refBlock +
+            `제시(추천) 동사: "${verb}"\n` +
+            `한국어 문장:\n${korean}\n\n` +
+            `학습자가 쓴 영어:\n${answer}\n\n` +
+            `이 영작을 평가해줘. 점수(score)는 "${verb}" 사용 여부와 무관하게, 문장 자체의 정확성·자연스러움으로만 매겨줘 ` +
+            `(동사가 달라도 문장이 맞으면 높은 점수). ` +
+            `best 는 반드시 제시 동사 "${verb}"를 쓴 가장 자연스러운 문장으로 줘(원래 의도한 동사·문장을 보여주기 위함). ` +
+            `alternatives(다른 표현), otherVerbs(다른 동사로 말하는 법), 한국어 피드백(feedback)도 줘. ` +
+            `피드백에는 학습자가 "${verb}"가 아닌 다른 동사를 썼더라도 문장이 맞으면 "맞았고 감점 없음"을 분명히 말하고, 내가 제시한 동사는 "${verb}"였다고 알려줘.`,
+        },
+      ],
+      output_config: {
+        format: { type: "json_schema", schema: VERB_GRADE_SCHEMA },
+      },
+    });
+
+    const text = response.content.find((b) => b.type === "text")?.text ?? "{}";
+    let parsed;
+    try {
+      parsed = JSON.parse(text);
+    } catch {
+      parsed = {};
+    }
+    res.json({
+      score: Number.isFinite(parsed.score) ? parsed.score : 0,
+      best: parsed.best || "",
+      alternatives: Array.isArray(parsed.alternatives) ? parsed.alternatives : [],
+      otherVerbs: Array.isArray(parsed.otherVerbs) ? parsed.otherVerbs : [],
+      feedback: parsed.feedback || "",
+    });
+  } catch (err) {
+    console.error("[/api/core-grade] 오류:", err?.message || err);
+    const status = err?.status && Number.isInteger(err.status) ? err.status : 500;
+    res
+      .status(status)
+      .json({ error: err?.message || "채점 중 오류가 발생했습니다." });
+  }
+});
+
 // ===== 문형 공부 (1형식~5형식) =====
 // 성분 역할 코드: S(주어) V(동사) O(목적어) IO(간접목적어) DO(직접목적어)
 //                 SC(주격보어) OC(목적격보어) M(수식어)

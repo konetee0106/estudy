@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>핵심동사</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>🎲 핵심동사</h1>
+        <nav class="nav">
+          <a href="shadowing.html">👂 쉐도잉</a>
+          <a href="echo.html">🦜 따라하기</a>
+          <a href="reading.html">📖 읽기</a>
+          <a href="writing.html">✍️ 쓰기</a>
+          <a href="speaking.html">🗣️ 말하기</a>
+          <a href="index.html">🎙️ 회화</a>
+          <a href="listen.html">🎧 복습</a>
+          <a href="verb.html">🎯 동사</a>
+          <a href="core-verbs.html" class="active">🎲 핵심동사</a>
+          <a href="sentence.html">🧩 문형</a>
+          <a href="teacher.html">👩‍🏫 과외</a>
+          <a href="bombom.html?c=guiddulki">🎧 귀뚫기</a>
+          <a href="bombom.html?c=bombom">🌸 봄봄</a>
+        </nav>
+        <div class="controls">
+          <label class="voice-select">
+            음성
+            <select id="voiceSelect"></select>
+          </label>
+          <div class="speed">
+            <span class="speed-caption">속도</span>
+            <button type="button" id="slower" title="느리게">🐢</button>
+            <span id="speedVal" class="speed-val">0.9x</span>
+            <button type="button" id="faster" title="빠르게">🐇</button>
+          </div>
+          <input id="rate" type="hidden" value="0.9" />
+        </div>
+      </header>
+
+      <main class="verb-main">
+        <section id="practiceSection">
+          <div class="shadow-card">
+            <div class="shadow-controls">
+              <button id="newBtn" class="mic">🎲 새 연습 (랜덤 동사)</button>
+            </div>
+            <div id="pHint" class="shadow-hint">
+              <b>새 연습</b> 을 누르면 아래 풀에서 <b>동사 하나가 랜덤</b>으로 뽑히고,
+              그 동사를 써야 하는 한국어 문장이 나옵니다. 영어로 옮겨 적어 보세요.
+            </div>
+            <div id="question" class="question" style="display: none"></div>
+            <form id="answerForm" class="answer-form">
+              <textarea
+                id="answerInput"
+                rows="2"
+                placeholder="위 문장을 영어로 써보세요 (Enter = 제출)"
+                disabled
+              ></textarea>
+              <button type="submit" id="submitBtn" disabled>제출하고 채점</button>
+            </form>
+            <div id="result" class="shadow-result"></div>
+          </div>
+
+          <!-- 이 카테고리의 동사 풀 -->
+          <details class="verb-pool" id="verbPool">
+            <summary>🎯 이 카테고리의 핵심동사 (클릭해서 펼치기 · 특정 동사만 연습하려면 눌러요)</summary>
+            <div class="verb-pool-body">
+              <button type="button" class="pool-chip active" data-verb="">🎲 랜덤</button>
+              <span id="poolChips"></span>
+            </div>
+          </details>
+        </section>
+      </main>
+
+      <div id="status" class="status">🎲 새 연습을 눌러 시작하세요.</div>
+    </div>
+
+    <script src="speed.js"></script>
+    <script src="library.js"></script>
+    <script src="core-verbs.js"></script>
+    <script src="accent.js"></script>
+    <script src="ask.js"></script>
+  </body>
+</html>
