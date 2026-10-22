@@ -86,47 +86,31 @@ function speakOnce(text, onEnd) {
   firstSpeak = false;
 
   setTimeout(() => {
-    // 실제 문장 재생 (콜백은 딱 한 번)
-    const speakReal = () => {
-      const utter = new SpeechSynthesisUtterance(text);
-      if (selectedVoice) utter.voice = selectedVoice;
-      utter.lang = selectedVoice ? selectedVoice.lang : "en-US";
-      utter.rate = parseFloat(rateInput.value) || 0.9;
-      let done = false;
-      const fin = () => {
-        if (done) return;
-        done = true;
-        onEnd && onEnd();
-      };
-      utter.onend = fin;
-      utter.onerror = fin;
-      synth.speak(utter);
-    };
-
-    // 희생용 발화(앞 잘림 방지)
-    const primer = new SpeechSynthesisUtterance("hello");
-    primer.volume = 0.05;
+    // 희생용 발화로 콜드스타트 앞 잘림을 흡수. 첫 재생은 더 길게.
+    const primer = new SpeechSynthesisUtterance(
+      cold ? "hello, hello." : "hello"
+    );
+    primer.volume = 0.12;
     primer.rate = 1;
     if (selectedVoice) primer.voice = selectedVoice;
     primer.lang = selectedVoice ? selectedVoice.lang : "en-US";
+    synth.speak(primer);
 
-    if (cold) {
-      // 첫 재생: 프라이머가 실제로 끝난 뒤에 문장 재생 → 앞 잘림 완전 방지
-      let started = false;
-      const go = () => {
-        if (started) return;
-        started = true;
-        speakReal();
-      };
-      primer.onend = go;
-      primer.onerror = go;
-      synth.speak(primer);
-      setTimeout(go, 1500); // 프라이머 onend 가 안 와도 재생되도록 폴백
-    } else {
-      synth.speak(primer);
-      speakReal();
-    }
-  }, 120);
+    // 실제 문장은 프라이머 뒤에 큐로 이어서 재생 (프라이머 오디오가 끝난 뒤 자동 재생).
+    const utter = new SpeechSynthesisUtterance(text);
+    if (selectedVoice) utter.voice = selectedVoice;
+    utter.lang = selectedVoice ? selectedVoice.lang : "en-US";
+    utter.rate = parseFloat(rateInput.value) || 0.9;
+    let done = false;
+    const fin = () => {
+      if (done) return;
+      done = true;
+      onEnd && onEnd();
+    };
+    utter.onend = fin;
+    utter.onerror = fin;
+    synth.speak(utter);
+  }, cold ? 200 : 120);
 }
 
 // ===== 무한 반복 재생 컨트롤러 =====
@@ -192,7 +176,8 @@ async function fetchSentence() {
     loadReviewSentence();
     return;
   }
-  stopPlayback(); // 이전에 돌던 반복 재생 정지
+  stopPlayback(); // 이전에 돌던 반복 재생 정지 (내부에서 cancel 호출)
+  warmUpSpeech(); // 그 뒤에 예열: 버튼을 누른 지금(사용자 제스처) 엔진을 깨운다 → 문장 받는 1~2초 동안 예열 완료
   setStatus("문장을 만드는 중…");
   newBtn.disabled = true;
   playBtn.disabled = true;
@@ -247,6 +232,7 @@ function prepareForSentence() {
 // ===== 복습: 저장된 문장 랜덤으로 =====
 function loadReviewSentence() {
   stopPlayback();
+  warmUpSpeech(); // 제스처 시점에 엔진 예열
   const list = typeof Review !== "undefined" ? Review.all("shadowing") : [];
   if (!list.length) {
     setStatus("복습할 문장이 없습니다. 먼저 '새 문장'으로 연습해 주세요.");
