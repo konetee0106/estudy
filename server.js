@@ -1528,25 +1528,25 @@ const CORE_VERBS = {
   throw: "throw away, throw a ball, throw a party, throw out",
   turn: "turn on/off, turn left, turn around, turn down, turn up, turn into",
   move: "move in, move out, move on, move a table, move forward",
-  run: "run late, run out of, run a business, run into (someone), go for a run",
+  run: "run late, run out of, run a business, run into (someone), run fast",
   find: "find out, find a job, find time, find a way, find my keys",
   lose: "lose weight, lose a game, lose my keys, lose track, lose money",
   leave: "leave early, leave a message, leave behind, leave home",
-  call: "call back, call off, make a call, call a taxi",
+  call: "call back, call off, call a taxi, call someone, call the police",
   tell: "tell the truth, tell a story, tell the difference, tell someone",
   ask: "ask a question, ask for help, ask out, ask around, ask a favor",
   show: "show up, show around, show off, show the way",
-  help: "help out, help with, give a hand, help yourself",
-  try: "try again, try on, try out, give it a try, try hard",
+  help: "help out, help with, help someone, help yourself",
+  try: "try again, try on, try out, try hard, try to (do something)",
   look: "look for, look after, look up, look forward to, look around",
   meet: "meet up, meet a client, meet a deadline, meet someone",
   pay: "pay for, pay back, pay attention, pay in cash, pay a bill",
   send: "send an email, send back, send over, send a message",
-  use: "use a pen, use up, get used to, make use of",
-  check: "check in, check out, check email, double-check, check the time",
-  break: "take a break, break down, break up, break a rule, break the ice",
-  stop: "stop by, stop working, stop a car, stop someone, make a stop",
-  start: "start over, start a business, start working, get started",
+  use: "use a pen, use up, use a computer, use my phone",
+  check: "check in, check out, check email, check the time, check a message",
+  break: "break down, break up, break a rule, break the ice, break a glass",
+  stop: "stop by, stop working, stop a car, stop someone, stop talking",
+  start: "start over, start a business, start working, start a meeting",
   open: "open a door, open an account, open up, open a shop",
   close: "close a door, close a deal, close down, close an account",
   buy: "buy a ticket, buy groceries, buy time, buy someone a drink",
@@ -1576,7 +1576,10 @@ app.post("/api/core-sentence", async (req, res) => {
     const sentenceInstruction =
       `Step 1: Write ONE BEGINNER-level English sentence (CEFR A2 — 4 to 9 words) that clearly and naturally uses the verb "${verb}" (such as: ${uses}). ` +
       `Keep it SHORT and SIMPLE with easy, everyday words and a simple structure — it is for a beginner practicing speaking. ` +
-      `The verb "${verb}" must be the natural, best choice for the sentence — not one where another verb would clearly be better. Vary the use and situation each time (daily life, home, work, travel, friends).\n` +
+      `CRITICAL: "${verb}" MUST be the MAIN VERB of the sentence — the action the subject performs. ` +
+      `Do NOT write a sentence where "${verb}" appears as a NOUN, and do NOT write one where a DIFFERENT verb (take, have, make, go, give, etc.) is the main verb. ` +
+      `For example, if the target is "break", write "I broke the glass" (break = main verb), NOT "I take a break" (there "take" is the main verb and "break" is a noun). ` +
+      `The Korean translation must also be one that a learner would naturally render using "${verb}" as the main verb. Vary the situation each time (daily life, home, work, travel, friends).\n` +
       `Step 2: Translate that English sentence into natural, conversational Korean.\n\n` +
       `Return: "best" = the English sentence, "korean" = its natural Korean translation.`;
 
@@ -1633,7 +1636,7 @@ app.post("/api/core-grade", async (req, res) => {
         `IMPORTANT SCORING RULE: Score ONLY the correctness and naturalness of the learner's English as a translation of the Korean. ` +
         `Do NOT lower the score just because the learner used a different main verb than "${verb}". ` +
         `If their sentence is grammatically correct and natural, give it a high score even when it does not use "${verb}". ` +
-        `ALWAYS set "best" to a natural sentence that DOES use the suggested verb "${verb}", so the learner can see the verb and sentence that was intended. ` +
+        `ALWAYS set "best" to a natural sentence that uses "${verb}" as the MAIN VERB (the action), NOT as a noun and NOT inside a phrase led by another verb (e.g. for "break" use "I broke the glass", never "I take a break"). This shows the verb and sentence that was intended. ` +
         `In "alternatives", give 1-3 more natural sentences (they may or may not use "${verb}"). ` +
         `In "otherVerbs", show 1-3 other natural ways to say the SAME thing with a DIFFERENT main verb (sentence, the verb, a short Korean nuance note). ` +
         `Feedback (Korean): first judge the learner's sentence on its own merits (correct or what to fix). ` +
