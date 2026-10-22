@@ -1626,9 +1626,10 @@ app.post("/api/core-grade", async (req, res) => {
 
     const response = await client.messages.create({
       model: MODEL,
-      max_tokens: 2048,
+      max_tokens: 900,
       system:
         `You are an English writing tutor for Korean learners. The practice SUGGESTED the verb "${verb}", but that was only a suggestion. ` +
+        `Be FAST and CONCISE: at most 1 item in "alternatives", at most 2 items in "otherVerbs", and feedback in 1-2 short Korean sentences. ` +
         `IMPORTANT SCORING RULE: Score ONLY the correctness and naturalness of the learner's English as a translation of the Korean. ` +
         `Do NOT lower the score just because the learner used a different main verb than "${verb}". ` +
         `If their sentence is grammatically correct and natural, give it a high score even when it does not use "${verb}". ` +
@@ -1651,8 +1652,8 @@ app.post("/api/core-grade", async (req, res) => {
             `이 영작을 평가해줘. 점수(score)는 "${verb}" 사용 여부와 무관하게, 문장 자체의 정확성·자연스러움으로만 매겨줘 ` +
             `(동사가 달라도 문장이 맞으면 높은 점수). ` +
             `best 는 반드시 제시 동사 "${verb}"를 쓴 가장 자연스러운 문장으로 줘(원래 의도한 동사·문장을 보여주기 위함). ` +
-            `alternatives(다른 표현), otherVerbs(다른 동사로 말하는 법), 한국어 피드백(feedback)도 줘. ` +
-            `피드백에는 학습자가 "${verb}"가 아닌 다른 동사를 썼더라도 문장이 맞으면 "맞았고 감점 없음"을 분명히 말하고, 내가 제시한 동사는 "${verb}"였다고 알려줘.`,
+            `alternatives(다른 표현, 최대 1개), otherVerbs(다른 동사로 말하는 법, 최대 2개), 한국어 피드백(feedback, 1~2문장)도 줘. ` +
+            `피드백에는 학습자가 "${verb}"가 아닌 다른 동사를 썼더라도 문장이 맞으면 "맞았고 감점 없음"을 분명히 말하고, 내가 제시한 동사는 "${verb}"였다고 알려줘. 간결하게.`,
         },
       ],
       output_config: {
