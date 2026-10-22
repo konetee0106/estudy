@@ -57,16 +57,21 @@ voiceSelect.addEventListener("change", () => {
   selectedVoice = voices[voiceSelect.value] || null;
 });
 
+// 예열: 시작을 누른 "그 순간" 실제로 소리를 내서 음성 엔진을 깨워둔다.
+// (볼륨 0 발화는 일부 브라우저가 건너뛰어 예열이 안 됨 → 0.05로 아주 작게 소리냄)
+// 문장을 불러오는 동안(~1~2초) 엔진이 깨어나므로, 첫 문장부터 앞이 안 잘린다.
 function warmUpSpeech() {
   if (warmedUp || !("speechSynthesis" in window)) return;
   warmedUp = true;
-  const u = new SpeechSynthesisUtterance(" ");
-  u.volume = 0;
+  const u = new SpeechSynthesisUtterance("hello");
+  u.volume = 0.05;
+  u.rate = 1;
   if (selectedVoice) u.voice = selectedVoice;
+  u.lang = selectedVoice ? selectedVoice.lang : "en-US";
   window.speechSynthesis.speak(u);
 }
 
-// 첫 재생은 음성 엔진이 차가워 앞부분이 잘린다 → 더 긴 희생 발화로 확실히 예열
+// 첫 재생은 엔진이 차가워 앞이 잘릴 수 있어, 프라이머가 '끝난 뒤' 실제 문장을 재생한다.
 let firstSpeak = true;
 
 // 한 번 재생하고, 끝나면 onEnd 콜백 호출
@@ -79,25 +84,49 @@ function speakOnce(text, onEnd) {
   synth.cancel();
   const cold = firstSpeak; // 이번이 첫 재생인가
   firstSpeak = false;
+
   setTimeout(() => {
-    // 희생용 발화: 시작 부분이 잘리는 브라우저 버그 대응. 첫 재생은 더 길게.
-    const primer = new SpeechSynthesisUtterance(
-      cold ? "hello, hello, hello." : "hello"
-    );
+    // 실제 문장 재생 (콜백은 딱 한 번)
+    const speakReal = () => {
+      const utter = new SpeechSynthesisUtterance(text);
+      if (selectedVoice) utter.voice = selectedVoice;
+      utter.lang = selectedVoice ? selectedVoice.lang : "en-US";
+      utter.rate = parseFloat(rateInput.value) || 0.9;
+      let done = false;
+      const fin = () => {
+        if (done) return;
+        done = true;
+        onEnd && onEnd();
+      };
+      utter.onend = fin;
+      utter.onerror = fin;
+      synth.speak(utter);
+    };
+
+    // 희생용 발화(앞 잘림 방지)
+    const primer = new SpeechSynthesisUtterance("hello");
     primer.volume = 0.05;
     primer.rate = 1;
     if (selectedVoice) primer.voice = selectedVoice;
     primer.lang = selectedVoice ? selectedVoice.lang : "en-US";
-    synth.speak(primer);
 
-    const utter = new SpeechSynthesisUtterance(text);
-    if (selectedVoice) utter.voice = selectedVoice;
-    utter.lang = selectedVoice ? selectedVoice.lang : "en-US";
-    utter.rate = parseFloat(rateInput.value) || 0.9;
-    utter.onend = () => onEnd && onEnd();
-    utter.onerror = () => onEnd && onEnd();
-    synth.speak(utter);
-  }, cold ? 300 : 120);
+    if (cold) {
+      // 첫 재생: 프라이머가 실제로 끝난 뒤에 문장 재생 → 앞 잘림 완전 방지
+      let started = false;
+      const go = () => {
+        if (started) return;
+        started = true;
+        speakReal();
+      };
+      primer.onend = go;
+      primer.onerror = go;
+      synth.speak(primer);
+      setTimeout(go, 1500); // 프라이머 onend 가 안 와도 재생되도록 폴백
+    } else {
+      synth.speak(primer);
+      speakReal();
+    }
+  }, 120);
 }
 
 // ===== 무한 반복 재생 컨트롤러 =====
