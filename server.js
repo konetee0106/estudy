@@ -1626,7 +1626,7 @@ app.post("/api/core-grade", async (req, res) => {
 
     const response = await client.messages.create({
       model: MODEL,
-      max_tokens: 900,
+      max_tokens: 1400,
       system:
         `You are an English writing tutor for Korean learners. The practice SUGGESTED the verb "${verb}", but that was only a suggestion. ` +
         `Be FAST and CONCISE: at most 1 item in "alternatives", at most 2 items in "otherVerbs", and feedback in 1-2 short Korean sentences. ` +
