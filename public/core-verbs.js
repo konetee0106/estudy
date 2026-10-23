@@ -9,7 +9,7 @@ const VERB_POOL = [
 ];
 
 // ===== 상태 =====
-let lockedVerb = ""; // ""=랜덤, 아니면 그 동사만 연습
+const selectedVerbs = new Set(); // 비어있으면 전체 랜덤, 아니면 선택된 동사들 중 랜덤
 let currentVerb = ""; // 이번 문제의 동사
 let currentKorean = "";
 let currentBest = "";
@@ -108,49 +108,73 @@ VERB_POOL.forEach((v) => {
   b.textContent = v;
   poolChips.appendChild(b);
 });
-const allChips = document.querySelectorAll(".pool-chip");
-allChips.forEach((b) => {
+const randomChip = document.querySelector('.pool-chip[data-verb=""]');
+const verbChips = Array.from(document.querySelectorAll(".pool-chip")).filter(
+  (c) => c.dataset.verb !== ""
+);
+
+function updateChipUI() {
+  if (randomChip) randomChip.classList.toggle("active", selectedVerbs.size === 0);
+  verbChips.forEach((c) =>
+    c.classList.toggle("active", selectedVerbs.has(c.dataset.verb))
+  );
+}
+
+function selectionStatus() {
+  if (selectedVerbs.size === 0)
+    return "🎲 전체 동사에서 랜덤으로 출제합니다. 새 연습을 누르세요.";
+  return `선택한 동사(${selectedVerbs.size}개): ${[...selectedVerbs].join(
+    ", "
+  )} — 이 중에서 랜덤 출제. 🎲 새 연습을 누르세요.`;
+}
+
+if (randomChip) {
+  randomChip.addEventListener("click", () => {
+    selectedVerbs.clear();
+    updateChipUI();
+    setStatus(selectionStatus());
+  });
+}
+verbChips.forEach((b) => {
   b.addEventListener("click", () => {
-    lockedVerb = b.dataset.verb; // ""=랜덤
-    allChips.forEach((x) => x.classList.toggle("active", x === b));
-    setStatus(
-      lockedVerb
-        ? `'${lockedVerb}' 만 연습합니다. 🎲 새 연습을 누르세요.`
-        : "🎲 랜덤으로 연습합니다. 새 연습을 누르세요."
-    );
+    const v = b.dataset.verb;
+    if (selectedVerbs.has(v)) selectedVerbs.delete(v);
+    else selectedVerbs.add(v);
+    updateChipUI();
+    setStatus(selectionStatus());
   });
 });
 
-// ===== 연습 =====
-function recentPractice() {
-  const key = "core_" + (lockedVerb || "random");
-  if (typeof History === "undefined") return [];
-  return History.recent(key, 20);
+// 선택된 동사들 중 하나를 랜덤으로 고른다 (없으면 전체 풀에서)
+function pickVerb() {
+  const pool = selectedVerbs.size ? [...selectedVerbs] : VERB_POOL;
+  return pool[Math.floor(Math.random() * pool.length)];
 }
 
+// ===== 연습 =====
 async function fetchQuestion() {
   warmUpSpeech(); // 제스처 시점에 엔진 예열
+  const verb = pickVerb(); // 선택된 동사들(또는 전체)에서 랜덤
+  const recent =
+    typeof History !== "undefined" ? History.recent("core_" + verb, 20) : [];
   setStatus("문제를 만드는 중…");
   newBtn.disabled = true;
   try {
     const res = await fetch("/api/core-sentence", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        verb: lockedVerb || undefined, // 없으면 서버가 랜덤 선택
-        recent: recentPractice(),
-      }),
+      body: JSON.stringify({ verb, recent }),
     });
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.error || `서버 오류 (${res.status})`);
     }
     const data = await res.json();
-    currentVerb = (data.verb || "").trim();
+    currentVerb = (data.verb || verb).trim();
     currentKorean = (data.korean || "").trim();
     currentBest = (data.best || "").trim();
     if (typeof History !== "undefined") {
-      History.add("core_" + (lockedVerb || "random"), currentKorean);
+      History.add("core_" + currentVerb, currentKorean);
     }
 
     pHint.style.display = "none";
