@@ -6,17 +6,17 @@
 }
 
 :root {
-  --bg: #0f1524;
-  --panel: #182034;
-  --panel-2: #1f2a44;
-  --accent: #4f8cff;
-  --accent-2: #34d399;
-  --user: #2a3b5e;
-  --ai: #222c44;
-  --text: #e8edf7;
-  --muted: #93a0bd;
-  --border: #2c3a55;
-  --danger: #ef4444;
+  --bg: #ffffff;
+  --panel: #f5f7fb;
+  --panel-2: #eef2f9;
+  --accent: #2f6bff;
+  --accent-2: #059669;
+  --user: #e5efff;
+  --ai: #f3f5fa;
+  --text: #1a2233;
+  --muted: #5a6782;
+  --border: #d6dde9;
+  --danger: #dc2626;
 }
 
 html,
@@ -137,7 +137,7 @@ select {
 .msg .correction {
   margin-top: 8px;
   padding-top: 8px;
-  border-top: 1px dashed #3a4a68;
+  border-top: 1px dashed var(--border);
   color: var(--accent-2);
   font-size: 0.85rem;
 }
@@ -428,8 +428,8 @@ footer {
 }
 
 .w-miss {
-  color: #fbbf24;
-  background: rgba(251, 191, 36, 0.12);
+  color: #b45309;
+  background: rgba(251, 191, 36, 0.18);
   border-radius: 4px;
   padding: 0 3px;
 }
@@ -454,7 +454,7 @@ footer {
   color: var(--accent-2);
 }
 .legend .l-miss::before {
-  color: #fbbf24;
+  color: #b45309;
 }
 .legend .l-extra::before {
   color: var(--danger);
@@ -818,7 +818,7 @@ footer {
 
 .listen-item.now {
   border-color: var(--accent);
-  background: #1c2b4a;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 .item-main {
@@ -1008,7 +1008,7 @@ footer {
   z-index: 100;
   display: none;
   background: #0b1220;
-  color: var(--text);
+  color: #f9fafb;
   border: 1px solid var(--accent);
   border-radius: 10px;
   padding: 10px 14px;
