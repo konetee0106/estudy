@@ -14,7 +14,7 @@
   --user: #e5efff;
   --ai: #f3f5fa;
   --text: #1a2233;
-  --muted: #45536e;
+  --muted: #3b465f;
   --border: #aab6cc;
   --danger: #dc2626;
   /* 아웃라인/보조 버튼용 (흰 배경에서 또렷하게 보이도록 연한 파랑 틴트) */
@@ -593,13 +593,14 @@ footer {
 }
 
 .review-tabs button {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  color: var(--muted);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  color: var(--text);
   border-radius: 999px;
   padding: 8px 16px;
   cursor: pointer;
   font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .review-tabs button:hover {
@@ -629,7 +630,7 @@ footer {
 .verb-tabs button {
   background: transparent;
   border: none;
-  color: var(--muted);
+  color: var(--text);
   padding: 8px 22px;
   cursor: pointer;
   font-size: 1rem;
@@ -994,10 +995,11 @@ footer {
 .mode-group button {
   background: transparent;
   border: none;
-  color: var(--muted);
+  color: var(--text);
   padding: 8px 14px;
   cursor: pointer;
   font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .mode-group button:not(:last-child) {
