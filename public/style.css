@@ -14,9 +14,12 @@
   --user: #e5efff;
   --ai: #f3f5fa;
   --text: #1a2233;
-  --muted: #5a6782;
-  --border: #d6dde9;
+  --muted: #45536e;
+  --border: #aab6cc;
   --danger: #dc2626;
+  /* 아웃라인/보조 버튼용 (흰 배경에서 또렷하게 보이도록 연한 파랑 틴트) */
+  --chip-bg: #e7edfb;
+  --chip-border: #a9bbe6;
 }
 
 html,
@@ -82,12 +85,13 @@ header h1 {
 }
 
 select {
-  background: var(--panel);
+  background: var(--chip-bg);
   color: var(--text);
-  border: 1px solid var(--border);
+  border: 1px solid var(--chip-border);
   border-radius: 8px;
   padding: 4px 8px;
   max-width: 200px;
+  font-weight: 600;
 }
 
 .chat {
@@ -271,13 +275,14 @@ footer {
 }
 
 .stop {
-  background: transparent;
-  border: 1px solid var(--border);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
   border-radius: 999px;
-  color: var(--muted);
+  color: var(--text);
   padding: 10px 14px;
   cursor: pointer;
   font-size: 1rem;
+  font-weight: 600;
 }
 
 .stop:hover {
@@ -293,11 +298,16 @@ footer {
 
 .nav a {
   text-decoration: none;
-  color: var(--muted);
+  color: var(--text);
+  background: var(--chip-bg);
   padding: 6px 12px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--chip-border);
   font-size: 0.85rem;
+  font-weight: 600;
+}
+.nav a:hover {
+  border-color: var(--accent);
 }
 
 .nav a.active {
@@ -515,13 +525,14 @@ footer {
   max-width: 100%;
 }
 .accent-group button {
-  background: var(--panel);
-  border: 1px solid var(--border);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
   color: var(--text);
   border-radius: 8px;
   padding: 5px 10px;
   cursor: pointer;
   font-size: 0.82rem;
+  font-weight: 600;
   white-space: nowrap;
 }
 .accent-group button:hover {
@@ -974,7 +985,8 @@ footer {
 /* 보기 모드 3분할 버튼 */
 .mode-group {
   display: inline-flex;
-  border: 1px solid var(--border);
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
   border-radius: 999px;
   overflow: hidden;
 }
@@ -1564,11 +1576,12 @@ footer {
   align-items: center;
   gap: 5px;
   font-size: 0.82rem;
-  color: var(--muted);
+  color: var(--text);
+  background: var(--chip-bg);
   cursor: pointer;
   padding: 5px 10px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--chip-border);
   user-select: none;
 }
 .review-toggle input {
@@ -1773,9 +1786,9 @@ body.review-on header h1::after {
   margin-top: 12px;
 }
 .pool-chip {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--muted);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  color: var(--text);
   border-radius: 999px;
   padding: 5px 13px;
   cursor: pointer;
